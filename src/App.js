@@ -1,11 +1,19 @@
 import './App.css';
-import Topbar from './components/topbar/Topbar';
+import Topbar from './screens/topbar/Topbar';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './screens/home/Home';
+
 
 function App() {
   return (
-    <div className="bg-homeGrandient h-screen w-screen">
+    <BrowserRouter>
+    <div className="bg-vector h-screen w-screen">
       <Topbar/>
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+      </Routes>
     </div>
+    </BrowserRouter>
   );
 }
 

@@ -28,7 +28,8 @@ module.exports = {
       'white':'f1faee'
     },
     backgroundImage:{
-      'homeGrandient':'radial-gradient(circle, rgba(168,218,220,1) 0%, rgba(69,123,157,1) 100%)'
+      'homeGrandient':'radial-gradient(circle, rgba(168,218,220,1) 0%, rgba(69,123,157,1) 100%)',
+      // 'vector':"url('../public/vector.jpg')"
     },
     fontFamily: {
       firstFont: ["shabnam"],

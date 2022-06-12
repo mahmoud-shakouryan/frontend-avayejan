@@ -5,8 +5,10 @@
 @font-face {
   font-family: "shabnam";
   src: url("./fonts/Shabnam.ttf");
+  font-display: block;
 }
 @font-face {
   font-family: "shabnamLight";
   src: url("./fonts/Shabnam-Light.ttf");
+  font-display: block;
 }
