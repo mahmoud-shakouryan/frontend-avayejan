@@ -15,43 +15,45 @@ const Topbar = () => {
 
   return (
     <div className="z-10 fixed w-full h-10 flex justify-between items-center bg-blueDark text-blueLighter">
-      <div className="basis-1/3 text-sm font-semibold text-left pl-2 ">
-        <Link to='/' className="font-firstFont font-thin">آوای جان</Link>
+      <div className="basis-1/10 text-sm font-semibold text-left pl-2 ">
+        <Link to='/' className="font-firstFont font-thin hover:text-red">آوای جان</Link>
       </div>
-      <div className="basis-1/3  flex justify-center">
+      <div className="fixed right-1/2 translate-x-1/2 flex items-center rounded">
         <ShoppingBasketOutlinedIcon />
       </div>
 
-      <nav className="basis-1/3">
-        <div className="md:hidden text-right pr-2 flex justify-end  ">
+      <nav className="h-full basis-9/10 flex items-center">
+        
+        <div className="md:hidden text-right pr-2 flex justify-end gap-4">
           <MenuOutlinedIcon
             onClick={showMenu}
             className="cursor-pointer scale-150 "
           />
         </div>
 
-        <ul className="hidden md:flex gap-8 p-6">
-          <li>
-            <Link to="/">Home</Link>
+        <ul className="hidden h-full bg-blueDark md:flex md:items-center md:justify-around md:gap-5 font-secondFont text-xs pr-2">
+          <li className="h-full hover:text-red cursor-pointer">
+            <Link to="/contact" className=" h-full flex items-center justify-center">تماس با ما</Link>
           </li>
-          <li>
-            <Link to="/">Testimonials</Link>
+          <li className="h-full hover:text-red cursor-pointer">
+            <Link to="/about" className=" h-full flex items-center justify-center">درباره‌ی ما</Link>
           </li>
-          <li>
-            <Link to="/">Information</Link>
+          <li className="h-full hover:text-red cursor-pointer">
+            <Link to="/signup" className=" h-full flex items-center justify-center">ثبت نام</Link>
           </li>
-          <li>
-            <Link to="/">Jobs</Link>
+          <li className="h-full hover:text-red cursor-pointer">
+            <Link to="/signin" className=" h-full flex items-center justify-center">ورود</Link>
           </li>
-          <li>
-            <Link to="/">About</Link>
+          <li className="h-full hover:text-red cursor-pointer">
+            <Link to="/videos" className=" h-full flex items-center justify-center">ویدیوهای آموزشی</Link>
           </li>
-          <li>
-            <Link to="/">Contact</Link>
+          <li className="h-full hover:text-red cursor-pointer">
+            <Link to="/" className=" h-full flex items-center justify-center">صفحه اصلی</Link>
           </li>
         </ul>
 
         <MobileMenu showMenu={showMenu} active={active}/>
+        
       </nav>
     </div>
   );
