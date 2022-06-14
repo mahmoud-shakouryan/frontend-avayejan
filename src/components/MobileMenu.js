@@ -4,7 +4,7 @@ import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 const MobileMenu = ({showMenu, active}) => {
   return (
     <div className=''>
-        <ul className={active ? 'font-secondFont text-sm fixed right-0 top-0 h-screen w-1/2  bg-blueDark flex flex-col justify-start items-center md:hidden' : 'hidden'}>
+        <ul className={active ? 'font-secondFont text-sm fixed right-0 top-0 h-screen w-1/2  bg-dark flex  flex-col justify-start items-center md:hidden' : 'hidden'}>
             <li className=" p-2" onClick={showMenu}><CloseOutlinedIcon className="scale-150" /></li>
           <li className="p-4">
             <Link to="/">صفحه اصلی</Link>
