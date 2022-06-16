@@ -5,27 +5,27 @@ const MobileMenu = ({showMenu, active}) => {
   return (
     <div className=''>
         <ul className={active ? 'font-secondFont text-sm fixed right-0 top-0 h-screen w-1/2  bg-dark flex  flex-col justify-start items-center md:hidden' : 'hidden'}>
-            <li className=" p-2" onClick={showMenu}><CloseOutlinedIcon className="scale-150" /></li>
-          <li className="p-4">
-            <Link to="/">صفحه اصلی</Link>
+            <li  onClick={showMenu} className="p-5 w-full flex items-center justify-center sm:hover:text-orange cursor-pointer"><CloseOutlinedIcon className="scale-150 flex items-center justify-center" /></li>
+          <li  onClick={showMenu} className="w-full flex items-center justify-center sm:hover:text-orange">
+            <Link to="/" className="p-5 w-full flex items-center justify-center">صفحه اصلی</Link>
           </li>
-          <li className="p-4">
-            <Link to="/videos">ویدیوهای آموزشی</Link>
+          <li  onClick={showMenu} className="w-full flex items-center justify-center sm:hover:text-orange">
+            <Link to="/videos"  className="p-5 w-full flex items-center justify-center">ویدیوهای آموزشی</Link>
           </li>
-          <li className="p-4">
-            <Link to="/signup">ثبت‌نام</Link>
+          <li  onClick={showMenu} className="w-full flex items-center justify-center sm:hover:text-orange">
+            <Link to="/signup"  className="p-5 w-full flex items-center justify-center">ثبت‌نام</Link>
           </li>
-          <li className="p-4">
-            <Link to="/signin">ورود</Link>
+          <li  onClick={showMenu} className="w-full flex items-center justify-center sm:hover:text-orange">
+            <Link to="/signin" className="p-5 w-full flex items-center justify-center">ورود</Link>
           </li>
-          <li className="p-4">
-            <Link to="/cart">سبد خرید</Link>
+          <li  onClick={showMenu} className="w-full flex items-center justify-center sm:hover:text-orange">
+            <Link to="/cart" className="p-5 w-full flex items-center justify-center">سبد خرید</Link>
           </li>
-          <li className="p-4">
-            <Link to="/about">درباره‌ی ما</Link>
+          <li  onClick={showMenu} className="w-full flex items-center justify-center sm:hover:text-orange">
+            <Link to="/about" className="p-5 w-full flex items-center justify-center">درباره‌ی ما</Link>
           </li>
-          <li className="p-4">
-            <Link to="/contact">ارتباط با ما</Link>
+          <li  onClick={showMenu} className="w-full flex items-center justify-center sm:hover:text-orange">
+            <Link to="/contact" className="p-5 w-full flex items-center justify-center">ارتباط با ما</Link>
           </li>
           
         </ul>

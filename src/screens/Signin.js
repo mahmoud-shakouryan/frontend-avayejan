@@ -27,7 +27,7 @@ const Signin = () => {
             <input className='focus:outline-dark w-full p-2 rounded shadow-sm shadow-dark' type="password" id="password" placeholder="Enter Password" required onChange={(e) => setPassword(e.target.value)} autoComplete="off"/>
             </div>
             <div className='basis-1/5 flex items-center justify-center'>
-                <button type='submit' className='bg-orange w-1/2 p-2 font-firstFont font-semibold text-dark rounded shadow-sm shadow-dark hover:scale-105 duration-75 ease-out'>ورود</button>
+                <button type='submit' className='bg-orange w-1/2 p-2 font-firstFont font-semibold text-dark rounded shadow-sm shadow-dark hover:scale-105 duration-150 ease-out'>ورود</button>
             </div>
             
             <div className='basis-1/5 flex items-center justify-center gap-2 text-sm'>

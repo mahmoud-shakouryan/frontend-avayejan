@@ -27,7 +27,7 @@ const Topbar = () => {
         <div className="md:hidden text-right pr-2 flex justify-end gap-4">
           <MenuOutlinedIcon
             onClick={showMenu}
-            className="cursor-pointer scale-150 "
+            className="cursor-pointer scale-150 sm:hover:text-orange"
           />
         </div>
 
