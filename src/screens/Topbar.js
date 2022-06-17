@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
-import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined';
 import MobileMenu from "../components/MobileMenu";
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+
 
 const Topbar = () => {
 
@@ -19,7 +20,7 @@ const Topbar = () => {
         <Link to='/' className="font-firstFont font-thin hover:text-orange">آوای جان</Link>
       </div>
       <div className="fixed right-1/2 translate-x-1/2 flex items-center rounded">
-        <ShoppingBasketOutlinedIcon className="hover:text-orange cursor-pointer"/>
+        <ShoppingCartOutlinedIcon className="hover:text-orange cursor-pointer"/>
       </div>
 
       <nav className="h-full basis-9/10 flex items-center">

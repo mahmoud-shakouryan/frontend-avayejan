@@ -10,7 +10,7 @@ import Videos from './screens/Videos';
 function App() {
   return (
     <BrowserRouter>
-    <div className="h-screen w-screen">
+    <div className="w-screen h-screen">
       <Topbar/>
       <Routes>
         <Route path='/' element={<Home/>}/>
