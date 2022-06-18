@@ -17,7 +17,7 @@ const Home = () => {
         <p className="text-center font-secondFont font-bold">متخصص اعصاب و روان، روان‌درمانگر و مشاور ازدواج و خانواده</p>
       </div>
       <div className="basis-2/5 text-center  flex flex-col items-center justify-start gap-10">
-        <button type="button" className="w-40 bg-orange text-xs text-dark font-bold font-secondFont p-3 rounded-lg shadow-sm shadow-dark sm:hover:scale-105 duration-150 ease-out"> <VideoLibraryOutlinedIcon className='mr-1 font-bold' />ویدیوهای آموزشی</button>
+        <Link to='/videos'><button type="button" className="w-40 bg-orange text-xs text-dark font-bold font-secondFont p-3 rounded-lg shadow-sm shadow-dark sm:hover:scale-105 duration-150 ease-out"> <VideoLibraryOutlinedIcon className='mr-1 font-bold' />ویدیوهای آموزشی</button></Link>        
         <Link to='/signin'><button type="button" className="w-40 bg-orange text-xs text-dark  font-secondFont p-3 rounded-lg shadow-sm shadow-dark flex items-center justify-center   sm:hover:scale-105 duration-150 ease-out"> <ExitToAppIcon className='mr-1' /><span className='font-bold'>وارد شوید</span></button></Link>
         <button type="button" className="w-40 bg-orange text-xs text-dark font-secondFont p-2.5 rounded-lg shadow-sm shadow-dark flex items-center justify-center  sm:hover:scale-105 duration-150 ease-out"> <HowToRegIcon  className='mr-1  mb-1' /><span className='font-bold'>ثبت نام کنید</span></button>
       </div>

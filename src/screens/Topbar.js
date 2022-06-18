@@ -7,9 +7,9 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 const Topbar = () => {
 
-    const [active,setActive] = useState(false);
+    const [activeSideMenu, setActiveSideMenu] = useState(false);
     const showMenu = () => {
-        setActive(!active)
+      setActiveSideMenu(!activeSideMenu)
     }
 
 
@@ -17,10 +17,10 @@ const Topbar = () => {
   return (
     <div className="z-10 fixed w-full h-10 flex justify-between items-center bg-dark text-theWhite">
       <div className="basis-1/10 text-sm font-semibold text-left pl-2 ">
-        <Link to='/' className="font-firstFont font-thin hover:text-orange">آوای جان</Link>
+        <Link to='/' className="font-firstFont font-thin sm:hover:text-orange">آوای جان</Link>
       </div>
       <div className="fixed right-1/2 translate-x-1/2 flex items-center rounded">
-        <ShoppingCartOutlinedIcon className="hover:text-orange cursor-pointer"/>
+        <Link to='/card'><ShoppingCartOutlinedIcon className="sm:hover:text-orange cursor-pointer"/></Link>
       </div>
 
       <nav className="h-full basis-9/10 flex items-center">
@@ -53,7 +53,7 @@ const Topbar = () => {
           </li>
         </ul>
 
-        <MobileMenu showMenu={showMenu} active={active}/>
+        <MobileMenu showMenu={showMenu} activeSideMenu={activeSideMenu}/>
         
       </nav>
     </div>

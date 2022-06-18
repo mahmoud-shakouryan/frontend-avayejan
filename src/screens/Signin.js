@@ -19,15 +19,15 @@ const Signin = () => {
 
             <div  className='basis-1/5 flex flex-col items-end justify-center gap-1'>
             <label htmlFor="email" className='text-sm font-bold'> : ایمیل </label>
-            <input className='focus:outline-dark w-full p-2 rounded shadow-sm shadow-dark' type="email" id="email" placeholder="Enter Email" required onChange={(e) => setEmail(e.target.value)}/>
+            <input className='bg-theWhite focus:outline-dark w-full p-1 pt-2 pl-2 font-semibold tracking-wider text-sm rounded border border-dark ' type="email" id="email" placeholder="Enter Email" required onChange={(e) => setEmail(e.target.value)}/>
             </div>
 
             <div className='basis-1/5 flex flex-col items-end justify-center gap-1'>
             <label htmlFor="password" className='text-sm font-bold'> : رمز عبور</label>
-            <input className='focus:outline-dark w-full p-2 rounded shadow-sm shadow-dark' type="password" id="password" placeholder="Enter Password" required onChange={(e) => setPassword(e.target.value)} autoComplete="off"/>
+            <input className='bg-theWhite focus:outline-dark w-full p-1 pt-2 pl-2  text-sm font-semibold tracking-wider rounded border border-dark' type="password" id="password" placeholder="Enter Password" required onChange={(e) => setPassword(e.target.value)} autoComplete="off"/>
             </div>
             <div className='basis-1/5 flex items-center justify-center'>
-                <button type='submit' className='bg-orange w-1/2 p-2 font-firstFont font-semibold text-dark rounded shadow-sm shadow-dark hover:scale-105 duration-150 ease-out'>ورود</button>
+                <button type='submit' className='bg-orange w-1/2 p-2  font-firstFont font-semibold text-dark rounded shadow-sm shadow-dark hover:scale-105 duration-150 ease-out'>ورود</button>
             </div>
             
             <div className='basis-1/5 flex items-center justify-center gap-2 text-sm'>

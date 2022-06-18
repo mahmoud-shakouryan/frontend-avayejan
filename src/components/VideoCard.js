@@ -5,7 +5,7 @@ import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 
 const VideoCard = (props) => {
   return (
-    <div className='p-1 w-64 h-80 bg-white flex flex-col rounded-xl shadow-lg shadow-dark sm:hover:scale-105 cursor-pointer duration-150 font-firstFont'>
+    <div className='p-1 w-64 h-80 bg-white flex flex-col rounded-xl shadow-sm shadow-dark sm:hover:scale-105 cursor-pointer duration-150 font-firstFont'>
           <div className="basis-2/6  flex items-center justify-center font-bold">مهارت درست اندیشیدن</div>
           <div className="basis-1/6 text-center"> <button className="w-1/3 bg-orange font-secondFont font-bold text-xs p-1 rounded-xl shadow-sm shadow-dark">توسعه فردی</button></div>
           <div className="basis-1/6  flex  p-1">
