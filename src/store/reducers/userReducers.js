@@ -30,7 +30,7 @@ export const userSignupReducer = ( state = userSignupInState, action ) =>{
             return { ...state, loading: true };
         case actions.USER_SIGNUP_SUCCESS:
             const updatedSate = { ...state, loading: false, userInfo : action.payload };
-            localStorage.setItem('userInfo', action.payload);
+            localStorage.setItem('userInfo', JSON.stringify(action.payload));
             return updatedSate;
         case actions.USER_SIGNUP_RESET:
             return {};

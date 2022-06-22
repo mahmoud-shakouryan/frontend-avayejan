@@ -6,8 +6,19 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import { Link } from 'react-router-dom';
+import { ToastContainer ,toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 const Home = () => {
+
+
+    const { userInfo } = useSelector( state => state.userSigninReducer );
+
+
+    
+
   return (
     <div className="w-full h-screen  fixed top-10 p-2 bg-theWhite flex flex-col justify-between">
       
@@ -19,7 +30,7 @@ const Home = () => {
       <div className="basis-2/5 text-center  flex flex-col items-center justify-start gap-10">
         <Link to='/videos'><button type="button" className="w-40 bg-orange text-xs text-dark font-bold font-secondFont p-3 rounded-lg shadow-sm shadow-dark sm:hover:scale-105 duration-150 ease-out"> <VideoLibraryOutlinedIcon className='mr-1 font-bold' />ویدیوهای آموزشی</button></Link>        
         <Link to='/signin'><button type="button" className="w-40 bg-orange text-xs text-dark  font-secondFont p-3 rounded-lg shadow-sm shadow-dark flex items-center justify-center   sm:hover:scale-105 duration-150 ease-out"> <ExitToAppIcon className='mr-1' /><span className='font-bold'>وارد شوید</span></button></Link>
-        <button type="button" className="w-40 bg-orange text-xs text-dark font-secondFont p-2.5 rounded-lg shadow-sm shadow-dark flex items-center justify-center  sm:hover:scale-105 duration-150 ease-out"> <HowToRegIcon  className='mr-1  mb-1' /><span className='font-bold'>ثبت نام کنید</span></button>
+        <Link to='/signup'><button type="button" className="w-40 bg-orange text-xs text-dark font-secondFont p-2.5 rounded-lg shadow-sm shadow-dark flex items-center justify-center  sm:hover:scale-105 duration-150 ease-out"> <HowToRegIcon  className='mr-1  mb-1' /><span className='font-bold'>ثبت نام کنید</span></button></Link>
       </div>
       <footer className="basis-2/5 flex flex-col justify-center">
           <div className=' w-1/2 md:w-1/4 m-auto text-dark flex items-center justify-around scale-150'>
