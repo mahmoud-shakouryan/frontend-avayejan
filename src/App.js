@@ -5,7 +5,7 @@ import Home from './screens/Home';
 import Signin from './screens/Signin';
 import Signup from './screens/Signup';
 import Videos from './screens/Videos';
-import { Card } from '@mui/material';
+import Card from './screens/Card';
 
 
 function App() {

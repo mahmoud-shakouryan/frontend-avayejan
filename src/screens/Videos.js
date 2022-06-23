@@ -11,9 +11,6 @@ const Videos = () => {
       <VideoCard />
       <VideoCard />
       <VideoCard />
-     
-     
-      
       </div>
       <div className="bg-orange h-16 w-screen fixed bottom-0">dfdfdf</div>
       
