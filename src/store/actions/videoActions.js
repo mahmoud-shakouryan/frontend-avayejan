@@ -20,17 +20,18 @@ export const videoList = () => {
 
 export const videoDetails = (id) => {
     return async dispatch => {
-        dispatch({ type: actions.VIDEO_Details_REQUEST});
+        dispatch({ type: actions.VIDEO_DETAILS_REQUEST});
         
         axios.get(`/api/videos/${id}`).then(result=>{
-            if(!result.data.video){
-               return dispatch({type: actions.VIDEO_Details_FAIL});
+            
+            if(!result.data){
+               return dispatch({type: actions.VIDEO_DETAILS_FAIL});
             }
-            dispatch({ type: actions.VIDEO_Details_SUCCESS, payload:result.data.video});
+            dispatch({ type: actions.VIDEO_DETAILS_SUCCESS, payload:result.data});
         })
         .catch(err=>{              //error'e marboot be axios
             console.log('videoAcions videoDetails error', err.message)
-            dispatch({ type: actions.VIDEO_Details_FAIL, payload: err.message})
+            dispatch({ type: actions.VIDEO_DETAILS_FAIL, payload: err.message })
         })
        
     }

@@ -12,9 +12,9 @@ export const VIDEO_LIST_REQUEST = 'VIDEO_LIST_REQUEST';
 export const VIDEO_LIST_SUCCESS = 'VIDEO_LIST_SUCCESS';
 export const VIDEO_LIST_FAIL = 'VIDEO_LIST_FAIL';
 
-export const VIDEO_Details_REQUEST = 'VIDEO_Details_REQUEST';
-export const VIDEO_Details_SUCCESS = 'VIDEO_Details_SUCCESS';
-export const VIDEO_Details_FAIL = 'VIDEO_Details_FAIL';
+export const VIDEO_DETAILS_REQUEST = 'VIDEO_DETAILS_REQUEST';
+export const VIDEO_DETAILS_SUCCESS = 'VIDEO_DETAILS_SUCCESS';
+export const VIDEO_DETAILS_FAIL = 'VIDEO_DETAILS_FAIL';
 
 
 export const ADD_TO_CARD = 'ADD_TO_CARD';

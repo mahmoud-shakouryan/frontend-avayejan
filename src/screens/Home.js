@@ -28,9 +28,9 @@ const Home = () => {
         <p className="text-center font-secondFont font-bold">متخصص اعصاب و روان، روان‌درمانگر و مشاور ازدواج و خانواده</p>
       </div>
       <div className="basis-2/5 text-center  flex flex-col items-center justify-start gap-10">
-        <Link to='/videos'><button type="button" className="w-40 bg-orange text-xs text-dark font-bold font-secondFont p-3 rounded-lg shadow-sm shadow-dark sm:hover:scale-105 duration-150 ease-out"> <VideoLibraryOutlinedIcon className='mr-1 font-bold' />ویدیوهای آموزشی</button></Link>        
-        <Link to='/signin'><button type="button" className="w-40 bg-orange text-xs text-dark  font-secondFont p-3 rounded-lg shadow-sm shadow-dark flex items-center justify-center   sm:hover:scale-105 duration-150 ease-out"> <ExitToAppIcon className='mr-1' /><span className='font-bold'>وارد شوید</span></button></Link>
-        <Link to='/signup'><button type="button" className="w-40 bg-orange text-xs text-dark font-secondFont p-2.5 rounded-lg shadow-sm shadow-dark flex items-center justify-center  sm:hover:scale-105 duration-150 ease-out"> <HowToRegIcon  className='mr-1  mb-1' /><span className='font-bold'>ثبت نام کنید</span></button></Link>
+        <Link to='/videos'><button type="button" className="w-40 bg-orange text-xs  text-dark font-bold font-secondFont p-3 rounded-lg shadow-sm shadow-dark sm:hover:scale-105 duration-150 ease-out"> <span><VideoLibraryOutlinedIcon className='mr-1 font-bold' /></span><span>ویدیوهای آموزشی</span></button></Link>        
+        <Link to='/signin'><button type="button" className="w-40 bg-orange text-xs text-dark  font-secondFont p-3 rounded-lg shadow-sm shadow-dark flex items-center justify-center   sm:hover:scale-105 duration-150 ease-out"> <span><ExitToAppIcon className='mr-1' /></span><span className='font-bold'>وارد شوید</span></button></Link>
+        <Link to='/signup'><button type="button" className="w-40 bg-orange text-xs text-dark font-secondFont p-2.5 rounded-lg shadow-sm shadow-dark flex items-center justify-center  sm:hover:scale-105 duration-150 ease-out"> <span><HowToRegIcon  className='mr-1  mb-1' /></span><span className='font-bold'>ثبت نام کنید</span></button></Link>
       </div>
       <footer className="basis-2/5 flex flex-col justify-center">
           <div className=' w-1/2 md:w-1/4 m-auto text-dark flex items-center justify-around scale-150'>

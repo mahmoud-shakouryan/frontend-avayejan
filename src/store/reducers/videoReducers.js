@@ -22,11 +22,12 @@ const videoDetailsInState = { video: {}, loading: false, error: null };
 
 export const videoDetailsReducer = (state = videoDetailsInState, action) =>{
     switch (action.type){
-        case actions.VIDEO_Details_REQUEST:
+        case actions.VIDEO_DETAILS_REQUEST:
             return { ...state, loading: true };
-        case actions.VIDEO_Details_SUCCESS:
+        case actions.VIDEO_DETAILS_SUCCESS:
             return { ...state, loading: false, video: action.payload };
-        case actions.VIDEO_Details_FAIL:
+        case actions.VIDEO_DETAILS_FAIL:
+            console.log(action.payload)
             return { ...state, loading: false, error: action.payload };
         default:
             return state;
