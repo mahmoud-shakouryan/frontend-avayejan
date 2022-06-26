@@ -2,8 +2,9 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import MobileMenu from "../components/MobileMenu";
+import { useDispatch, useSelector } from "react-redux";
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-
+import * as actions from '../store/actions/actionTypes';
 
 const Topbar = () => {
 
@@ -12,6 +13,16 @@ const Topbar = () => {
       setActiveSideMenu(!activeSideMenu)
     }
 
+    const userSigninState = useSelector( state => state.userSigninReducer );
+    const { userInfo } = userSigninState;
+
+    const cardState = useSelector( state => state.cardReducer );
+    const { cardItems } = cardState;
+
+    const dispatch = useDispatch();
+    const userSignoutHandler = () =>{
+      dispatch({ type: actions.USER_SIGNOUT });
+    }
 
 
   return (
@@ -19,8 +30,8 @@ const Topbar = () => {
       <div className="basis-1/10 text-sm font-semibold text-left pl-2 ">
         <Link to='/' className="font-firstFont font-thin sm:hover:text-orange">آوای جان</Link>
       </div>
-      <div className="fixed right-1/2 translate-x-1/2 flex items-center rounded">
-        <Link to='/card'><ShoppingCartOutlinedIcon className="sm:hover:text-orange cursor-pointer"/></Link>
+      <div className="fixed w-10 h-10 right-1/2 translate-x-1/2 flex items-center justify-center rounded">
+        <Link to='/card'><ShoppingCartOutlinedIcon/>{ (cardItems && cardItems.length !== 0) ? <span className="absolute top-1 -right-1 bg-red text-dark font-bold border w-5 h-5 rounded-full flex items-center justify-center text-xs">{cardItems.length}</span> : null}</Link>
       </div>
 
       <nav className="h-full basis-9/10 flex items-center">
@@ -43,7 +54,7 @@ const Topbar = () => {
             <Link to="/signup" className=" h-full flex items-center justify-center">ثبت نام</Link>
           </li>
           <li className="h-full hover:text-orange cursor-pointer">
-            <Link to="/signin" className=" h-full flex items-center justify-center">ورود</Link>
+            { userInfo ? <button  className=" h-full flex items-center justify-center" onClick={userSignoutHandler}>خروج</button> : <Link to="/signin" className=" h-full flex items-center justify-center">ورود</Link> }
           </li>
           <li className="h-full hover:text-orange cursor-pointer">
             <Link to="/videos" className=" h-full flex items-center justify-center">ویدیوهای آموزشی</Link>

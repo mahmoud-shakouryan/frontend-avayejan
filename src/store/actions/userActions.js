@@ -1,5 +1,7 @@
 import * as actions from "../actions/actionTypes";
 import axios from 'axios';
+import { toast } from 'react-toastify';
+
 
 
 
@@ -23,8 +25,7 @@ export const signupAction = (name, email, password) => {
     return async (dispatch) => {
         dispatch({ type: actions.USER_SIGNUP_REQUEST });
         try {
-            const {data} = await axios.post('/api/users/signffup', { name: name, email: email, password: password });
-            console.log('data signup', data)
+            const {data} = await axios.post('/api/users/signup', { name: name, email: email, password: password });
             dispatch({ type: actions.USER_SIGNUP_SUCCESS, payload: data });
             dispatch({ type: actions.USER_SIGNIN_SUCCESS, payload: data });
             //dispatch({ type: actions.USER_SIGNUP_RESET });

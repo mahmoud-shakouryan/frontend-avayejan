@@ -7,6 +7,7 @@ import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunk from "redux-thunk";
 import { userSigninReducer, userSignupReducer } from "./store/reducers/userReducers";
 import { videoDetailsReducer, videoListReducer } from "./store/reducers/videoReducers";
+import { cardReducer } from "./store/reducers/cardReducers";
 
 
 
@@ -17,6 +18,7 @@ const reducer = combineReducers({
   userSignupReducer: userSignupReducer,
   videoListReducer: videoListReducer,
   videoDetailsReducer: videoDetailsReducer,
+  cardReducer: cardReducer,
 })
 
 const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));

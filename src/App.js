@@ -7,6 +7,8 @@ import Signup from './screens/Signup';
 import Videos from './screens/Videos';
 import Card from './screens/Card';
 import VideoDetail from './screens/VideoDetail';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 
 function App() {
@@ -14,12 +16,14 @@ function App() {
     <BrowserRouter>
     <div className="w-screen h-screen">
       <Topbar/>
+      <ToastContainer/>
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/signin' element={<Signin/>}/>
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/videos' element={<Videos/>}/>
         <Route path='/videos/:id' element={<VideoDetail/>}/>
+        <Route path="/card/:id" element={<Card/>} />
         <Route path='/card' element={<Card/>}/>
         
       </Routes>

@@ -2,17 +2,52 @@ import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
-import { Link } from 'react-router-dom';
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { removeFromCard } from "../store/actions/cardActions.js";
+import { ToastContainer ,toast } from 'react-toastify';
+import { useState } from 'react';
+
+
+
 
 const VideoCard = ({video}) => {
+  console.log('renering videocard')
 
+  const [showModal, setShowModal] = useState(false);
+
+  const navigate = useNavigate();
   const { id, videoName, category, likes, numOfDownloads, price, duration } = video;
-
   
+  const cardState = useSelector( state => state.cardReducer );
+  const { cardItems } = cardState;
 
+  const userSigninState = useSelector( state => state.userSigninReducer );
+  const { userInfo } = userSigninState;
   
+  
+  
+  const dispatch = useDispatch();
+  const removeFromCartHandler = (videoIdToRemove) => {
+    dispatch(removeFromCard(videoIdToRemove));
+  };
 
-  return (
+    
+    
+
+    const addToCardHandler = () => {
+      if(!userInfo){
+         toast.warn('ابتدا وارد حساب شوید');
+         return navigate('/signin')
+      }
+      navigate(`/card/${id}`)
+    }
+
+    return (
+      <>
     <div className='p-1 w-64 h-80 bg-white flex flex-col rounded-xl shadow-sm shadow-dark sm:hover:scale-105 cursor-pointer duration-150 font-firstFont'>
           <div className="basis-2/6  flex items-center justify-center font-bold">{videoName}</div>
           <div className="basis-1/6 text-center"> <button className="w-1/3 bg-orange font-secondFont font-bold text-xs p-1 rounded-xl shadow-sm shadow-dark">{category}</button></div>
@@ -37,13 +72,15 @@ const VideoCard = ({video}) => {
             </div>
           </div>
           <div className="basis-1/6  p-1 text-xs">
-            <Link to={`/videos/${id}`}><button className='bg-orange h-full w-full rounded-md shadow-sm shadow-dark font-bold text-dark'>توضیح بیشتر</button></Link>
+            <Link to={`/videos/${id}`}><button className='bg-orange h-full w-full rounded-md shadow-sm shadow-dark font-bold text-dark flex items-center justify-center gap-2'> <MoreHorizIcon/><span>توضیح بیشتر</span></button></Link>
           </div>
           <div className='basis-1/6  p-1 text-xs'>
-          <button className='bg-orange h-full w-full rounded-md shadow-sm shadow-dark font-bold text-dark'>افزودن به سبد خرید </button>
+          { (cardItems && cardItems.find( cardItem => cardItem.id === id )) ?  <button className='bg-orange h-full w-full rounded-md shadow-sm shadow-dark font-bold text-dark flex items-center justify-center gap-2' onClick={()=>removeFromCartHandler(cardItems.find( cardItem => cardItem.id === id ).id)}><DeleteOutlineOutlinedIcon/><span>حذف از سبد خرید</span></button> : <button className='bg-orange h-full w-full rounded-md shadow-sm shadow-dark font-bold text-dark flex items-center justify-center gap-2' onClick={addToCardHandler}><AddShoppingCartIcon/><span>افزودن به سبد خرید</span> </button> }
+          
 
           </div>
     </div>
+    </>
   )
 }
 
