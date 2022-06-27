@@ -15,7 +15,6 @@ import { useState } from 'react';
 
 
 const VideoCard = ({video}) => {
-  console.log('renering videocard')
 
   const [showModal, setShowModal] = useState(false);
 

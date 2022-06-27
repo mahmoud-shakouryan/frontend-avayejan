@@ -11,8 +11,10 @@ export const signinAction = (email, password) => {
         try{
             const {data} = await axios.post('/api/users/signin', { email: email, password: password });
             dispatch({ type:actions.USER_SIGNIN_SUCCESS, payload: data });
+            toast.success('خوش آمدید')
         }
         catch(err){
+            console.log('userActions SigninAction error>>>', err)
             dispatch({ type: actions.USER_SIGNIN_FAIL, payload:err.message });
          }
 
