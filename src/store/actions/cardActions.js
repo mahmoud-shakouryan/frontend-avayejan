@@ -1,11 +1,13 @@
 import * as actions from './actionTypes';
 import axios from 'axios';
 
+const axiosInstance = axios.create({ baseURL: 'http://localhost:5000'});
+
 
 export const addToCard = (videoId) => {
     return async (dispatch) => {
         try {
-            const result = await axios.get(`/api/videos/${videoId}`);
+            const result = await axiosInstance.get(`/api/videos/${videoId}`);
             const video = result.data;
             dispatch({ type: actions.ADD_TO_CARD, payload: video});
         } catch (err) {
@@ -20,3 +22,5 @@ export const removeFromCard = (videoId) => {
         dispatch({ type: actions.REMOVE_FROM_CARD, payload: videoId });
     }
 }
+
+

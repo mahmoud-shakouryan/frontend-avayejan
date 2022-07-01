@@ -21,3 +21,7 @@ export const ADD_TO_CARD = 'ADD_TO_CARD';
 export const REMOVE_FROM_CARD= 'REMOVE_FROM_CARD';
 export const CART_EMPTY = 'CART_EMPTY';
 
+export const PAY_REQUEST = 'PAY_REQUEST';
+export const PAY_SUCCESS = 'PAY_SUCCESS';
+export const PAY_FAIL = 'PAY_FAIL';
+

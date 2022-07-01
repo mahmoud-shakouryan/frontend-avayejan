@@ -8,11 +8,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeFromCard } from "../store/actions/cardActions.js";
 import { toast } from 'react-toastify';
 import CurrencyExchangeOutlinedIcon from '@mui/icons-material/CurrencyExchangeOutlined';
+import { pay } from '../store/actions/payActions.js';
 
 
 
 
 const CardItem = ({video}) => {
+
 
 
   const navigate = useNavigate();
@@ -24,6 +26,9 @@ const CardItem = ({video}) => {
   const userSigninState = useSelector( state => state.userSigninReducer );
   const { userInfo } = userSigninState;
   
+  const payState = useSelector( state => state.payReducer );
+  const { error, loading, payment } = payState;
+  console.log(payment)
   
   
   const dispatch = useDispatch();
@@ -40,6 +45,10 @@ const CardItem = ({video}) => {
          return navigate('/signin')
       }
       navigate(`/card/${id}`)
+    }
+
+    const payHandler = () =>{
+      dispatch(pay(price, id));
     }
 
     return (
@@ -61,7 +70,7 @@ const CardItem = ({video}) => {
           { (cardItems && cardItems.find( cardItem => cardItem.id === id )) ?  <button className=' h-full w-full rounded-md shadow-sm shadow-dark font-bold text-dark flex items-center justify-center gap-2' onClick={()=>removeFromCartHandler(cardItems.find( cardItem => cardItem.id === id ).id)}><DeleteOutlineOutlinedIcon/><span>حذف از سبد خرید</span></button> : <button className='bg-orange h-full w-full rounded-md shadow-sm shadow-dark font-bold text-dark flex items-center justify-center gap-2' onClick={addToCardHandler}><AddShoppingCartIcon/><span>افزودن به سبد خرید</span> </button> }
           </div>
           <div className="basis-1/6  p-1 text-xs">
-          <button className='bg-dark text-theWhite font-thin h-full w-full rounded-md shadow-sm shadow-dark  flex items-center justify-center gap-3' ><CurrencyExchangeOutlinedIcon className='font-thin'/><span>پرداخت</span></button>
+          { payment ? <button><a  href={`https://www.zarinpal.com/pg/StartPay/${payment}`}> برو</a></button> :<button className='bg-dark text-theWhite font-thin h-full w-full rounded-md shadow-sm shadow-dark  flex items-center justify-center gap-3' onClick={payHandler}>{ loading? <CurrencyExchangeOutlinedIcon className='font-thin animate-spin'/> :<CurrencyExchangeOutlinedIcon className='font-thin'/>} {loading ? <span>آغاز فرایند پزداخت</span> : <span>پرداخت</span>}</button>}
           </div>
           <div className="basis-1/6  p-1 text-xs">
           <button disabled className='bg-dark text-theWhite font-thin h-full w-full rounded-md shadow-sm shadow-dark  flex items-center justify-center gap-2' ><FileDownloadOutlinedIcon className='font-thin'/><span>دریافت لینک دانلود</span></button>
