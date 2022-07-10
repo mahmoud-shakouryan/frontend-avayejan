@@ -24,3 +24,11 @@ export const removeFromCard = (videoId) => {
 }
 
 
+
+export const cardEmpty = () =>{
+    return dispatch =>{
+        dispatch({ type: actions.CART_EMPTY });
+    }
+}
+
+
