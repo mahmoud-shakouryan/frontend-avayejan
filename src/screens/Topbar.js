@@ -48,9 +48,6 @@ const Topbar = () => {
             <Link to="/contact" className=" h-full flex items-center justify-center">تماس با ما</Link>
           </li>
           <li className="h-full hover:text-orange cursor-pointer">
-            <Link to="/about" className=" h-full flex items-center justify-center">درباره‌ی ما</Link>
-          </li>
-          <li className="h-full hover:text-orange cursor-pointer">
             <Link to="/signup" className=" h-full flex items-center justify-center">ثبت نام</Link>
           </li>
           <li className="h-full hover:text-orange cursor-pointer">

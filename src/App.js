@@ -9,12 +9,14 @@ import Card from './screens/Card';
 import VideoDetail from './screens/VideoDetail';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import Contact from './screens/Contact';
+
 
 
 function App() {
   return (
     <BrowserRouter>
-    <div className="w-screen h-screen">
+    <div className="w-screen h-screen bg-theWhite">
       <Topbar/>
       <ToastContainer className='toastContainer' autoClose='1000'/>
       <Routes>
@@ -25,6 +27,7 @@ function App() {
         <Route path='/videos/:id' element={<VideoDetail/>}/>
         <Route path="/card/:id" element={<Card/>} />
         <Route path='/card' element={<Card/>}/>
+        <Route path='/contact' element={<Contact/>}/>
         
       </Routes>
     </div>

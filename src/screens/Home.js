@@ -2,7 +2,7 @@ import VideoLibraryOutlinedIcon from '@mui/icons-material/VideoLibraryOutlined';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import TelegramIcon from '@mui/icons-material/Telegram';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import { Link } from 'react-router-dom';
@@ -34,10 +34,10 @@ const Home = () => {
       </div>
       <footer className="basis-2/5 flex flex-col justify-center">
           <div className=' w-1/2 md:w-1/4 m-auto text-dark flex items-center justify-around scale-150'>
-            <span className='sm:hover:scale-110 sm:duration-150'><TelegramIcon className="text-dark rounded shadow-sm shadow-dark cursor-pointer"/></span>
-            <span className='sm:hover:scale-110 sm:duration-150'><WhatsAppIcon className='rounded shadow-sm shadow-dark cursor-pointer'/></span>
-            <span className='sm:hover:scale-110 sm:duration-150'><InstagramIcon className='rounded shadow-sm shadow-dark cursor-pointer'/></span>
-            <span className='sm:hover:scale-110 sm:duration-150'><YouTubeIcon className='rounded shadow-sm shadow-dark cursor-pointer'/></span>
+          <a href='http://telegram.me/avaye_jaan' className='sm:hover:scale-110 sm:duration-150' target='_blank'><span  title='تلگرام'><TelegramIcon className="scale-125 text-dark rounded shadow-sm shadow-dark cursor-pointer"/></span></a>
+            <a href='https://www.instagram.com/avaye_jaan/' className='sm:hover:scale-110 sm:duration-150' target='_blank'><span  title='اینستاگرام'><InstagramIcon className='scale-125 rounded shadow-sm shadow-dark cursor-pointer'/></span></a>
+            <span className='sm:hover:scale-110 sm:duration-150' title='یوتیوب'><YouTubeIcon className='scale-125 rounded shadow-sm shadow-dark cursor-pointer'/></span>
+            <a href='https://www.aparat.com/avaclinic' className='sm:hover:scale-110 sm:duration-150' target='_blank'><span  title='آپارات'><OndemandVideoIcon className='scale-125 rounded shadow-sm shadow-dark cursor-pointer'/></span></a>
           </div>
     </footer>
     </div>

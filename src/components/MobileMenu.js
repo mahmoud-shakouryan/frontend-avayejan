@@ -37,11 +37,9 @@ const MobileMenu = ({showMenu, activeSideMenu}) => {
           <li  onClick={showMenu} className="w-full flex items-center justify-center sm:hover:text-orange">
             <Link to="/card" className="p-5 w-full flex items-center justify-center">سبد خرید</Link>
           </li>
+          
           <li  onClick={showMenu} className="w-full flex items-center justify-center sm:hover:text-orange">
-            <Link to="/about" className="p-5 w-full flex items-center justify-center">درباره‌ی ما</Link>
-          </li>
-          <li  onClick={showMenu} className="w-full flex items-center justify-center sm:hover:text-orange">
-            <Link to="/contact" className="p-5 w-full flex items-center justify-center">ارتباط با ما</Link>
+            <Link to="/contact" className="p-5 w-full flex items-center justify-center">تماس با ما</Link>
           </li>
           
         </ul>

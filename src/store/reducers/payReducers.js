@@ -1,7 +1,7 @@
 import * as actions from '../actions/actionTypes';
 
 
-const payReducerInState = { payment: null, error: false, loading: false };
+const payReducerInState = { payment: '', error: false, loading: false };
 
 export const payReducer = (state= payReducerInState, action ) =>{
     switch (action.type){

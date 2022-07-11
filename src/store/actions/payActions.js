@@ -10,12 +10,12 @@ export const pay = (price, videoId) =>{
         const store = getState();
         const userInfo = store.userSigninReducer.userInfo;
         try{
-            const result = await axios.post('/api/pay', { price: price, videoId: videoId, userId: userInfo._id });
-            dispatch({ type: actions.PAY_SUCCESS, payload: result.data.authority });
+            const result = await axios.post('/api/pay', { price: price, videoId: videoId, userId: userInfo._id }, {headers: {Authorization: `Bearer ${userInfo.token}`}});
+            dispatch({ type: actions.PAY_SUCCESS, payload: result.data.link });
         }
         catch(err){
             console.log('pay error>>>', err);
-            dispatch({ type: actions.PAY_FAIL, payload:err.message });
+            dispatch({ type: actions.PAY_FAIL, payload: err.message });
 
         }
     }
