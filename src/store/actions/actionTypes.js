@@ -25,3 +25,11 @@ export const PAY_REQUEST = 'PAY_REQUEST';
 export const PAY_SUCCESS = 'PAY_SUCCESS';
 export const PAY_FAIL = 'PAY_FAIL';
 
+
+export const DLLIST_REQUEST = 'DLLIST_REQUEST';
+export const DLLIST_SUCCESS = 'DLLIST_SUCCESS';
+export const DLLIST_FAIL = 'DLLIST_FAIL';
+
+export const LINK_REQUEST = 'LINK_REQUEST';
+export const LINK_SUCCESS = 'LINK_SUCCESS';
+export const LINK_FAIL = 'LINK_FAIL';

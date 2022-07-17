@@ -5,7 +5,6 @@ import * as actions from './actionTypes';
 export const videoList = () => {
     return async dispatch =>{
         dispatch({ type: actions.VIDEO_LIST_REQUEST});
-
         try {
             const {data} = await axios.get('/api/videos');
             dispatch({ type: actions.VIDEO_LIST_SUCCESS, payload: data});

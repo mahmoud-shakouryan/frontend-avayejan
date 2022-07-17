@@ -10,6 +10,7 @@ import VideoDetail from './screens/VideoDetail';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import Contact from './screens/Contact';
+import DownloadScr from './screens/DownloadScr';
 
 
 
@@ -28,6 +29,7 @@ function App() {
         <Route path="/card/:id" element={<Card/>} />
         <Route path='/card' element={<Card/>}/>
         <Route path='/contact' element={<Contact/>}/>
+        <Route path='/myvideos' element={<DownloadScr/>}/>
         
       </Routes>
     </div>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import MobileMenu from "../components/MobileMenu";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,9 +19,12 @@ const Topbar = () => {
     const cardState = useSelector( state => state.cardReducer );
     const { cardItems } = cardState;
 
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const userSignoutHandler = () =>{
       dispatch({ type: actions.USER_SIGNOUT });
+      dispatch({ type: actions.CART_EMPTY });
+      navigate('/');
     }
 
 

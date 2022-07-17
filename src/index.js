@@ -9,6 +9,7 @@ import { userSigninReducer, userSignupReducer } from "./store/reducers/userReduc
 import { videoDetailsReducer, videoListReducer } from "./store/reducers/videoReducers";
 import { cardReducer } from "./store/reducers/cardReducers";
 import { payReducer } from "./store/reducers/payReducers";
+import { dlListReducer, linksReducer } from "./store/reducers/dlListReducers";
 
 
 
@@ -21,6 +22,8 @@ const reducer = combineReducers({
   videoDetailsReducer: videoDetailsReducer,
   cardReducer: cardReducer,
   payReducer: payReducer,
+  dlListReducer: dlListReducer,
+  linksReducer: linksReducer,
 })
 
 const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));

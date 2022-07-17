@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from '../store/actions/actionTypes';
@@ -12,10 +12,12 @@ const MobileMenu = ({showMenu, activeSideMenu}) => {
 
 
 
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const userSignoutHandler = () =>{
       dispatch({ type: actions.USER_SIGNOUT });
+      dispatch({ type: actions.CART_EMPTY });
+      navigate('/');
     } 
 
   return (
