@@ -58,7 +58,7 @@ const DownloadScr = () => {
     }
     if(status){
       dispatch(dlListAction(userInfo._id, status, order_id, payId));
-       dispatch(videoList());
+      //  dispatch(videoList());
        toast.success('پرداخت موفق')
        dispatch(cardEmpty());
     }
