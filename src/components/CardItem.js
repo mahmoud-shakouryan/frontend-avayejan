@@ -27,7 +27,6 @@ const CardItem = ({video}) => {
   
   const payState = useSelector( state => state.payReducer );
   const { error, loading, payment } = payState;
-  console.log(payment)
   
   
   const dispatch = useDispatch();
@@ -63,14 +62,14 @@ const CardItem = ({video}) => {
             </div>
             <div className="basis-2/5 flex flex-col rounded-sm shadow-sm shadow-dark">
             <span className=" text-center"><PaidOutlinedIcon /></span>
-              <span className="flex items-center justify-evenly font-bold text-sm "> <span className='basis-1/3 text-right text-xs'>تومان</span><span className='pt-1 bsis-2/3 text-left text-xs '>{price}</span> </span>
+              <span className="flex items-center justify-evenly font-bold text-sm "> <span className='basis-1/3 text-right text-xs'>تومان</span><span className='pt-1 bsis-2/3 text-left text-xs '>{price/10}</span> </span>
             </div>
           </div>
           <div className='basis-1/5  p-1 text-xs'>
           { (cardItems && cardItems.find( cardItem => cardItem.id === id )) ?  <button className=' h-full w-full rounded-md shadow-sm shadow-dark font-bold text-dark flex items-center justify-center gap-2' onClick={()=>removeFromCartHandler(cardItems.find( cardItem => cardItem.id === id ).id)}><DeleteOutlineOutlinedIcon/><span>حذف از سبد خرید</span></button> : <button className='bg-orange h-full w-full rounded-md shadow-sm shadow-dark font-bold text-dark flex items-center justify-center gap-2' onClick={addToCardHandler}><AddShoppingCartIcon/><span>افزودن به سبد خرید</span> </button> }
           </div>
           <div className="basis-1/5 p-1 text-xs">
-          { payment ? <button  className='w-full bg-dark  rounded '><a  href={payment}> برو به درگاه</a></button> :<button className='bg-dark text-theWhite font-thin h-full w-full rounded-md shadow-sm shadow-dark  flex items-center justify-center gap-3' onClick={payHandler}>{ loading? <CurrencyExchangeOutlinedIcon className='font-thin animate-spin'/> :<CurrencyExchangeOutlinedIcon className='font-thin'/>} {loading ? <span>آغاز فرایند پزداخت</span> : <span>پرداخت</span>}</button>}
+          { payment ? <button  className='bg-dark text-theWhite font-thin h-full w-full rounded-md shadow-sm shadow-dark  flex items-center justify-center gap-3'><a  href={payment} className='w-full h-full flex items-center justify-center'> برو به درگاه</a></button> :<button className='bg-dark text-theWhite font-thin h-full w-full rounded-md shadow-sm shadow-dark  flex items-center justify-center gap-3' onClick={payHandler}>{ loading? <CurrencyExchangeOutlinedIcon className='font-thin animate-spin'/> :<CurrencyExchangeOutlinedIcon className='font-thin'/>} {loading ? <span>آغاز فرایند پرداخت</span> : <span>پرداخت</span>}</button>}
           </div>
     </div>
     </>

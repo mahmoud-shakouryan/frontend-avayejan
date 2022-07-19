@@ -27,6 +27,7 @@ const VideoCard = ({video}) => {
   const userSigninState = useSelector( state => state.userSigninReducer );
   const { userInfo } = userSigninState;
   
+  const options = { style: { 'font':'shabnam', 'textAlign': 'center','color':'#16001E', 'fontFamily':'firstFont', 'fontSize':'14px', 'fontWeight':'bold'} }
   
   
   const dispatch = useDispatch();
@@ -39,7 +40,7 @@ const VideoCard = ({video}) => {
 
     const addToCardHandler = () => {
       if(!userInfo){
-         toast.warn('ابتدا وارد حساب شوید');
+         toast.warn('ابتدا وارد حساب شوید', options);
          return navigate('/signin')
       }
       navigate(`/card/${id}`)

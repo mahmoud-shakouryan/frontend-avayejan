@@ -24,13 +24,12 @@ const  Signup = () => {
         const dispatch = useDispatch();
         const submitSignupFormHandler = (e) =>{
             e.preventDefault();
-            
-            if( password !== confirmedPassword ){
-               toast.error('پسووردها همخوانی ندارند')
-            }
-            else{
-                dispatch(signupAction(name, email, password));
-            }
+            dispatch(signupAction(name, email, password, confirmedPassword));
+            // if( password !== confirmedPassword ){
+            //    toast.error('پسووردها همخوانی ندارند')
+            // }
+            // else{
+            // }
         }
 
         
@@ -48,10 +47,10 @@ const  Signup = () => {
         
   return (
     <>
-    { error && <ErrorBox error={error}/>}
-    {<ToastContainer/>}
+    {/* { error && <ErrorBox error={error}/>} */}
+    {/* {<ToastContainer/>} */}
     <div className='p-2 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-5/6 sm:w-2/3 md:w-1/2 lg:w-5/12 xl:w-1/3 2xl:w-1/4  shadow-md shadow-dark font-secondFont text-dark rounded'>
-        <form onSubmit={submitSignupFormHandler} className='h-full flex flex-col justify-between'>
+        <form onSubmit={submitSignupFormHandler} className='h-full flex flex-col justify-between' noValidate>
 
             <div className='basis-1/5 flex flex-col items-center justify-center gap-1'>
                 <span><HowToRegIcon className='scale-150'/></span>
@@ -60,22 +59,22 @@ const  Signup = () => {
             
             <div  className='basis-1/5 flex flex-col items-end justify-center gap-1'>
             <label htmlFor="name" className='text-sm font-bold'> : نام </label>
-            <input  onChange={(e) => setName(e.target.value)} className='bg-theWhite focus:outline-dark w-full p-1 pt-2 pl-2 font-semibold tracking-wider text-sm rounded  border border-dark' type="text" id="name" placeholder="Enter Email"/>
+            <input  onChange={(e) => setName(e.target.value)} className='bg-theWhite focus:outline-dark w-full p-1 pt-2 pl-2 font-semibold tracking-wider text-sm rounded  border border-dark' type="text" id="name" name='name' placeholder="Enter Email"/>
             </div>
 
             <div  className='basis-1/5 flex flex-col items-end justify-center gap-1 mt-3'>
             <label htmlFor="email" className='text-sm font-bold'> : ایمیل </label>
-            <input className='bg-theWhite focus:outline-dark w-full p-1 pt-2 pl-2 font-semibold tracking-wider text-sm rounded  border broder-dark' type="email" id="email" placeholder="Enter Email" required onChange={(e) => setEmail(e.target.value)}/>
+            <input name='email' className='bg-theWhite focus:outline-dark w-full p-1 pt-2 pl-2 font-semibold tracking-wider text-sm rounded  border broder-dark' type="email" id="email" placeholder="Enter Email" required onChange={(e) => setEmail(e.target.value)}/>
             </div>
 
             <div className='basis-1/5 flex flex-col items-end justify-center gap-1  mt-3'>
             <label htmlFor="password" className='text-sm font-bold'> : رمز عبور </label>
-            <input className='bg-theWhite focus:outline-dark w-full p-1 pt-2 pl-2 font-semibold tracking-wider text-sm rounded  border border-dark' type="password" id="password" placeholder="Enter Password" required onChange={(e) => setPassword(e.target.value)} autoComplete="off"/>
+            <input name='password' className='bg-theWhite focus:outline-dark w-full p-1 pt-2 pl-2 font-semibold tracking-wider text-sm rounded  border border-dark' type="password" id="password" placeholder="Enter Password" required onChange={(e) => setPassword(e.target.value)} autoComplete="off"/>
             </div>
 
             <div className='basis-1/5 flex flex-col items-end justify-center gap-1 mt-3'>
             <label htmlFor="confirm" className='text-sm font-bold'> : تکرار رمز عبور </label>
-            <input className='bg-theWhite focus:outline-dark w-full p-1 pt-2 pl-2 font-semibold tracking-wider text-sm rounded  border border-dark' type="password" id="confirm" placeholder="Enter Password" required onChange={(e) => setConfirmedPassword(e.target.value)} autoComplete="off"/>
+            <input name='confirm' className='bg-theWhite focus:outline-dark w-full p-1 pt-2 pl-2 font-semibold tracking-wider text-sm rounded  border border-dark' type="password" id="confirm" placeholder="Enter Password" required onChange={(e) => setConfirmedPassword(e.target.value)} autoComplete="off"/>
             </div>
 
             <div className='basis-1/5 flex items-center justify-center'>

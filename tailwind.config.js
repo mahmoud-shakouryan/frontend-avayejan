@@ -25,7 +25,8 @@ module.exports = {
       'orange':'#fb6107',
       'theWhite':'#FFE6E8',
       'red':'#EA3788',
-      'opactiy':'rgb(22, 0, 30, 0.7)'
+      'opactiy':'rgb(22, 0, 30, 0.7)',
+      'opacity2':'rgb(22, 0, 30, 0.8)'
     },
     backgroundImage:{
       'homeGrandient':'radial-gradient(circle, rgba(168,218,220,1) 0%, rgba(69,123,157,1) 100%)',

@@ -15,16 +15,13 @@ import CardItem from "../components/CardItem";
 
 const Card = () => {
 
-  const navigate = useNavigate();
   const { id } = useParams();
   const cardState = useSelector( state => state.cardReducer );
   const { cardItems } = cardState;
   const userSigninState = useSelector( state => state.userSigninReducer );
-  const { userInfo } = userSigninState;
+
 
   const dispatch = useDispatch();
-  
-
   useEffect(()=>{
     if(id){
       dispatch(addToCard(id));
@@ -45,7 +42,7 @@ const Card = () => {
             <Link to='/videos'><button type="button" className="w-40 bg-orange text-xs  text-dark font-bold font-secondFont p-3 rounded-lg shadow-sm shadow-dark sm:hover:scale-105 duration-150 ease-out"> <span><VideoLibraryOutlinedIcon className='mr-1 font-bold' /></span><span>ویدیوهای آموزشی</span></button></Link> 
           </div>
         ): (
-         cardItems.map( cardItem => <CardItem key={ cardItems.find(cardItem => cardItem.id) } video={cardItem} />)
+          cardItems && cardItems.map( (cardItem, index) => <CardItem key={ index } video={cardItem} />)
         )}
       </div>
       {/* <div className="bg-orange h-16 w-screen fixed bottom-0">dfdfdf</div> */}
