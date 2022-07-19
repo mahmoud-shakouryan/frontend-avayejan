@@ -7,12 +7,18 @@ import { signinAction } from '../store/actions/userActions';
 
 const Signin = () => {
 
-        const [searchParams, setSearchParams] = useSearchParams({});
+        const [searchParams] = useSearchParams({});
         const [email, setEmail] = useState('');
         const [password, setPassword] = useState('');
         const navigate = useNavigate();
         const userSigninState = useSelector(state => state.userSigninReducer);
         const { userInfo, loading, error} = userSigninState;
+        
+        const redirect = [];
+        for (const entry of searchParams.entries()) {
+            redirect.push(entry)
+          }
+         
 
 
         const dispatch = useDispatch();
@@ -21,11 +27,17 @@ const Signin = () => {
             dispatch(signinAction(email, password));
         }
 
-        const redirect = searchParams && Object.keys(searchParams).length === 0 ? '/' : searchParams ? searchParams.get('redirect') : '/';
+        
+        
 
         useEffect(()=>{
             if(userInfo){
-                navigate(redirect);
+                if(redirect[0][1]==='/'){
+                    navigate('/')
+                }
+                else{
+                    navigate('/'+redirect[0][1])
+                }
             }
         }, [redirect, userInfo])
 

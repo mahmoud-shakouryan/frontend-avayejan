@@ -41,7 +41,7 @@ const VideoCard = ({video}) => {
     const addToCardHandler = () => {
       if(!userInfo){
          toast.warn('ابتدا وارد حساب شوید', options);
-         return navigate('/signin')
+         return navigate('/signin?redirect=videos')
       }
       navigate(`/card/${id}`)
     }

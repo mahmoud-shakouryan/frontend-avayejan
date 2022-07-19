@@ -56,6 +56,12 @@ const Topbar = () => {
           <li className="h-full hover:text-orange cursor-pointer">
             { userInfo ? <button  className=" h-full flex items-center justify-center" onClick={userSignoutHandler}>خروج</button> : <Link to="/signin" className=" h-full flex items-center justify-center">ورود</Link> }
           </li>
+          { userInfo ? (
+             <li className="h-full hover:text-orange cursor-pointer">
+             <Link to="/myvideos" className=" h-full flex items-center justify-center">ویدیوهای من</Link>
+           </li>
+          ):
+          null}
           <li className="h-full hover:text-orange cursor-pointer">
             <Link to="/videos" className=" h-full flex items-center justify-center">ویدیوهای آموزشی</Link>
           </li>

@@ -28,7 +28,7 @@ const DownloadScr = () => {
 
  
   
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams({});
   let status = searchParams.get('status');
   const order_id = searchParams.get('order_id');
   const payId = searchParams.get('id');
@@ -44,13 +44,14 @@ const DownloadScr = () => {
   
   
   
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(()=>{
     console.log('umad tu useEffect')
     if(!userInfo){
       toast.warn('ابتدا وارد حساب شوید', options);
-      return navigate('/signin');
+      return navigate('/signin?redirect=myvideos');
     }
     if(status){
       dispatch(dlListAction(userInfo._id, status, order_id, payId));

@@ -30,6 +30,9 @@ const MobileMenu = ({showMenu, activeSideMenu}) => {
           <li  onClick={showMenu} className="w-full flex items-center justify-center sm:hover:text-orange">
             <Link to="/videos"  className="p-5 w-full flex items-center justify-center">ویدیوهای آموزشی</Link>
           </li>
+             <li  onClick={showMenu} className="w-full flex items-center justify-center sm:hover:text-orange">
+             <Link to='myvideos'  className="p-5 w-full flex items-center justify-center">ویدیوهای من</Link>
+           </li>
           <li  onClick={showMenu} className="w-full flex items-center justify-center sm:hover:text-orange">
             <Link to="/signup"  className="p-5 w-full flex items-center justify-center">ثبت‌نام</Link>
           </li>
