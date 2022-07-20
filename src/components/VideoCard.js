@@ -58,7 +58,7 @@ const VideoCard = ({video}) => {
             </div>
             <div className="basis-2/5 flex flex-col rounded-sm shadow-sm shadow-dark">
             <span className=" text-center"><PaidOutlinedIcon /></span>
-              <span className="flex items-center justify-evenly font-bold text-sm "> <span className='basis-1/3 text-right text-xs'>تومان</span><span className='pt-1 bsis-2/3 text-left text-xs '>{price}</span> </span>
+              <span className="flex items-center justify-evenly font-bold text-sm "> <span className='basis-1/3 text-right text-xs'>تومان</span><span className='pt-1 bsis-2/3 text-left text-xs '>{price/10}</span> </span>
             </div>
           </div>
           <div className="basis-1/6 flex justify-around p-1 ">

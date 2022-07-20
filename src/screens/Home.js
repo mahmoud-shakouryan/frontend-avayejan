@@ -1,21 +1,25 @@
 import VideoLibraryOutlinedIcon from '@mui/icons-material/VideoLibraryOutlined';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import MobileFriendlyIcon from '@mui/icons-material/MobileFriendly';
+import LogoutIcon from '@mui/icons-material/Logout';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import { Link } from 'react-router-dom';
-import { ToastContainer ,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import * as actions from '../store/actions/actionTypes';
 
 const Home = () => {
 
 
     const { userInfo } = useSelector( state => state.userSigninReducer );
-
+    const dispatch = useDispatch();
+    const signoutHandler = () =>{
+      dispatch({ type: actions.USER_SIGNOUT })
+    }
 
     
 
@@ -29,8 +33,8 @@ const Home = () => {
       </div>
       <div className="basis-2/5 text-center  flex flex-col items-center justify-start gap-10">
         <Link to='/videos'><button type="button" className="w-40 bg-orange text-xs  text-dark font-bold font-secondFont p-3 rounded-lg shadow-sm shadow-dark sm:hover:scale-105 duration-150 ease-out"> <span><VideoLibraryOutlinedIcon className='mr-1 font-bold' /></span><span>ویدیوهای آموزشی</span></button></Link>        
-        <Link to='/signin'><button type="button" className="w-40 bg-orange text-xs text-dark  font-secondFont p-3 rounded-lg shadow-sm shadow-dark flex items-center justify-center   sm:hover:scale-105 duration-150 ease-out"> <span><ExitToAppIcon className='mr-1' /></span><span className='font-bold'>وارد شوید</span></button></Link>
-        <Link to='/signup'><button type="button" className="w-40 bg-orange text-xs text-dark font-secondFont p-2.5 rounded-lg shadow-sm shadow-dark flex items-center justify-center  sm:hover:scale-105 duration-150 ease-out"> <span><HowToRegIcon  className='mr-1  mb-1' /></span><span className='font-bold'>ثبت نام کنید</span></button></Link>
+        { userInfo ? <Link to='/myvideos'><button type="button" className="w-40 bg-orange text-xs text-dark  font-secondFont p-3 rounded-lg shadow-sm shadow-dark flex items-center justify-center   sm:hover:scale-105 duration-150 ease-out"> <span><MobileFriendlyIcon className='mr-1' /></span><span className='font-bold'>ویدیوهای من</span></button></Link> : <Link to='/signin'><button type="button" className="w-40 bg-orange text-xs text-dark  font-secondFont p-3 rounded-lg shadow-sm shadow-dark flex items-center justify-center   sm:hover:scale-105 duration-150 ease-out"> <span><ExitToAppIcon className='mr-1' /></span><span className='font-bold'>وارد شوید</span></button></Link>}
+        { userInfo ? <button onClick={signoutHandler} type="button" className="w-40 bg-orange text-xs text-dark font-secondFont p-2.5 rounded-lg shadow-sm shadow-dark flex items-center justify-center  sm:hover:scale-105 duration-150 ease-out"> <span><LogoutIcon  className='mr-1  mb-1' /></span><span className='font-bold'>خروج از حساب</span></button> : <Link to='/signup'><button type="button" className="w-40 bg-orange text-xs text-dark font-secondFont p-2.5 rounded-lg shadow-sm shadow-dark flex items-center justify-center  sm:hover:scale-105 duration-150 ease-out"> <span><HowToRegIcon  className='mr-1  mb-1' /></span><span className='font-bold'>ثبت نام کنید</span></button></Link>}
       </div>
       <footer className="basis-2/5 flex flex-col justify-center">
           <div className=' w-1/2 md:w-1/4 m-auto text-dark flex items-center justify-around scale-150'>

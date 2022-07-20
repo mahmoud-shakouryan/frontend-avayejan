@@ -18,6 +18,7 @@ const Signin = () => {
         for (const entry of searchParams.entries()) {
             redirect.push(entry)
           }
+          console.log(redirect[0])
          
 
 
@@ -31,13 +32,16 @@ const Signin = () => {
         
 
         useEffect(()=>{
-            if(userInfo){
+            if(userInfo && redirect[0]){
                 if(redirect[0][1]==='/'){
                     navigate('/')
                 }
                 else{
                     navigate('/'+redirect[0][1])
                 }
+            }
+            else if( userInfo && !redirect[0]){
+                navigate('/')
             }
         }, [redirect, userInfo])
 
