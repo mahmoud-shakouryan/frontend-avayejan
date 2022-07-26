@@ -17,7 +17,8 @@ const CardItem = ({video}) => {
 
 
   const navigate = useNavigate();
-  const { id, videoName, category, likes, numOfDownloads, price, duration } = video;
+  const { id, videoName, category, price, duration } = video;
+  const TOMAN = price/10;
   
   const cardState = useSelector( state => state.cardReducer );
   const { cardItems } = cardState;
@@ -62,7 +63,7 @@ const CardItem = ({video}) => {
             </div>
             <div className="basis-2/5 flex flex-col rounded-sm shadow-sm shadow-dark">
             <span className=" text-center"><PaidOutlinedIcon /></span>
-              <span className="flex items-center justify-evenly font-bold text-sm "> <span className='basis-1/3 text-right text-xs'>تومان</span><span className='pt-1 bsis-2/3 text-left text-xs '>{price/10}</span> </span>
+              <span className="flex items-center justify-evenly font-bold text-sm "> <span className='basis-1/3 text-right text-xs'>تومان</span><span className='pt-1 bsis-2/3 text-left text-xs '>{TOMAN.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span> </span>
             </div>
           </div>
           <div className='basis-1/5  p-1 text-xs'>

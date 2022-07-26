@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from '../store/actions/actionTypes';
+import { toast } from "react-toastify";
 
 
 
@@ -10,15 +11,16 @@ const MobileMenu = ({showMenu, activeSideMenu}) => {
   const userSigninState = useSelector( state => state.userSigninReducer );
   const { userInfo } = userSigninState;
 
-
+  const options = { style: { 'font':'shabnam', 'textAlign': 'center','color':'#16001E', 'fontFamily':'firstFont', 'fontSize':'14px', 'fontWeight':'bold'}}
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userSignoutHandler = () =>{
       dispatch({ type: actions.USER_SIGNOUT });
       dispatch({ type: actions.CART_EMPTY });
+      toast.success('خارج شدید', options)
       navigate('/');
-    } 
+  } 
 
   return (
     <div className=''>
@@ -28,25 +30,26 @@ const MobileMenu = ({showMenu, activeSideMenu}) => {
             <Link to="/" className="p-5 w-full flex items-center justify-center">صفحه اصلی</Link>
           </li>
           <li  onClick={showMenu} className="w-full flex items-center justify-center sm:hover:text-orange">
-            <Link to="/videos"  className="p-5 w-full flex items-center justify-center">ویدیوهای آموزشی</Link>
+            <Link to="/videos?page=1"  className="p-5 w-full flex items-center justify-center">ویدیوهای آموزشی</Link>
           </li>
              <li  onClick={showMenu} className="w-full flex items-center justify-center sm:hover:text-orange">
              <Link to='myvideos'  className="p-5 w-full flex items-center justify-center">ویدیوهای من</Link>
-           </li>
+          </li>
+          { !userInfo ? (
           <li  onClick={showMenu} className="w-full flex items-center justify-center sm:hover:text-orange">
             <Link to="/signup"  className="p-5 w-full flex items-center justify-center">ثبت‌نام</Link>
           </li>
+          ):
+          null}
           <li  onClick={showMenu} className="w-full flex items-center justify-center sm:hover:text-orange">
             { userInfo ? <button  className="p-5 w-full flex items-center justify-center" onClick={userSignoutHandler}>خروج</button> : <Link to="/signin" className="p-5 w-full flex items-center justify-center">ورود</Link> }
           </li>
           <li  onClick={showMenu} className="w-full flex items-center justify-center sm:hover:text-orange">
             <Link to="/card" className="p-5 w-full flex items-center justify-center">سبد خرید</Link>
           </li>
-          
           <li  onClick={showMenu} className="w-full flex items-center justify-center sm:hover:text-orange">
             <Link to="/contact" className="p-5 w-full flex items-center justify-center">تماس با ما</Link>
           </li>
-          
         </ul>
     </div>
   )
