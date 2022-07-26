@@ -20,7 +20,6 @@ export const cardReducer = (state = cardReducerInState, action ) => {
             }
         case actions.REMOVE_FROM_CARD:
             const updatedFilteredState = { ...state, cardItems : state.cardItems.filter( cardItem => cardItem.id !== +action.payload)};
-            console.log('umad tu removefromcard reducer', updatedFilteredState)
             updatedFilteredState.cardItems.length > 0 ? localStorage.setItem('cardItems',JSON.stringify(updatedFilteredState)) : localStorage.removeItem('cardItems');
             return updatedFilteredState;
         case actions.CART_EMPTY:

@@ -50,7 +50,6 @@ const DownloadScr = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(()=>{
-    console.log('umad tu useEffect')
     if(!userInfo){
       toast.warn('ابتدا وارد حساب شوید', options);
       return navigate('/signin?redirect=myvideos');

@@ -32,8 +32,8 @@ export const userSignupReducer = ( state = userSignupInState, action ) =>{
             const updatedSate = { ...state, loading: false, userInfo : action.payload };
             localStorage.setItem('userInfo', JSON.stringify(action.payload));
             return updatedSate;
-        case actions.USER_SIGNUP_RESET:
-            return {};
+        // case actions.USER_SIGNUP_RESET:
+        //     return {};
         case actions.USER_SIGNUP_FAIL:
             return { loading: false, error: action.payload };
         default:
