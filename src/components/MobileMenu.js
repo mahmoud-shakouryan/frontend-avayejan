@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from '../store/actions/actionTypes';
@@ -27,28 +27,28 @@ const MobileMenu = ({showMenu, activeSideMenu}) => {
         <ul className={activeSideMenu ? 'font-secondFont text-sm fixed right-0 top-0 h-screen w-1/2  bg-dark flex  flex-col justify-start items-center md:hidden' : 'hidden'}>
             <li  onClick={showMenu} className="p-5 w-full flex items-center justify-center sm:hover:text-orange cursor-pointer"><CloseOutlinedIcon className="scale-150 flex items-center justify-center" /></li>
           <li  onClick={showMenu} className="w-full flex items-center justify-center sm:hover:text-orange">
-            <Link to="/" className="p-5 w-full flex items-center justify-center">صفحه اصلی</Link>
+            <NavLink to="/" className={({isActive}) => isActive ? "p-5 w-full flex items-center justify-center text-red" : "p-5 w-full flex items-center justify-center"}>صفحه اصلی</NavLink>
           </li>
           <li  onClick={showMenu} className="w-full flex items-center justify-center sm:hover:text-orange">
-            <Link to="/videos?page=1"  className="p-5 w-full flex items-center justify-center">ویدیوهای آموزشی</Link>
+            <NavLink to="/videos?page=1"  className={({isActive}) => isActive ? "p-5 w-full flex items-center justify-center text-red" : "p-5 w-full flex items-center justify-center"}>ویدیوهای آموزشی</NavLink>
           </li>
              <li  onClick={showMenu} className="w-full flex items-center justify-center sm:hover:text-orange">
-             <Link to='myvideos'  className="p-5 w-full flex items-center justify-center">ویدیوهای من</Link>
+             <NavLink to='myvideos'  className={({isActive}) => isActive ? "p-5 w-full flex items-center justify-center text-red" : "p-5 w-full flex items-center justify-center"}>ویدیوهای من</NavLink>
           </li>
           { !userInfo ? (
           <li  onClick={showMenu} className="w-full flex items-center justify-center sm:hover:text-orange">
-            <Link to="/signup"  className="p-5 w-full flex items-center justify-center">ثبت‌نام</Link>
+            <NavLink to="/signup"  className={({isActive}) => isActive ? "p-5 w-full flex items-center justify-center text-red" : "p-5 w-full flex items-center justify-center"}>ثبت‌نام</NavLink>
           </li>
           ):
           null}
           <li  onClick={showMenu} className="w-full flex items-center justify-center sm:hover:text-orange">
-            { userInfo ? <button  className="p-5 w-full flex items-center justify-center" onClick={userSignoutHandler}>خروج</button> : <Link to="/signin" className="p-5 w-full flex items-center justify-center">ورود</Link> }
+            { userInfo ? <button  className="p-5 w-full flex items-center justify-center" onClick={userSignoutHandler}>خروج</button> : <NavLink to="/signin" className={({isActive}) => isActive ? "p-5 w-full flex items-center justify-center text-red" : "p-5 w-full flex items-center justify-center"}>ورود</NavLink> }
           </li>
           <li  onClick={showMenu} className="w-full flex items-center justify-center sm:hover:text-orange">
-            <Link to="/card" className="p-5 w-full flex items-center justify-center">سبد خرید</Link>
+            <NavLink to="/card" className={({isActive}) => isActive ? "p-5 w-full flex items-center justify-center text-red" : "p-5 w-full flex items-center justify-center"}>سبد خرید</NavLink>
           </li>
           <li  onClick={showMenu} className="w-full flex items-center justify-center sm:hover:text-orange">
-            <Link to="/contact" className="p-5 w-full flex items-center justify-center">تماس با ما</Link>
+            <NavLink to="/contact" className={({isActive}) => isActive ? "p-5 w-full flex items-center justify-center text-red" : "p-5 w-full flex items-center justify-center"}>تماس با ما</NavLink>
           </li>
         </ul>
     </div>

@@ -22,29 +22,20 @@ const DownloadScr = () => {
 
   const { videoIdsArr, loading, error } = useSelector( state => state.dlListReducer );
   const { videos } = useSelector( state => state.videoListReducer);
-
  
   
-  
-  
-
- 
-  
-  const [searchParams, setSearchParams] = useSearchParams({});
+  const [searchParams] = useSearchParams({});
   let status = searchParams.get('status');
   const order_id = searchParams.get('order_id');
   const payId = searchParams.get('id');
 
   const myVideos = [];
-  if(videoIdsArr > 0){
+  if(videoIdsArr.length > 0){
     for (let id of videoIdsArr){
       const video = videos.find( video => video.id === id);
       myVideos.push(video);
     }
   }
-
-  
-  
   
   
   const dispatch = useDispatch();
@@ -65,6 +56,7 @@ const DownloadScr = () => {
        }
     }
     if(!status){
+      console.log('uamd tu if(!status)')
       dispatch(dlListAction(userInfo._id, status = null, order_id, payId));
     }
   },[dispatch]);
