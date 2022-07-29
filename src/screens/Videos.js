@@ -34,14 +34,14 @@ const Videos = () => {
 
   return (
     <div className="h-screen w-screen bg-theWhite  fixed top-10">
-      <div className=" flex flex-wrap justify-around  items-start gap-4 pb-10  pr-2 pl-2 pt-4  w-screen h-screen overflow-y-scroll">
+      <div className=" flex flex-wrap justify-around  items-start gap-4 pb-24  pr-2 pl-2 pt-4  w-screen h-screen overflow-y-scroll">
       { loading ? <div className="w-full font-firstFont font-semibold text-dark text-center">... در حال دریافت</div> : error ? <ErrorBox error={error}/> 
       :(
         curPageVids.map(video => (
           <VideoCard key={video.id} video={video}/>
         ))
       )}
-      <div className=" h-12 w-full flex justify-center gap-5 select-none">
+      <div className="h-12 w-full flex justify-center gap-5 select-none">
        { paginationBtnsArr.length > 0 ? paginationBtnsArr.map( i => <Link key={i} to={`/videos?page=${i+1}`} ><button className={` ${i+1 === +searchParams.get('page') ? 'bg-dark' : 'bg-opactiy text'}  w-8 h-8 text-red text-sm font-bold rounded-full shadow-dark shadow-sm`}>{i + 1}</button></Link>) : loading ? null : null }
       </div>
       </div>
