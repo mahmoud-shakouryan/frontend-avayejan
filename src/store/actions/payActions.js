@@ -19,4 +19,18 @@ export const pay = (price, videoId) =>{
 
         }
     }
-}
+};
+
+export const getPaymentStatusAction = (user, status, order_id, payId) => {
+    return async dispatch =>{
+        dispatch({ type: actions.GET_PAYMENT_STATUS_REQUEST});
+        try{
+            const {data} = await axios.post('http://localhost:5000/api/pay/status', { userId: user, status: status, order_id: order_id, payId: payId});
+            dispatch({ type: actions.GET_PAYMENT_STATUS_SUCCESS, payload: data });    //data un araye az id'ha
+        }
+        catch(err){
+            console.log('dlListAction axios error >>>', err);
+            dispatch({ type: actions.GET_PAYMENT_STATUS_FAIL, payload: err.message })
+        }
+    }
+};

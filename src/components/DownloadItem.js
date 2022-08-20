@@ -4,21 +4,22 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import BrowserUpdatedIcon from '@mui/icons-material/BrowserUpdated';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { linksAction } from '../store/actions/dlListActions';
 import { useState } from 'react';
 import LinkBar from './LinkBar';
+import { myVidsLinksAction } from '../store/actions/videoActions';
+
 
 
 
 const DownloadItem = ({ video }) => {
 
   const { id, videoName, category, likes, numOfDownloads, duration, videoTitle } = video;
-  const { links } = useSelector( state=> state.linksReducer );
+  const { links } = useSelector( state=> state.myVidsLinksReducer );
   const [showLinks, setShowLinks] = useState(false);
 
   const dispatch = useDispatch();
   const downloadHandler = () =>{
-    dispatch(linksAction(videoTitle));
+    dispatch(myVidsLinksAction(videoTitle));
     setShowLinks(true);
   }
  

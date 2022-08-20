@@ -20,9 +20,9 @@ export const videoListReducer = (state = videoListInState, action) => {
 
 
 
-const videoDetailsInState = { video: {}, loading: false, error: null };
+const videoDetailsInitialState = { video: {}, loading: false, error: null };
 
-export const videoDetailsReducer = (state = videoDetailsInState, action) =>{
+export const videoDetailsReducer = (state = videoDetailsInitialState, action) =>{
     switch (action.type){
         case actions.VIDEO_DETAILS_REQUEST:
             return { ...state, loading: true };
@@ -30,6 +30,23 @@ export const videoDetailsReducer = (state = videoDetailsInState, action) =>{
             return { ...state, loading: false, video: action.payload };
         case actions.VIDEO_DETAILS_FAIL:
             console.log(action.payload)
+            return { ...state, loading: false, error: action.payload };
+        default:
+            return state;
+    }
+};
+
+
+const myVidsLinksInitialState = { links: [], loading: false, error: false };
+export const myVidsLinksReducer = (state = myVidsLinksInitialState, action ) =>{
+    switch(action.type){
+        case actions.LINK_REQUEST:
+            return { ...state, loading: true , error: false };
+        case actions.LINK_SUCCESS:
+            // console.log([...state.links].includes(action.payload))
+            const updatedState = { ...state, links: action.payload, loading: false, error: false };
+            return updatedState
+        case actions.LINK_FAIL:
             return { ...state, loading: false, error: action.payload };
         default:
             return state;

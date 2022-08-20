@@ -32,3 +32,18 @@ export const videoDetails = (id) => {
       dispatch({ type: actions.VIDEO_DETAILS_FAIL, payload: err.message })}
   };
 };
+
+export const myVidsLinksAction = (allFiles) =>{
+   return async dispatch => {
+       dispatch({ type: actions.LINK_REQUEST });
+       try{
+           const { data } = await axios.post('http://localhost:5000/api/videos/myvidslinks', { allFiles: allFiles });
+           console.log('links action', data)
+           dispatch({ type: actions.LINK_SUCCESS , payload: data });
+       }
+       catch(err){
+           console.log('linksAction axios error >>>', err);
+           dispatch({ type: actions.LINK_FAIL, payload: err.message });
+       }
+   }
+};
