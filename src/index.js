@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunk from "redux-thunk";
 import { userSigninReducer, userSignupReducer } from "./store/reducers/userReducers";
-import { myVidsLinksReducer, videoDetailsReducer, videoListReducer } from "./store/reducers/videoReducers";
+import { myVidsLinksReducer, myVidsReducer, videoDetailsReducer, videoListReducer } from "./store/reducers/videoReducers";
 import { cardReducer } from "./store/reducers/cardReducers";
 import { paymentStatusReducer, payReducer } from "./store/reducers/payReducers";
 
@@ -23,6 +23,7 @@ const reducer = combineReducers({
   payReducer: payReducer,
   paymentStatusReducer: paymentStatusReducer,
   myVidsLinksReducer: myVidsLinksReducer,
+  myVidsReducer: myVidsReducer
 })
 
 const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));

@@ -33,6 +33,21 @@ export const videoDetails = (id) => {
   };
 };
 
+
+export const myVidsAction = (status, userId, payId, order_id) => {
+  return async dispatch =>{
+        dispatch({ type: actions.MY_VIDS_REQUEST});
+        try{
+          const { data } = await axios.post('http://localhost:5000/api/videos/uservids', {userId, payId, order_id, status});
+          dispatch({ type: actions.MY_VIDS_SUCCESS, payload: data })
+        }
+        catch(err){
+          dispatch({ type: actions.MY_VIDS_FAIL, payload: err.message });
+        }
+  }
+}
+
+
 export const myVidsLinksAction = (allFiles) =>{
    return async dispatch => {
        dispatch({ type: actions.LINK_REQUEST });

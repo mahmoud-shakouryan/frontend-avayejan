@@ -50,6 +50,11 @@ const CardItem = ({video}) => {
       dispatch(pay(price, id));
     }
     
+    const gatewayHandler = () =>{
+      localStorage.removeItem('userInfo');
+      localStorage.removeItem('videoList');
+      localStorage.removeItem('videos');
+    }
 
     return (
       <>
@@ -70,7 +75,7 @@ const CardItem = ({video}) => {
           { (cardItems && cardItems.find( cardItem => cardItem.id === id )) ?  <button className=' h-full w-full rounded-md shadow-sm shadow-dark font-bold text-dark flex items-center justify-center gap-2' onClick={()=>removeFromCartHandler(cardItems.find( cardItem => cardItem.id === id ).id)}><DeleteOutlineOutlinedIcon/><span>حذف از سبد خرید</span></button> : <button className='bg-orange h-full w-full rounded-md shadow-sm shadow-dark font-bold text-dark flex items-center justify-center gap-2' onClick={addToCardHandler}><AddShoppingCartIcon/><span>افزودن به سبد خرید</span> </button> }
           </div>
           <div className="basis-1/5 p-1 text-xs">
-          { payment ? <button  className='bg-dark text-theWhite font-thin h-full w-full rounded-md shadow-sm shadow-dark  flex items-center justify-center gap-3'><a  href={payment} className='w-full h-full flex items-center justify-center'> برو به درگاه</a></button> :<button className='bg-dark text-theWhite font-thin h-full w-full rounded-md shadow-sm shadow-dark  flex items-center justify-center gap-3' onClick={payHandler}>{ loading? <CurrencyExchangeOutlinedIcon className='font-thin animate-spin'/> :<CurrencyExchangeOutlinedIcon className='font-thin'/>} {loading ? <span>آغاز فرایند پرداخت</span> : <span>پرداخت</span>}</button>}
+          { payment ? <button  className='bg-dark text-theWhite font-thin h-full w-full rounded-md shadow-sm shadow-dark  flex items-center justify-center gap-3'><a  href={payment} onClick={gatewayHandler} className='w-full h-full flex items-center justify-center'> برو به درگاه</a></button> :<button className='bg-dark text-theWhite font-thin h-full w-full rounded-md shadow-sm shadow-dark  flex items-center justify-center gap-3' onClick={payHandler}>{ loading? <CurrencyExchangeOutlinedIcon className='font-thin animate-spin'/> :<CurrencyExchangeOutlinedIcon className='font-thin'/>} {loading ? <span>آغاز فرایند پرداخت</span> : <span>پرداخت</span>}</button>}
           </div>
     </div>
     </>

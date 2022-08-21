@@ -17,14 +17,14 @@ export const payReducer = (state= payReducerInState, action ) =>{
 };
 
 
-const paymentStatusInitialState = localStorage.getItem('userInfo') ? { videoIdsArr:  JSON.parse(localStorage.getItem('userInfo')).paidVidIds, loading: true, error: null } : { videoIdsArr: [], loading: true, error: false };
+const paymentStatusInitialState = { loading: true, error: null };
 
 export const paymentStatusReducer = (state = paymentStatusInitialState, action) => {
     switch(action.type){
         case actions.GET_PAYMENT_STATUS_REQUEST:
             return { ...state, loading: true, error: false };
         case actions.GET_PAYMENT_STATUS_SUCCESS:
-            return { ...state, videoIdsArr: action.payload, loading: false, error: false };
+            return { ...state, loading: false, error: false };
         case actions.GET_PAYMENT_STATUS_FAIL:
             return { ...state, loading: false, error: action.payload };
         default:
