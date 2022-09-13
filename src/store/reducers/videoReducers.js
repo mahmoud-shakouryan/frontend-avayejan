@@ -37,7 +37,7 @@ export const videoDetailsReducer = (state = videoDetailsInitialState, action) =>
 };
 
 
-const myVidsInitialState = {myVidsArr:[], loading: true, error: false };
+const myVidsInitialState = {myVidsArr:[], loading: false, error: false };
 export const myVidsReducer = (state = myVidsInitialState, action )=>{
     switch(action.type){
         case actions.MY_VIDS_REQUEST:

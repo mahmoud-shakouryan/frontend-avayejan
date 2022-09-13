@@ -33,7 +33,7 @@ export const getPaymentStatusAction = (status, order_id, payId) => {
             dispatch({ type: actions.GET_PAYMENT_STATUS_SUCCESS});    //data>>> user mail && user token
         }
         catch(err){
-            console.log('dlListAction axios error >>>', err);
+            console.log('getPaymentStatusAction axios error >>>', err);
             dispatch({ type: actions.GET_PAYMENT_STATUS_FAIL, payload: err.message })
         }
     }
