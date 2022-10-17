@@ -27,28 +27,28 @@ const MobileMenu = ({showMenu, activeSideMenu}) => {
         <ul className={activeSideMenu ? 'font-secondFont text-sm fixed right-0 top-0 h-screen w-1/2  bg-dark flex  flex-col justify-start items-center md:hidden' : 'hidden'}>
             <li  onClick={showMenu} className="p-5 w-full flex items-center justify-center sm:hover:text-orange cursor-pointer"><CloseOutlinedIcon className="scale-150 flex items-center justify-center" /></li>
           <li  onClick={showMenu} className="w-full flex items-center justify-center sm:hover:text-orange">
-            <NavLink to="/" className={({isActive}) => isActive ? "p-5 w-full flex items-center justify-center text-red" : "p-5 w-full flex items-center justify-center"}>صفحه اصلی</NavLink>
+            <NavLink to="/" className={({isActive}) => isActive ? "p-5 w-full flex items-center justify-center text-active" : "p-5 w-full flex items-center justify-center"}>صفحه اصلی</NavLink>
           </li>
           <li  onClick={showMenu} className="w-full flex items-center justify-center sm:hover:text-orange">
-            <NavLink to="/videos?page=1"  className={({isActive}) => isActive ? "p-5 w-full flex items-center justify-center text-red" : "p-5 w-full flex items-center justify-center"}>ویدیوهای آموزشی</NavLink>
+            <NavLink to="/videos?page=1"  className={({isActive}) => isActive ? "p-5 w-full flex items-center justify-center text-active" : "p-5 w-full flex items-center justify-center"}>ویدیوهای آموزشی</NavLink>
           </li>
              <li  onClick={showMenu} className="w-full flex items-center justify-center sm:hover:text-orange">
-             <NavLink to='myvideos'  className={({isActive}) => isActive ? "p-5 w-full flex items-center justify-center text-red" : "p-5 w-full flex items-center justify-center"}>ویدیوهای من</NavLink>
+             <NavLink to='myvideos'  className={({isActive}) => isActive ? "p-5 w-full flex items-center justify-center text-active" : "p-5 w-full flex items-center justify-center"}>ویدیوهای من</NavLink>
           </li>
           { !userInfo ? (
           <li  onClick={showMenu} className="w-full flex items-center justify-center sm:hover:text-orange">
-            <NavLink to="/signup"  className={({isActive}) => isActive ? "p-5 w-full flex items-center justify-center text-red" : "p-5 w-full flex items-center justify-center"}>ثبت‌نام</NavLink>
+            <NavLink to="/signup"  className={({isActive}) => isActive ? "p-5 w-full flex items-center justify-center text-active" : "p-5 w-full flex items-center justify-center"}>ثبت‌نام</NavLink>
           </li>
           ):
           null}
           <li  onClick={showMenu} className="w-full flex items-center justify-center sm:hover:text-orange">
-            { userInfo ? <button  className="p-5 w-full flex items-center justify-center" onClick={userSignoutHandler}>خروج</button> : <NavLink to="/signin" className={({isActive}) => isActive ? "p-5 w-full flex items-center justify-center text-red" : "p-5 w-full flex items-center justify-center"}>ورود</NavLink> }
+            { userInfo ? <button  className="p-5 w-full flex items-center justify-center" onClick={userSignoutHandler}>خروج</button> : <NavLink to="/signin" className={({isActive}) => isActive ? "p-5 w-full flex items-center justify-center text-active" : "p-5 w-full flex items-center justify-center"}>ورود</NavLink> }
           </li>
           <li  onClick={showMenu} className="w-full flex items-center justify-center sm:hover:text-orange">
-            <NavLink to="/card" className={({isActive}) => isActive ? "p-5 w-full flex items-center justify-center text-red" : "p-5 w-full flex items-center justify-center"}>سبد خرید</NavLink>
+            <NavLink to="/card" className={({isActive}) => isActive ? "p-5 w-full flex items-center justify-center text-active" : "p-5 w-full flex items-center justify-center"}>سبد خرید</NavLink>
           </li>
           <li  onClick={showMenu} className="w-full flex items-center justify-center sm:hover:text-orange">
-            <NavLink to="/contact" className={({isActive}) => isActive ? "p-5 w-full flex items-center justify-center text-red" : "p-5 w-full flex items-center justify-center"}>تماس با ما</NavLink>
+            <NavLink to="/contact" className={({isActive}) => isActive ? "p-5 w-full flex items-center justify-center text-active" : "p-5 w-full flex items-center justify-center"}>تماس با ما</NavLink>
           </li>
         </ul>
     </div>

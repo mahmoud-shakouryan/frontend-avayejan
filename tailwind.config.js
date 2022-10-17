@@ -21,16 +21,18 @@ module.exports = {
     },
     extend: {},
     colors:{
-      'dark':'#16001E',
+      'dark':'#0B2545',
       'orange':'#fb6107',
-      'theWhite':'#FFE6E8',
+      'theWhite':'#EEF4ED',
+      'lightBlue':'#8DA9C4',
+      'active':'#FCCA46',
+      'silver':'#0B2545',
       'red':'#EA3788',
       'opactiy':'rgb(22, 0, 30, 0.7)',
       'opacity2':'rgb(22, 0, 30, 0.8)'
     },
     backgroundImage:{
-      'homeGrandient':'radial-gradient(circle, rgba(168,218,220,1) 0%, rgba(69,123,157,1) 100%)',
-      // 'vector':"url('../public/vector.jpg')"
+      'homeGrandient':'linear-gradient(90deg, hsla(44, 97%, 52%, 1) 0%, hsla(33, 94%, 57%, 1) 100%)',
     },
     fontFamily: {
       firstFont: ["shabnam"],
