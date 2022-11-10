@@ -69,14 +69,6 @@ const DownloadScr = () => {
     if(+status === 10) dispatch(removeFromCard(order_id))
   },[dispatch])
   
-  // useEffect(()=>{
-  //   console.log('umad 2nd useEffect')
-  //     if(userInfo){
-  //       console.log('umad tu if(userInfo)')
-  //       dispatch(myVidsAction(status, userInfo._id, payId, order_id))
-  //     }
-      
-  // },[dispatch, userId])
   
   return (
     

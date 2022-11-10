@@ -24,6 +24,7 @@ module.exports = {
       'dark':'#0B2545',
       'orange':'#fb6107',
       'theWhite':'#EEF4ED',
+      'superLightBlue':'#D7E1EA',
       'lightBlue':'#8DA9C4',
       'active':'#FCCA46',
       'silver':'#0B2545',
@@ -33,6 +34,7 @@ module.exports = {
     },
     backgroundImage:{
       'homeGrandient':'linear-gradient(90deg, hsla(44, 97%, 52%, 1) 0%, hsla(33, 94%, 57%, 1) 100%)',
+      'footerGradient':'radial-gradient(circle, hsla(209, 32%, 66%, 1) 0%, hsla(111, 24%, 94%, 1) 100%)'
     },
     fontFamily: {
       firstFont: ["shabnam"],

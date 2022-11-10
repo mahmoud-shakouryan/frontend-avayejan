@@ -1,7 +1,8 @@
 import * as actions from '../actions/actionTypes';
+import {vidsArr} from '../../utils/data';
 
 
-const videoListInState = localStorage.getItem('videos') && localStorage.getItem('videoList') ? { videos: JSON.parse(localStorage.getItem('videos')), curPageVids:JSON.parse(localStorage.getItem('videoList')) ,loading: true } : { videos: [], curPageVids:[], loading: true};
+const videoListInState = localStorage.getItem('videos') && localStorage.getItem('videoList') ? { videos: JSON.parse(localStorage.getItem('videos')), curPageVids:JSON.parse(localStorage.getItem('videoList')), loading: true } : { videos: vidsArr, curPageVids:[], loading: true};
 
 export const videoListReducer = (state = videoListInState, action) => {
  switch (action.type){
@@ -20,7 +21,7 @@ export const videoListReducer = (state = videoListInState, action) => {
 
 
 
-const videoDetailsInitialState = { video: {}, loading: false, error: null };
+const videoDetailsInitialState = { video: {} , loading: false, error: null };
 
 export const videoDetailsReducer = (state = videoDetailsInitialState, action) =>{
     switch (action.type){
@@ -29,7 +30,6 @@ export const videoDetailsReducer = (state = videoDetailsInitialState, action) =>
         case actions.VIDEO_DETAILS_SUCCESS:
             return { ...state, loading: false, video: action.payload };
         case actions.VIDEO_DETAILS_FAIL:
-            console.log(action.payload)
             return { ...state, loading: false, error: action.payload };
         default:
             return state;

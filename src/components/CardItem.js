@@ -17,7 +17,8 @@ const CardItem = ({video}) => {
 
 
   const navigate = useNavigate();
-  const { id, videoName, category, price, duration } = video;
+  const { id, videoName, category, price, duration, imgSrc } = video;
+  console.log(imgSrc)
   const TOMAN = price/10;
   
   const cardState = useSelector( state => state.cardReducer );
@@ -59,8 +60,7 @@ const CardItem = ({video}) => {
     return (
       <>
     <div className='p-1 w-72 h-72 bg-white flex flex-col rounded-xl shadow-sm shadow-dark sm:hover:scale-105  duration-150 font-firstFont'>
-          <div className="basis-2/5  flex flex-col items-center justify-center gap-3 font-bold"><div>{videoName}</div><div className="text-center"> <button className="w-full bg-orange font-secondFont font-bold text-xs p-1 rounded-xl shadow-sm shadow-dark">{category}</button></div></div>
-          
+          <div className="basis-2/5  flex flex-col items-center justify-center gap-3 font-bold"><div className='w-full h-full'><img src={imgSrc} width='100px' height='200px'/></div><div>{videoName}</div><div className="text-center"> <button className="w-full bg-orange font-secondFont font-bold text-xs p-1 rounded-xl shadow-sm shadow-dark">{category}</button></div></div>
           <div className="basis-1/5  flex  justify-around p-1">
             <div className="basis-2/5 flex flex-col rounded-sm shadow-sm shadow-dark">
               <span className="basis-1/3  text-center"><AccessAlarmIcon/></span>
