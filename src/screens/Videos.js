@@ -36,10 +36,6 @@ const Videos = () => {
     }
   },[dispatch, searchParams.get('page')])
 
-  console.log(query)
-  console.log(videos[1].videoName)
-  console.log(videos.filter( video => video.videoName.includes(query)))
-
   return (
     <div className="h-screen w-screen bg-theWhite  fixed top-10">
       <div className="w-full h-8 flex justify-center items-center pt-3">

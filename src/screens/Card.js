@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { addToCard, removeFromCard } from "../store/actions/cardActions";
+import { addToCard } from "../store/actions/cardActions";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import VideoLibraryOutlinedIcon from '@mui/icons-material/VideoLibraryOutlined';
