@@ -27,7 +27,6 @@ module.exports = {
       'superLightBlue':'#D7E1EA',
       'lightBlue':'#8DA9C4',
       'active':'#FCCA46',
-      'silver':'#0B2545',
       'red':'#EA3788',
       'opactiy':'rgb(22, 0, 30, 0.7)',
       'opacity2':'rgb(22, 0, 30, 0.8)'

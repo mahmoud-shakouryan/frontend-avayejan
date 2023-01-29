@@ -49,33 +49,29 @@ const CardItem = ({ video }) => {
 
   return (
     <>
-      <div className="bg-superLightBlue p-1 w-56 h-72 sm:w-64 sm:h-80 bg-white flex flex-col rounded-xl shadow-sm shadow-dark sm:hover:scale-105 duration-150 font-firstFont">
-        <div className="h-1/2 flex flex-col items-center justify-center text-sm sm:text-md font-bold mt-1 ">
-          <div className="w-full h-full flex relative">
-            <img
-              src={imgSrc}
-              className="w-full h-full object-cover rounded-md"
-            />
-            <span className="absolute bg-opacity2 text-lightBlue w-full h-full flex flex-col justify-between rounded-md">
-              <span className="text-center font-bold mt-2">
-                <p className="text-[15px]">{videoName}</p>
-                <p className="font-secondFont text-[8px] sm:text-[9px]">
-                  {category}
-                </p>
-              </span>
-              <span className="text-center font-bold mt-2">
-                <p className="text-[14px] flex justify-center gap-2">
-                  <span>تومان</span>
-                  <span>{enToPerNum(TOMAN)}</span>
-                </p>
-                <p className="font-secondFont text-[8px] sm:text-[11px]">
-                  {enToPerNum(duration)}
-                </p>
-              </span>
+      <div className="bg-superLightBlue p-2 w-56 sm:w-64 h-72  bg-white flex flex-col rounded-xl shadow-sm shadow-dark sm:hover:scale-105 duration-150 font-firstFont">
+        <div className="overflow-hidden flex flex-col items-center justify-center text-sm sm:text-md font-bold mt-1 w-full h-full flex relative">
+          <img src={imgSrc} className="w-full h-full object-cover rounded-md" />
+          <span className="absolute bg-opacity2 text-lightBlue w-full h-full flex flex-col justify-between rounded-md">
+            <span className="text-center font-bold mt-2">
+              <p className="text-[12px] sm:text-[15px]">{videoName}</p>
+              <p className="font-secondFont text-[8px] sm:text-[9px]">
+                {category}
+              </p>
             </span>
-          </div>
+            <span className="text-center font-bold mt-2">
+              <p className="text-[14px] flex justify-center gap-2">
+                <span>تومان</span>
+                <span>{enToPerNum(TOMAN)}</span>
+              </p>
+              <p className="font-secondFont text-[8px] sm:text-[11px]">
+                {enToPerNum(duration)}
+              </p>
+            </span>
+          </span>
         </div>
-        <div className="p-1 text-xs">
+
+        <div className="py-2 text-xs">
           {cardItems && cardItems.find((cardItem) => cardItem.id === id) ? (
             <button
               className="h-full w-full rounded-md shadow-sm  shadow-dark sm:hover:shadow-md sm:hover:shadow-dark font-bold text-dark flex items-center justify-center gap-2 p-2"
@@ -98,7 +94,7 @@ const CardItem = ({ video }) => {
             </button>
           )}
         </div>
-        <div className="p-1 text-xs">
+        <div className="pb-2 text-xs">
           {payment ? (
             <button className="bg-dark text-theWhite font-thin h-full w-full rounded-md shadow-sm shadow-dark sm:hover:shadow-md sm:hover:shadow-dark flex items-center justify-center gap-3">
               <a
