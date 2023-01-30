@@ -18,7 +18,7 @@ const MobileMenu = ({showMenu, activeSideMenu}) => {
   const userSignoutHandler = () =>{
       dispatch({ type: actions.USER_SIGNOUT });
       dispatch({ type: actions.CART_EMPTY });
-      toast.success('خارج شدید', options)
+      toast.success('خارج شدید', options);
       navigate('/');
   } 
 

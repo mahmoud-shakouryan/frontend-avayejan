@@ -5,11 +5,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCard } from "../store/actions/cardActions.js";
 import { toast } from 'react-toastify';
+import { useState } from 'react';
 
 
 
 
 const VideoCard = ({video}) => {
+
+  const [showModal, setShowModal] = useState(false);
 
   const navigate = useNavigate();
   const { id, videoName, category, price, duration, imgSrc } = video;

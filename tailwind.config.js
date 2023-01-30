@@ -28,6 +28,7 @@ module.exports = {
       'lightBlue':'#8DA9C4',
       'active':'#FCCA46',
       'red':'#EA3788',
+      'hashtag':'#0000ff',
       'opactiy':'rgb(22, 0, 30, 0.7)',
       'opacity2':'rgb(22, 0, 30, 0.8)'
     },

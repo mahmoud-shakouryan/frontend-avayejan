@@ -22,7 +22,7 @@ export const videoDetails = (id) => {
       dispatch({ type: actions.VIDEO_DETAILS_REQUEST });
       const video = vidsArr.find((video) => video.id == id);
       if (!video) {
-        return dispatch({ntype: actions.VIDEO_DETAILS_FAIL, payload: "ویدیو یافت نشد"})
+        return dispatch({type: actions.VIDEO_DETAILS_FAIL, payload: "ویدیو یافت نشد"})
       }
       dispatch({ type: actions.VIDEO_DETAILS_SUCCESS, payload: video });
     } catch (err) {

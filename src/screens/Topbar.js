@@ -5,6 +5,7 @@ import MobileMenu from "../components/MobileMenu";
 import { useDispatch, useSelector } from "react-redux";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import * as actions from "../store/actions/actionTypes";
+import { toast } from "react-toastify";
 
 const Topbar = () => {
   const [activeSideMenu, setActiveSideMenu] = useState(false);
@@ -18,11 +19,22 @@ const Topbar = () => {
   const cardState = useSelector((state) => state.cardReducer);
   const { cardItems } = cardState;
 
+  const options = {
+    style: {
+      font: "shabnam",
+      textAlign: "center",
+      color: "#16001E",
+      fontFamily: "firstFont",
+      fontSize: "14px",
+      fontWeight: "bold",
+    },
+  };
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userSignoutHandler = () => {
     dispatch({ type: actions.CART_EMPTY });
     dispatch({ type: actions.USER_SIGNOUT });
+    toast.success("خارج شدید", options);
     navigate("/");
   };
 
