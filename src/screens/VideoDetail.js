@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import ErrorBox from "../components/ErrorBox";
 import { videoDetails } from "../store/actions/videoActions";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
@@ -19,14 +18,25 @@ const VideoDetail = () => {
   const { userInfo } = useSelector((state) => state.userSigninReducer);
   const videoDetailsState = useSelector((state) => state.videoDetailsReducer);
   const { video, loading, error } = videoDetailsState;
-  const { videoName, category, desc, price, duration, vol, videoTitle, imgSrc } = video;
-  
-  const TOMAN = price / 10;
-  let categoryHashtagForm;
-  if(category){
-    categoryHashtagForm = getHahtagForm(category)
-  }
+  const {
+    videoName,
+    category,
+    desc,
+    price,
+    duration,
+    vol,
+    videoTitle,
+    imgSrc,
+  } = video;
 
+  const formatttedPrice = (price / 10)
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  const Toman = enToPerNum(formatttedPrice);
+  let categoryHashtagForm;
+  if (category) {
+    categoryHashtagForm = getHahtagForm(category);
+  }
 
   const navigate = useNavigate();
 
@@ -48,6 +58,7 @@ const VideoDetail = () => {
       fontWeight: "bold",
     },
   };
+  const videoPropsStyle = "flex flex-col items-center justify-center";
   const addToCardHandler = () => {
     if (userInfo) {
       addToCard(id);
@@ -63,24 +74,87 @@ const VideoDetail = () => {
     dispatch(videoDetails(id));
   }, [dispatch, id]);
 
-  if (!video) {
+  if (!video.category) {
+    console.log("umad !video");
     return (
       <div className="fixed top-0 left-0 bottom-0 right-0">
-      <div className="fixed top-0 left-0 bottom-0 right-0 z-100 bg-opacity2" />
-      <div className="flex flex-col items-center justify-center h-2/3 w-2/3 relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-superLightBlue shadow-md shadow-dark rounded z-101">
-        <LoadingSpinner/>
+        <div className="fixed top-0 left-0 bottom-0 right-0 z-100 bg-opacity2" />
+        <div className="flex flex-col items-center justify-center h-2/3 w-2/3 relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-superLightBlue shadow-md shadow-dark rounded z-101">
+          <LoadingSpinner />
+        </div>
       </div>
-    </div>
     );
   }
   return (
-    <div className="fixed top-0 left-0 bottom-0 right-0 font-secondFont">
-      <div className="fixed top-0 left-0 bottom-0 right-0 z-100 bg-opacity2" />
-      <div className="relative overflow-y-auto scroll-smooth flex flex-col items-center justify-start h-1/3 sm:h-1/2 w-11/12 sm:w-2/3 relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-superLightBlue shadow-md shadow-dark rounded z-101 pt-1">
-        <div className="">{videoName}</div>
+    <div className="h-screen w-full fixed top-0 left-0 font-secondFont bg-opacity2 flex flex-col justify-start items-center gap-2 pt-40">
+      <button className="fixed right-1/2 translate-x-1/2 top-10 text-[60px] px-5 font-secondFont">
+        &times;
+      </button>
+      <div className="relative flex flex-col items-center justify-start max-h-60 overflow-y-auto w-11/12 sm:w-2/3  bg-superLightBlue rounded z-101 pt-1">
+        <div className="font-bold">{videoName}</div>
         <div className="text-[10px] text-hashtag">{categoryHashtagForm}</div>
-        <div className='text-sm text-right p-4'>{desc}</div>
-        
+        <p className="text-[12px] sm:text-sm text-right p-4">{desc}</p>
+      </div>
+      <div className="bg-lightBlue rounded w-11/12 sm:w-2/3 lg:w-2/3 h-20 flex items-center justify-around  gap-4">
+        <span className={videoPropsStyle}>
+          <span>
+            <AccessAlarmIcon />
+          </span>
+          <span>{enToPerNum(duration)}</span>
+        </span>
+        <span className={videoPropsStyle}>
+          <span>
+            <PaidOutlinedIcon />
+          </span>
+          <span className="flex gap-1">
+            <span className="text-xs flex items-center justify-center">
+              تومان
+            </span>
+            <span>{Toman}</span>
+          </span>
+        </span>
+        <span className={videoPropsStyle}>
+          <span>
+            <SdStorageIcon />
+          </span>
+          <span className="flex gap-1">
+            <span className="text-xs flex items-center justify-center">
+              مگابایت
+            </span>
+            <span>{enToPerNum(vol)}</span>
+          </span>
+        </span>
+        <span className={videoPropsStyle}>
+          <span>
+            <span>
+              <StorageIcon />
+            </span>
+          </span>
+          <span className="flex gap-1">
+            <span className="text-xs flex items-center justify-center">
+              فایل
+            </span>
+            <span>{enToPerNum(parts)}</span>
+          </span>
+        </span>
+      </div>
+      <div className="rounded w-11/12 sm:w-2/3 lg:w-2/3 h-20 flex items-center justify-around">
+        <button className="w-32 sm:w-40 rounded border border-dark text-dark shadow-md shadow-dark p-2  flex flex-col justify-center">
+          <span className="w-full flex items-center justify-center">
+            <ArrowBackIcon />
+          </span>
+          <span className="w-full flex items-center justify-center text-xs">
+            برگشت
+          </span>
+        </button>
+        <button className="w-32 sm:w-40 rounded border border-dark text-dark shadow-md shadow-dark p-2 flex flex-col justify-center  ">
+          <span className="w-full flex items-center justify-center">
+            <AddShoppingCartIcon />
+          </span>
+          <span className="w-full flex items-center justify-center text-xs">
+            اضافه به سبد دانلود
+          </span>
+        </button>
       </div>
     </div>
   );

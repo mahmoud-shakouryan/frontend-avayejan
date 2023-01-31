@@ -30,7 +30,8 @@ module.exports = {
       'red':'#EA3788',
       'hashtag':'#0000ff',
       'opactiy':'rgb(22, 0, 30, 0.7)',
-      'opacity2':'rgb(22, 0, 30, 0.8)'
+      'opacity2':'rgb(22, 0, 30, 0.8)',
+      'opacity3':'rgb(22, 0, 30, 0.3)'
     },
     backgroundImage:{
       'homeGrandient':'linear-gradient(90deg, hsla(44, 97%, 52%, 1) 0%, hsla(33, 94%, 57%, 1) 100%)',
