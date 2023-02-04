@@ -8,12 +8,9 @@ import Pagination from "../components/Pagination";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
 import LoadingSpinner from "../components/LoadingSpinner";
-import VideoDetail from "./VideoDetail";
 
 const Videos = () => {
   const [query, setQuery] = useState("");
-  const [showModal, setShowModal] = useState(false);
-
 
   const videoListState = useSelector((state) => state.videoListReducer);
   const { curPageVids, videos, loading, error } = videoListState;
@@ -25,14 +22,6 @@ const Videos = () => {
   for (const entry of searchParams.entries()) {
     page.push(entry);
   }
-  
-  const showModalHandler = () => { 
-    setShowModal(true);
-   };
-   const closeModalHandler = () => { 
-    setShowModal(false);
-    }
-
 
   const currentSearchParam = +searchParams.get("page");
 
@@ -46,8 +35,7 @@ const Videos = () => {
   }, [dispatch, searchParams.get("page")]);
 
   return (
-    <div className="h-screen w-screen bg-theWhite  fixed top-10">
-      {showModal && <VideoDetail/>}
+    <div className="h-screen w-screen bg-footerGradient fixed top-10">
       <div className="w-full h-8 flex justify-center items-center pt-3">
         <span
           onClick={() => setQuery("")}
@@ -87,7 +75,7 @@ const Videos = () => {
         ) : error ? (
           <ErrorBox error={error} />
         ) : (
-          curPageVids.map((video) => <VideoCard key={video.id} video={video} showModal={showModal} setShowModal={setShowModal}/>)
+          curPageVids.map((video) => <VideoCard key={video.id} video={video} />)
         )}
         <div className="w-full">
           <Pagination

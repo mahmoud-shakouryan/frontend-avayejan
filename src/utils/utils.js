@@ -5,8 +5,14 @@ export const enToPerNum = (enNum) => {
   return per_num;
 };
 
+export const getHahtagForm = (category) => {
+  const underlined = category.replaceAll(" ", "_");
+  return underlined + "#";
+};
 
-export const getHahtagForm = (category) =>{
-    const underlined = category.replace(' ', '_');
-    return underlined + '#';
-}
+export const getExpalantoryDuration = (duration) => {
+  const durationTimeSplit = duration.split(":").map((a) => +a);
+  const hours = durationTimeSplit[0];
+  const minutes = durationTimeSplit[1];
+  return [hours, minutes];
+};
