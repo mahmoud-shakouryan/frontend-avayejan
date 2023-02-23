@@ -47,16 +47,16 @@ const Signin = () => {
           <span>
             <ExitToAppIcon className="scale-150" />
           </span>
-          <span className="text-sm font-bold">ورود به حساب کاربری</span>
+          <span className="text-xs font-bold">ورود به حساب کاربری</span>
         </div>
         <div className="basis-1/5 flex flex-col items-end justify-center gap-1">
-          <label htmlFor="email" className="text-sm font-bold">
+          <label htmlFor="email" className="text-xs font-bold">
             : ایمیل
           </label>
           <input
             autoFocus
             name="email"
-            className="bg-white outline-shade w-full p-1 pt-2 pl-2 font-semibold tracking-wider text-sm "
+            className="bg-white outline-shade w-full p-1 pt-2 pl-2 font-semibold tracking-wider text-xs "
             type="email"
             id="email"
             placeholder="Enter Email"
@@ -65,12 +65,12 @@ const Signin = () => {
           />
         </div>
         <div className="basis-1/5 flex flex-col items-end justify-center gap-1">
-          <label htmlFor="password" className="text-sm font-bold">
+          <label htmlFor="password" className="text-xs font-bold">
             : رمز عبور
           </label>
           <input
             name="password"
-            className="bg-white outline-shade w-full p-1 pt-2 pl-2 text-sm font-semibold tracking-wider"
+            className="bg-white outline-shade w-full p-1 pt-2 pl-2 text-xs font-semibold tracking-wider"
             type="password"
             id="password"
             placeholder="Enter Password"
@@ -82,15 +82,15 @@ const Signin = () => {
         <div className="basis-1/5 flex items-center justify-center">
           <button
             type="submit"
-            className="bg-orange w-1/2 p-2 font-firstFont font-semibold text-dark text-xs sm:text-base flex items-center justify-center shadow-sm shadow-orange sm:hover:bg-hoverBtn"
+            className="bg-orange w-1/2 p-2 font-firstFont font-semibold text-dark text-xs flex items-center justify-center shadow-sm shadow-orange sm:hover:bg-hoverBtn"
           >
             {loading ? <LoadingSpinner /> : "ورود"}
           </button>
         </div>
-        <div className="basis-1/5 flex items-center justify-center gap-2 text-sm">
+        <div className="basis-1/5 flex items-center justify-center gap-2 text-xs">
           <Link
             to="/signup"
-            className="decoration-solid underline text-sm font-bold text-red"
+            className="decoration-solid underline text-xs font-bold text-red"
           >
             ثبت‌نام کنید
           </Link>

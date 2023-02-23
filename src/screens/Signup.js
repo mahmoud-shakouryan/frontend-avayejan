@@ -1,70 +1,125 @@
-import HowToRegIcon from '@mui/icons-material/HowToReg';
-import { useEffect, useState } from 'react';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';  
-import { useDispatch, useSelector } from 'react-redux';
-import { signupAction } from '../store/actions/userActions';
-import LoadingSpinner from '../components/LoadingSpinner';
+import HowToRegIcon from "@mui/icons-material/HowToReg";
+import { useEffect, useState } from "react";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { signupAction } from "../store/actions/userActions";
+import LoadingSpinner from "../components/LoadingSpinner";
 
+const Signup = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmedPassword, setConfirmedPassword] = useState("");
+  const navigate = useNavigate();
 
-const  Signup = () => {
+  const userSignupState = useSelector((state) => state.userSignupReducer);
+  const { userInfo, loading, error } = userSignupState;
 
-        const [name, setName] = useState('');
-        const [email, setEmail] = useState('');
-        const [password, setPassword] = useState('');
-        const [confirmedPassword, setConfirmedPassword] = useState('');
-        const navigate = useNavigate();
-        
-        const userSignupState = useSelector( state => state.userSignupReducer)
-        const { userInfo, loading, error} = userSignupState;
+  const dispatch = useDispatch();
+  const submitSignupFormHandler = (e) => {
+    e.preventDefault();
+    dispatch(signupAction(name, email, password, confirmedPassword));
+  };
 
+  useEffect(() => {
+    if (userInfo) {
+      navigate("/");
+    }
+  }, [userInfo]);
 
-        const dispatch = useDispatch();
-        const submitSignupFormHandler = (e) =>{
-            e.preventDefault();
-            dispatch(signupAction(name, email, password, confirmedPassword));
-        }
-
-        useEffect(()=>{
-            if(userInfo){
-                navigate('/');
-            }
-        },[userInfo]);
- 
-        return (
+  return (
     <>
-    <div className='bg-superLightBlue p-2 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-[450px] sm:w-2/3 md:w-1/2 lg:w-5/12 xl:w-1/3 2xl:w-1/4  shadow-md shadow-dark font-secondFont text-dark rounded'>
-        <form onSubmit={submitSignupFormHandler} className='h-full flex flex-col justify-between' noValidate>
-            <div className='p-2 flex flex-col items-center justify-center '>
-                <span><HowToRegIcon className='scale-150'/></span>
-                <span className='text-sm font-bold' >ایجاد حساب کاربری</span>
-            </div>
-            <div  className='p-2 flex flex-col items-end justify-center '>
-                <label htmlFor="name" className='text-sm font-bold'> : نام </label>
-                <input  onChange={(e) => setName(e.target.value)} className='bg-theWhite focus:outline-dark w-full p-1 pt-2 pl-2 font-semibold tracking-wider text-sm rounded  border border-dark' type="text" id="name" name='name' placeholder="Enter Email"/>
-            </div>
-            <div  className='p-2 flex flex-col items-end justify-center'>
-                <label htmlFor="email" className='text-sm font-bold'> : ایمیل </label>
-                <input name='email' className='bg-theWhite focus:outline-dark w-full p-1 pt-2 pl-2 font-semibold tracking-wider text-sm rounded  border broder-dark' type="email" id="email" placeholder="Enter Email" required onChange={(e) => setEmail(e.target.value)}/>
-            </div>
-            <div className='p-2 flex flex-col items-end justify-center'>
-                <label htmlFor="password" className='text-sm font-bold'> : رمز عبور </label>
-                <input name='password' className='bg-theWhite focus:outline-dark w-full p-1 pt-2 pl-2 font-semibold tracking-wider text-sm rounded  border border-dark' type="password" id="password" placeholder="Enter Password" required onChange={(e) => setPassword(e.target.value)} autoComplete="off"/>
-            </div>
-            <div className='p-2 flex flex-col items-end justify-center'>
-                <label htmlFor="confirm" className='text-sm font-bold'> : تکرار رمز عبور </label>
-                <input name='confirm' className='bg-theWhite focus:outline-dark w-full p-1 pt-2 pl-2 font-semibold tracking-wider text-sm rounded  border border-dark' type="password" id="confirm" placeholder="Enter Password" required onChange={(e) => setConfirmedPassword(e.target.value)} autoComplete="off"/>
-            </div>
-            <div className='p-2 flex items-center justify-center'>
-                <button type='submit' className='bg-lightBlue  w-1/2 p-2  font-firstFont font-semibold text-dark text-xs sm:text-base flex items-center justify-center rounded shadow-sm shadow-dark sm:hover:scale-105 sm:duration-100 sm:ease'>{loading ? <LoadingSpinner/> : 'ایجاد حساب'}</button>
-            </div>
-            <div className='flex items-center justify-center gap-2 text-sm p-2'>
-                <Link to='/signin' className='decoration-solid underline text-sm font-bold text-red'>وارد شوید</Link>
-                <span className='font-bold text-xs'> قبلا ثبت‌‌‌نام کرده‌اید ؟</span>
-            </div>
+      <div className="bg-white fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 sm:w-80 h-[390px]  shadow-sm shadow-dark font-secondFont text-dark ">
+        <form
+          onSubmit={submitSignupFormHandler}
+          className="h-full flex flex-col justify-between bg-shade p-2 rounded-sm"
+          noValidate
+        >
+          <div className="flex flex-col items-center justify-center pt-1">
+            <span>
+              <HowToRegIcon className="scale-150" />
+            </span>
+            <span className="text-xs font-bold">ایجاد حساب کاربری</span>
+          </div>
+          <div className="flex flex-col items-end justify-center gap-1">
+            <label htmlFor="name" className="text-xs font-bold">
+              : نام
+            </label>
+            <input
+              autoFocus
+              onChange={(e) => setName(e.target.value)}
+              className="bg-white outline-shade w-full p-1 pt-2 pl-2 font-semibold tracking-wider text-xs   "
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Enter Email"
+            />
+          </div>
+          <div className=" flex flex-col items-end justify-center gap-1">
+            <label htmlFor="email" className="text-xs font-bold">
+              : ایمیل
+            </label>
+            <input
+              name="email"
+              className="bg-white outline-shade w-full p-1 pt-2 pl-2 font-semibold tracking-wider text-xs "
+              type="email"
+              id="email"
+              placeholder="Enter Email"
+              required
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="flex flex-col items-end justify-center gap-1">
+            <label htmlFor="password" className="text-xs font-bold">
+              : رمز عبور
+            </label>
+            <input
+              name="password"
+              className="bg-white outline-shade w-full p-1 pt-2 pl-2 font-semibold tracking-wider text-xs   "
+              type="password"
+              id="password"
+              placeholder="Enter Password"
+              required
+              onChange={(e) => setPassword(e.target.value)}
+              autoComplete="off"
+            />
+          </div>
+          <div className="flex flex-col items-end justify-center gap-1">
+            <label htmlFor="confirm" className="text-xs font-bold">
+              : تکرار رمز عبور
+            </label>
+            <input
+              name="confirm"
+              className="bg-white outline-shade w-full p-1 pt-2 pl-2 font-semibold tracking-wider text-xs   "
+              type="password"
+              id="confirm"
+              placeholder="Enter Password"
+              required
+              onChange={(e) => setConfirmedPassword(e.target.value)}
+              autoComplete="off"
+            />
+          </div>
+          <div className="p-2 flex items-center justify-center">
+            <button
+              type="submit"
+              className="bg-orange sm:hover:bg-hoverBtn w-1/2 p-2 font-firstFont font-semibold text-dark text-xs flex items-center justify-center"
+            >
+              {loading ? <LoadingSpinner /> : "ایجاد حساب"}
+            </button>
+          </div>
+          <div className="flex items-center justify-center gap-2 text-xs p-2">
+            <Link
+              to="/signin"
+              className="decoration-solid underline text-xs font-bold text-red"
+            >
+              وارد شوید
+            </Link>
+            <span className="font-bold text-xs">قبلا ثبت‌‌‌نام کرده‌اید ؟</span>
+          </div>
         </form>
-    </div>
+      </div>
     </>
-  )
-}
+  );
+};
 
 export default Signup;
