@@ -6,8 +6,8 @@ export const videoList = (page) => {
   return (dispatch) => {
     dispatch({ type: actions.VIDEO_LIST_REQUEST });
     try {
-      const vidsToSkip = page === 0 ? 0 : (page - 1) * 4;
-      const thisPageVids = vidsArr.slice(vidsToSkip, vidsToSkip + 4);
+      const vidsToSkip = page === 0 || page === 1 ? 0 : (page - 1) * 6;
+      const thisPageVids = vidsArr.slice(vidsToSkip, vidsToSkip + 6);
       dispatch({ type: actions.VIDEO_LIST_SUCCESS, payload: { videos: vidsArr, thisPageVids: thisPageVids }});
     } catch (err) {
       console.log("videoAcions videoList error", err.message);
@@ -20,7 +20,7 @@ export const videoDetails = (id) => {
   return (dispatch) => {
     try {
       dispatch({ type: actions.VIDEO_DETAILS_REQUEST });
-      const video = vidsArr.find((video) => video.id == id);
+      const video = vidsArr.find((video) => video.id === id);
       if (!video) {
         return dispatch({type: actions.VIDEO_DETAILS_FAIL, payload: "ویدیو یافت نشد"})
       }

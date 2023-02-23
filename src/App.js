@@ -1,4 +1,3 @@
-import "./App.css";
 import Topbar from "./screens/Topbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./screens/Home";
@@ -11,11 +10,12 @@ import { ToastContainer } from "react-toastify";
 import Contact from "./screens/Contact";
 import DownloadScr from "./screens/DownloadScr";
 import Cards from "./screens/Cards";
+import Dashboard from "./screens/dashboard/Dashboard";
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="w-screen h-screen bg-theWhite">
+      <div className="relative w-screen h-screen bg-white">
         <Topbar />
         <ToastContainer autoClose="1000" />
         <Routes>
@@ -23,6 +23,7 @@ function App() {
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/videos" element={<Videos />} />
+          <Route path="/admin/*" element={<Dashboard/>} />
           <Route path="/videos/:id" element={<VideoDetail />} />
           <Route path="/card/:id" element={<Cards />} />
           <Route path="/card" element={<Cards />} />
