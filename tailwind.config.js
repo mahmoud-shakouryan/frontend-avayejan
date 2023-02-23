@@ -8,25 +8,27 @@ module.exports = {
       xl: "1100px",
       "2xl": "1200px",
     },
-    extend: {},
+    extend: {
+      gridTemplateColumns: {
+        '3': 'repeat(3, minmax(100px, 200px))',
+      }
+    },
     colors: {
-      dark: "#0B2545",
-      orange: "#fb6107",
-      theWhite: "#EEF4ED",
-      superLightBlue: "#D7E1EA",
-      lightBlue: "#8DA9C4",
-      active: "#FCCA46",
-      red: "#EA3788",
+      dark: "#140800",
+      orange: "#FF6600",
+      hoverBtn:'#cc5200',
+      white: "#ffe7d8",
+      shade:'#ffb889',
       hashtag: "#0000ff",
       opacity: "rgb(22, 0, 30, 0.9)",
       opactiy2: "rgb(22, 0, 30, 0.7)",
       opacity3: "rgb(22, 0, 30, 0.3)",
     },
     backgroundImage: {
-      homeGrandient:
-        "linear-gradient(90deg, hsla(44, 97%, 52%, 1) 0%, hsla(33, 94%, 57%, 1) 100%)",
-      footerGradient:
-        "radial-gradient(circle, hsla(209, 32%, 66%, 1) 0%, hsla(111, 24%, 94%, 1) 100%)",
+      // homeGrandient:
+      //   "radial-gradient(circle, rgba(255,184,137,1) 0%, rgba(255,102,0,1) 50%, rgba(20,8,0,1) 100%);",
+      // footerGradient:
+      //   "radial-gradient(circle, hsla(209, 32%, 66%, 1) 0%, hsla(111, 24%, 94%, 1) 100%)",
     },
     fontFamily: {
       firstFont: ["shabnam"],

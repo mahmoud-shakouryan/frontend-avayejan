@@ -37,9 +37,9 @@ const Signin = () => {
   }, [redirect, userInfo]);
 
   return (
-    <div className="bg-superLightBlue p-2 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 sm:w-2/3 md:w-1/2 lg:w-5/12 xl:w-1/3 2xl:w-1/4 h-1/2 sm:h-2/3  shadow-md shadow-dark font-secondFont text-dark rounded">
+    <div className="bg-white fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 sm:w-80 h-80 sm:h-1/2 shadow-sm shadow-dark font-secondFont text-dark rounded">
       <form
-        className="bg- h-full flex flex-col justify-between"
+        className="bg-shade p-2 h-full flex flex-col justify-between"
         onSubmit={submitHandler}
         noValidate
       >
@@ -51,12 +51,12 @@ const Signin = () => {
         </div>
         <div className="basis-1/5 flex flex-col items-end justify-center gap-1">
           <label htmlFor="email" className="text-sm font-bold">
-            {" "}
-            : ایمیل{" "}
+            : ایمیل
           </label>
           <input
+            autoFocus
             name="email"
-            className="bg-theWhite focus:outline-dark w-full p-1 pt-2 pl-2 font-semibold tracking-wider text-sm rounded border border-dark "
+            className="bg-white outline-shade w-full p-1 pt-2 pl-2 font-semibold tracking-wider text-sm "
             type="email"
             id="email"
             placeholder="Enter Email"
@@ -66,12 +66,11 @@ const Signin = () => {
         </div>
         <div className="basis-1/5 flex flex-col items-end justify-center gap-1">
           <label htmlFor="password" className="text-sm font-bold">
-            {" "}
             : رمز عبور
           </label>
           <input
             name="password"
-            className="bg-theWhite focus:outline-dark w-full p-1 pt-2 pl-2  text-sm font-semibold tracking-wider rounded border border-dark"
+            className="bg-white outline-shade w-full p-1 pt-2 pl-2 text-sm font-semibold tracking-wider"
             type="password"
             id="password"
             placeholder="Enter Password"
@@ -83,9 +82,9 @@ const Signin = () => {
         <div className="basis-1/5 flex items-center justify-center">
           <button
             type="submit"
-            className="bg-lightBlue  w-1/2 p-2  font-firstFont font-semibold text-dark text-xs sm:text-base flex items-center justify-center rounded shadow-sm shadow-dark sm:hover:scale-105 sm:duration-100 sm:ease"
+            className="bg-orange w-1/2 p-2 font-firstFont font-semibold text-dark text-xs sm:text-base flex items-center justify-center shadow-sm shadow-orange sm:hover:bg-hoverBtn"
           >
-            {loading ? <LoadingSpinner/> : "ورود"}
+            {loading ? <LoadingSpinner /> : "ورود"}
           </button>
         </div>
         <div className="basis-1/5 flex items-center justify-center gap-2 text-sm">
@@ -93,10 +92,10 @@ const Signin = () => {
             to="/signup"
             className="decoration-solid underline text-sm font-bold text-red"
           >
-            ثبت‌نام کنید{" "}
+            ثبت‌نام کنید
           </Link>
           <span className="font-bold text-xs">
-            اگر قبلا ثبت‌‌‌نام نکرده‌اید{" "}
+            اگر قبلا ثبت‌‌‌نام نکرده‌اید
           </span>
         </div>
       </form>

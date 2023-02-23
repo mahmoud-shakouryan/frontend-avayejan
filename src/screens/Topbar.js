@@ -29,6 +29,11 @@ const Topbar = () => {
       fontWeight: "bold",
     },
   };
+  const navLiStyle = "h-full w-auto px-2 cursor-pointer";
+  const navLinkNotActive =
+    "h-full flex items-center justify-center text-white hover:text-shade";
+  const navLinkActive =
+    "h-full flex items-center justify-center text-orange hover:text-shade";
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userSignoutHandler = () => {
@@ -39,62 +44,70 @@ const Topbar = () => {
   };
 
   return (
-    <div className="z-10 fixed w-full h-10 flex justify-between items-center bg-dark text-theWhite">
-      <div className="basis-1/10 text-sm font-semibold text-left pl-2 ">
-        <Link to="/" className="font-firstFont font-thin sm:hover:text-active">
-          آوای جان
-        </Link>
-      </div>
+    <div className="z-40 fixed top-0 left-0 right-0 w-screen h-10 flex justify-between items-center bg-dark text-white">
+      <NavLink
+        to="/"
+        className="w-28 h-full flex items-center text-xs cursor-pointer pl-2 font-firstFont md:hover:text-shade"
+      >
+        آوای جان
+      </NavLink>
       <div className="fixed w-10 h-10 right-1/2 translate-x-1/2 flex items-center justify-center rounded">
         <NavLink
           to="/card"
           className={({ isActive }) =>
-            isActive ? "text-active" : "sm:hover:text-active"
+            isActive ? "text-orange" : "sm:hover:text-shade"
           }
         >
           <ShoppingCartOutlinedIcon />
           {cardItems && cardItems.length !== 0 ? (
-            <span className="absolute top-1 -right-1 bg-active text-dark font-bold border w-5 h-5 rounded-full flex items-center justify-center text-xs">
+            <span className="absolute top-1 -right-1 bg-orange text-dark font-bold border w-5 h-5 rounded-full flex items-center justify-center text-xs">
               {cardItems.length}
             </span>
           ) : null}
         </NavLink>
       </div>
-      <nav className="h-full basis-9/10 flex items-center">
-        <div className="md:hidden text-right pr-2 flex justify-end gap-4">
+      <MobileMenu showMenu={showMenu} activeSideMenu={activeSideMenu} />
+      <nav className="h-full basis-5/12 lg:basis-6/12 flex justify-between items-center">
+        <div className="md:hidden w-full h-full text-right pr-2 flex justify-end items-center">
           <MenuOutlinedIcon
             onClick={showMenu}
-            className="cursor-pointer scale-150 sm:hover:text-active"
+            className="cursor-pointer scale-150 sm:hover:text-shade"
           />
         </div>
-        <ul className="hidden h-full bg-dark md:flex md:items-center md:justify-around md:gap-5 font-secondFont text-xs pr-2">
-          <li className="h-full hover:text-active cursor-pointer">
+        <ul className="hidden h-full w-full md:flex md:items-center md:justify-end md:text-[9px] lg:text-[11px] font-firstFont">
+          <li className={navLiStyle}>
+            <NavLink
+              to="/admin"
+              className={({ isActive }) =>
+                isActive ? navLinkActive : navLinkNotActive
+              }
+            >
+              ادمین
+            </NavLink>
+          </li>
+          <li className={navLiStyle}>
             <NavLink
               to="/contact"
               className={({ isActive }) =>
-                isActive
-                  ? "h-full flex items-center justify-center text-active"
-                  : " h-full flex items-center justify-center"
+                isActive ? navLinkActive : navLinkNotActive
               }
             >
               تماس با ما
             </NavLink>
           </li>
           {!userInfo ? (
-            <li className="h-full hover:text-active cursor-pointer">
+            <li className={navLiStyle}>
               <NavLink
                 to="/signup"
                 className={({ isActive }) =>
-                  isActive
-                    ? "h-full flex items-center justify-center text-active"
-                    : "h-full flex items-center justify-center"
+                  isActive ? navLinkActive : navLinkNotActive
                 }
               >
                 ثبت نام
               </NavLink>
             </li>
           ) : null}
-          <li className="h-full hover:text-active cursor-pointer">
+          <li className={navLiStyle}>
             {userInfo ? (
               <button
                 className="h-full flex items-center justify-center"
@@ -106,9 +119,7 @@ const Topbar = () => {
               <NavLink
                 to="/signin"
                 className={({ isActive }) =>
-                  isActive
-                    ? "h-full flex items-center justify-center text-active"
-                    : "h-full flex items-center justify-center"
+                  isActive ? navLinkActive : navLinkNotActive
                 }
               >
                 ورود
@@ -116,46 +127,38 @@ const Topbar = () => {
             )}
           </li>
           {userInfo ? (
-            <li className="h-full hover:text-active cursor-pointer">
+            <li className={navLiStyle}>
               <NavLink
                 to="/myvideos?page=1"
                 className={({ isActive }) =>
-                  isActive
-                    ? "h-full flex items-center justify-center text-active"
-                    : "h-full flex items-center justify-center"
+                  isActive ? navLinkActive : navLinkNotActive
                 }
               >
                 ویدیوهای من
               </NavLink>
             </li>
           ) : null}
-          <li className="h-full hover:text-active cursor-pointer">
+          <li className={navLiStyle}>
             <NavLink
               to="/videos?page=1"
               className={({ isActive }) =>
-                isActive
-                  ? "h-full flex items-center justify-center text-active"
-                  : "h-full flex items-center justify-center"
+                isActive ? navLinkActive : navLinkNotActive
               }
             >
               ویدیوهای آموزشی
             </NavLink>
           </li>
-          <li className="h-full hover:text-active cursor-pointer">
+          <li className={navLiStyle}>
             <NavLink
               to="/"
               className={({ isActive }) =>
-                isActive
-                  ? "h-full flex items-center justify-center text-active"
-                  : "h-full flex items-center justify-center"
+                isActive ? navLinkActive : navLinkNotActive
               }
             >
               صفحه اصلی
             </NavLink>
           </li>
         </ul>
-
-        <MobileMenu showMenu={showMenu} activeSideMenu={activeSideMenu} />
       </nav>
     </div>
   );
