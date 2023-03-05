@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MobileMenu from "../components/MobileMenu";
 import { useDispatch, useSelector } from "react-redux";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import * as actions from "../store/actions/actionTypes";
 import { toast } from "react-toastify";
+import { toastStyle as options } from "../utils/styles";
 
 const Topbar = () => {
   const [activeSideMenu, setActiveSideMenu] = useState(false);
@@ -19,21 +20,11 @@ const Topbar = () => {
   const cardState = useSelector((state) => state.cardReducer);
   const { cardItems } = cardState;
 
-  const options = {
-    style: {
-      font: "shabnam",
-      textAlign: "center",
-      color: "#16001E",
-      fontFamily: "firstFont",
-      fontSize: "14px",
-      fontWeight: "bold",
-    },
-  };
-  const navLiStyle = "h-full w-auto px-2 cursor-pointer";
+  const navLiStyle = "h-full md:w-[60px]  cursor-pointer";
   const navLinkNotActive =
-    "h-full flex items-center justify-center text-white hover:text-shade";
+    "h-full w-full flex items-center justify-center text-white hover:text-shade hover:border-b hover:border-shade";
   const navLinkActive =
-    "h-full flex items-center justify-center text-orange hover:text-shade";
+    "h-full w-full flex items-center justify-center text-shade hover:text-shade border-b hover:border-shade";
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userSignoutHandler = () => {
@@ -55,12 +46,12 @@ const Topbar = () => {
         <NavLink
           to="/card"
           className={({ isActive }) =>
-            isActive ? "text-orange" : "sm:hover:text-shade"
+            isActive ? "text-vio" : "sm:hover:text-shade"
           }
         >
           <ShoppingCartOutlinedIcon />
           {cardItems && cardItems.length !== 0 ? (
-            <span className="absolute top-1 -right-1 bg-orange text-dark font-bold border w-5 h-5 rounded-full flex items-center justify-center text-xs">
+            <span className="absolute top-1 -right-1 bg-vio text-dark font-bold border w-5 h-5 rounded-full flex items-center justify-center text-xs">
               {cardItems.length}
             </span>
           ) : null}
@@ -74,7 +65,7 @@ const Topbar = () => {
             className="cursor-pointer scale-150 sm:hover:text-shade"
           />
         </div>
-        <ul className="hidden h-full w-full md:flex md:items-center md:justify-end md:text-[9px] lg:text-[11px] font-firstFont">
+        <ul className="hidden h-full w-full md:flex md:items-center md:justify-end md:text-[8.5px] lg:text-[10.5px] font-firstFont">
           <li className={navLiStyle}>
             <NavLink
               to="/admin"
@@ -109,12 +100,13 @@ const Topbar = () => {
           ) : null}
           <li className={navLiStyle}>
             {userInfo ? (
-              <button
-                className="h-full flex items-center justify-center"
+              <NavLink
+                className={navLinkNotActive}
                 onClick={userSignoutHandler}
+                to="/"
               >
                 خروج
-              </button>
+              </NavLink>
             ) : (
               <NavLink
                 to="/signin"
@@ -145,7 +137,7 @@ const Topbar = () => {
                 isActive ? navLinkActive : navLinkNotActive
               }
             >
-              ویدیوهای آموزشی
+              ویدیوها
             </NavLink>
           </li>
           <li className={navLiStyle}>
