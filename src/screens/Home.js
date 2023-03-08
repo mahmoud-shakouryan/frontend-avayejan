@@ -1,7 +1,5 @@
-import VideoLibraryOutlinedIcon from "@mui/icons-material/VideoLibraryOutlined";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import MobileFriendlyIcon from "@mui/icons-material/MobileFriendly";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
@@ -9,24 +7,26 @@ import { useDispatch, useSelector } from "react-redux";
 import Slider from "../components/Slider";
 import { cardEmpty } from "../store/actions/cardActions";
 import { toast } from "react-toastify";
-import * as actions from '../store/actions/actionTypes';
+import * as actions from "../store/actions/actionTypes";
+import { homeBtnStyle } from "../utils/styles";
+import { toastStyle as options } from "../utils/styles";
+import SlowMotionVideoRoundedIcon from "@mui/icons-material/SlowMotionVideoRounded";
+import OndemandVideoRoundedIcon from "@mui/icons-material/OndemandVideoRounded";
 
 const Home = () => {
   const { userInfo } = useSelector((state) => state.userSigninReducer);
   const dispatch = useDispatch();
   const signoutHandler = () => {
-    dispatch({type: actions.USER_SIGNOUT});
-    const options = { autoClose: 2000 ,style: { 'font':'shabnam', 'textAlign': 'center','color':'#16001E', 'fontFamily':'firstFont', 'fontSize':'14px', 'fontWeight':'bold'}}
-    toast.success('خارج شدید.', options);
+    dispatch({ type: actions.USER_SIGNOUT });
+    toast.success("خارج شدید", options);
     dispatch(cardEmpty());
   };
 
   const images = ["/images/cart.jpg", "/images/cart2.png", "/images/cart3.jpg"];
-
   return (
     <>
-      <div className="w-full h-full fixed top-10 p-2 bg-theWhite flex flex-col justify-start gap-4 md:gap-2">
-        <div className="w-full md:w-[569px] md:mx-auto h-30 flex flex-col items-center gap-1 bg-homeGrandient py-2 rounded-md shadow-sm shadow-silver">
+      <div className="w-full h-full fixed top-10 p-2 bg-white flex flex-col justify-start gap-4 md:gap-2">
+        <div className="w-full md:w-[569px] md:mx-auto h-30 flex flex-col items-center gap-1 bg-shade py-2 rounded-md shadow-sm ">
           <span className="font-secondFont text-[8px] sm:text-sm text-dark font-semibold">
             به آوای جان خوش آمدید
           </span>
@@ -41,43 +41,31 @@ const Home = () => {
           </span>
         </div>
         <Slider slides={images} />
-        <div className="w-full md:w-[569px] mx-auto text-center  flex items-center justify-center gap-3">
+        <div className="w-full md:w-[569px] mx-auto text-center flex items-center justify-center gap-3">
           <Link to="/videos?page=1" className="w-full">
-            <button
-              type="button"
-              className="bg-lightBlue py-1 md:py-2 w-full  text-[8px] md:text-[11px] flex flex-col items-center  text-dark font-bold font-secondFont rounded-lg shadow-sm shadow-dark sm:hover:scale-105 duration-150 ease-ou"
-            >
-              {" "}
+            <button type="button" className={homeBtnStyle}>
               <span>
-                <VideoLibraryOutlinedIcon className="mr-1 font-bold" />
+                <OndemandVideoRoundedIcon className="mr-1 " />
               </span>
               <span>ویدیوهای آموزشی</span>
             </button>
           </Link>
           {userInfo ? (
             <Link to="/myvideos" className="w-full">
-              <button
-                type="button"
-                className="bg-lightBlue py-1 md:py-2 w-full text-[8px] md:text-[11px] flex flex-col items-center text-dark  font-secondFont rounded-lg shadow-sm shadow-dark sm:hover:scale-105 duration-150 ease-out"
-              >
-                {" "}
+              <button type="button" className={homeBtnStyle}>
                 <span>
-                  <MobileFriendlyIcon className="mr-1" />
+                  <SlowMotionVideoRoundedIcon className="mr-1" />
                 </span>
-                <span className="font-bold">ویدیوهای من</span>
+                <span>ویدیوهای من</span>
               </button>
             </Link>
           ) : (
             <Link to="/signin" className="w-full">
-              <button
-                type="button"
-                className="bg-lightBlue py-1 md:py-2 w-full text-[8px] md:text-[11px] flex flex-col items-center text-dark  font-secondFont rounded-lg shadow-sm shadow-dark sm:hover:scale-105 duration-150 ease-out"
-              >
-                {" "}
+              <button type="button" className={homeBtnStyle}>
                 <span>
                   <ExitToAppIcon className="mr-1" />
                 </span>
-                <span className="font-bold">وارد شوید</span>
+                <span>وارد شوید</span>
               </button>
             </Link>
           )}
@@ -85,25 +73,20 @@ const Home = () => {
             <button
               onClick={signoutHandler}
               type="button"
-              className="bg-lightBlue w-full py-1 md:py-2 text-[8px] md:text-[11px] flex flex-col items-center text-dark font-secondFont  rounded-lg shadow-sm shadow-dark sm:hover:scale-105 duration-150 ease-out"
+              className={homeBtnStyle}
             >
-              {" "}
               <span>
                 <LogoutIcon />
               </span>
-              <span className="font-bold">خروج از حساب</span>
+              <span>خروج از حساب</span>
             </button>
           ) : (
             <Link to="/signup" className="w-full">
-              <button
-                type="button"
-                className="bg-lightBlue py-1 md:py-2 w-full text-[8px] md:text-[11px] flex flex-col items-center text-dark font-secondFont rounded-lg shadow-sm shadow-dark sm:hover:scale-105 duration-150 ease-out"
-              >
-                {" "}
+              <button type="button" className={homeBtnStyle}>
                 <span>
                   <HowToRegIcon />
                 </span>
-                <span className="font-bold">ثبت نام کنید</span>
+                <span>ثبت نام کنید</span>
               </button>
             </Link>
           )}

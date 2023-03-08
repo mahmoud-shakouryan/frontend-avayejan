@@ -1,9 +1,17 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../store/actions/actionTypes";
 import { toast } from "react-toastify";
 import { toastStyle as options } from "../utils/styles";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
+import HowToRegIcon from "@mui/icons-material/HowToReg";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
+import SlowMotionVideoRoundedIcon from "@mui/icons-material/SlowMotionVideoRounded";
+import GiteRoundedIcon from "@mui/icons-material/GiteRounded";
+import OndemandVideoRoundedIcon from "@mui/icons-material/OndemandVideoRounded";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 
 const MobileMenu = ({ showMenu, activeSideMenu }) => {
   const userSigninState = useSelector((state) => state.userSigninReducer);
@@ -11,9 +19,9 @@ const MobileMenu = ({ showMenu, activeSideMenu }) => {
 
   const liStyle = "w-full flex items-center justify-center sm:hover:text-shade";
   const navLinkActiveStyle =
-    "p-5 w-full flex items-center justify-center text-shade text-[10px] sm:text-xs";
+    "py-5 w-full flex items-center justify-around text-shade text-[10px] sm:text-xs";
   const navLinkNonActiveStyle =
-    "p-5 w-full flex items-center justify-center text-[10px] sm:text-xs";
+    "py-5 w-full flex items-center justify-around text-[10px] sm:text-xs";
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -33,7 +41,7 @@ const MobileMenu = ({ showMenu, activeSideMenu }) => {
       }
     >
       <li onClick={showMenu} className={`p-5 ${liStyle} cursor-pointer z-60`}>
-        <CloseOutlinedIcon className="scale-150 flex items-center justify-center " />
+        <CloseRoundedIcon className="scale-150 flex items-center justify-center " />
       </li>
       <li onClick={showMenu} className={liStyle}>
         <NavLink
@@ -42,7 +50,8 @@ const MobileMenu = ({ showMenu, activeSideMenu }) => {
             isActive ? navLinkActiveStyle : navLinkNonActiveStyle
           }
         >
-          صفحه اصلی
+          <span className="w-[70%] flex justify-end"> صفحه اصلی</span>
+          <GiteRoundedIcon />
         </NavLink>
       </li>
       <li onClick={showMenu} className={liStyle}>
@@ -52,7 +61,8 @@ const MobileMenu = ({ showMenu, activeSideMenu }) => {
             isActive ? navLinkActiveStyle : navLinkNonActiveStyle
           }
         >
-          ویدیوهای آموزشی
+          <span className="w-[70%] flex justify-end">ویدیوهای آموزشی</span>
+          <OndemandVideoRoundedIcon />
         </NavLink>
       </li>
       <li onClick={showMenu} className={liStyle}>
@@ -62,7 +72,8 @@ const MobileMenu = ({ showMenu, activeSideMenu }) => {
             isActive ? navLinkActiveStyle : navLinkNonActiveStyle
           }
         >
-          ویدیوهای من
+          <span className="w-[70%] flex justify-end"> ویدیوهای من</span>
+          <SlowMotionVideoRoundedIcon />
         </NavLink>
       </li>
       {!userInfo ? (
@@ -73,18 +84,21 @@ const MobileMenu = ({ showMenu, activeSideMenu }) => {
               isActive ? navLinkActiveStyle : navLinkNonActiveStyle
             }
           >
-            ثبت‌نام
+            <span className="w-[70%] flex justify-end">ثبت‌نام</span>
+            <HowToRegIcon />
           </NavLink>
         </li>
       ) : null}
       <li onClick={showMenu} className={liStyle}>
         {userInfo ? (
-          <button
+          <NavLink
+            to="/"
             className={navLinkNonActiveStyle}
             onClick={userSignoutHandler}
           >
-            خروج
-          </button>
+            <span className="w-[70%] flex justify-end">خروج</span>
+            <LogoutRoundedIcon />
+          </NavLink>
         ) : (
           <NavLink
             to="/signin"
@@ -92,7 +106,8 @@ const MobileMenu = ({ showMenu, activeSideMenu }) => {
               isActive ? navLinkActiveStyle : navLinkNonActiveStyle
             }
           >
-            ورود
+            <span className="w-[70%] flex justify-end">ورود</span>
+            <ExitToAppIcon />
           </NavLink>
         )}
       </li>
@@ -103,7 +118,8 @@ const MobileMenu = ({ showMenu, activeSideMenu }) => {
             isActive ? navLinkActiveStyle : navLinkNonActiveStyle
           }
         >
-          سبد خرید
+          <span className="w-[70%] flex justify-end">سبد خرید</span>
+          <ShoppingCartOutlinedIcon />
         </NavLink>
       </li>
       <li onClick={showMenu} className={liStyle}>
@@ -113,7 +129,8 @@ const MobileMenu = ({ showMenu, activeSideMenu }) => {
             isActive ? navLinkActiveStyle : navLinkNonActiveStyle
           }
         >
-          تماس با ما
+          <span className="w-[70%] flex justify-end">تماس با ما</span>
+          <PhoneOutlinedIcon />
         </NavLink>
       </li>
     </ul>
