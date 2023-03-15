@@ -5,6 +5,14 @@ export const enToPerNum = (enNum) => {
   return per_num;
 };
 
+export const formattedPersianPrice = (price) => {
+  const formatttedPrice = (price / 10)
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  const persianed = enToPerNum(formatttedPrice);
+  return persianed;
+};
+
 export const getHahtagForm = (category) => {
   const underlined = category.replaceAll(" ", "_");
   return underlined + "#";

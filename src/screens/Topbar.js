@@ -1,12 +1,19 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MobileMenu from "../components/MobileMenu";
+import MenuOpenRoundedIcon from "@mui/icons-material/MenuOpenRounded";
 import { useDispatch, useSelector } from "react-redux";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import ShoppingBasketRoundedIcon from "@mui/icons-material/ShoppingBasketRounded";
 import * as actions from "../store/actions/actionTypes";
 import { toast } from "react-toastify";
 import { toastStyle as options } from "../utils/styles";
+import { enToPerNum } from "../utils/utils";
+
+const navLiStyle = "h-full md:w-[60px] xl:w-[75px]  cursor-pointer";
+const navLinkNotActive =
+  "h-full w-full flex items-center justify-center text-white hover:text-shade lg:hover:border-b lg:hover:border-shade";
+const navLinkActive =
+  "h-full w-full flex items-center justify-center text-shade sm:hover:text-shade lg:border-b lg:hover:border-shade";
 
 const Topbar = () => {
   const [activeSideMenu, setActiveSideMenu] = useState(false);
@@ -20,11 +27,6 @@ const Topbar = () => {
   const cardState = useSelector((state) => state.cardReducer);
   const { cardItems } = cardState;
 
-  const navLiStyle = "h-full md:w-[60px]  cursor-pointer";
-  const navLinkNotActive =
-    "h-full w-full flex items-center justify-center text-white hover:text-shade hover:border-b hover:border-shade";
-  const navLinkActive =
-    "h-full w-full flex items-center justify-center text-shade hover:text-shade border-b hover:border-shade";
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userSignoutHandler = () => {
@@ -35,7 +37,7 @@ const Topbar = () => {
   };
 
   return (
-    <div className="z-40 fixed top-0 left-0 right-0 w-screen h-10 flex justify-between items-center bg-dark text-white">
+    <div className="z-40 fixed top-0 left-0 right-0 w-screen h-10 flex justify-between items-center bg-dark text-white lg:pr-2">
       <NavLink
         to="/"
         className="w-28 h-full flex items-center text-xs cursor-pointer pl-2 font-firstFont md:hover:text-shade"
@@ -46,13 +48,13 @@ const Topbar = () => {
         <NavLink
           to="/card"
           className={({ isActive }) =>
-            isActive ? "text-vio" : "sm:hover:text-shade"
+            isActive ? "text-shade" : "sm:hover:text-shade"
           }
         >
-          <ShoppingCartOutlinedIcon />
+          <ShoppingBasketRoundedIcon />
           {cardItems && cardItems.length !== 0 ? (
-            <span className="absolute top-1 -right-1 bg-vio text-dark font-bold border w-5 h-5 rounded-full flex items-center justify-center text-xs">
-              {cardItems.length}
+            <span className="absolute top-1 -right-1 bg-shade text-dark font-semibold font-firstFont w-4 h-4 rounded-full flex items-center justify-center text-xs">
+              {enToPerNum(cardItems.length)}
             </span>
           ) : null}
         </NavLink>
@@ -60,15 +62,15 @@ const Topbar = () => {
       <MobileMenu showMenu={showMenu} activeSideMenu={activeSideMenu} />
       <nav className="h-full basis-5/12 lg:basis-6/12 flex justify-between items-center">
         <div className="md:hidden w-full h-full text-right pr-2 flex justify-end items-center">
-          <MenuOutlinedIcon
+          <MenuOpenRoundedIcon
             onClick={showMenu}
-            className="cursor-pointer scale-150 sm:hover:text-shade"
+            className="cursor-pointer sm:hover:text-shade"
           />
         </div>
-        <ul className="hidden h-full w-full md:flex md:items-center md:justify-end md:text-[8.5px] lg:text-[10.5px] font-firstFont">
+        <ul className="hidden h-full w-full md:flex md:items-center md:justify-end md:text-[8px] lg:text-[9px] font-firstFont">
           <li className={navLiStyle}>
             <NavLink
-              to="/admin"
+              to="/admin/"
               className={({ isActive }) =>
                 isActive ? navLinkActive : navLinkNotActive
               }

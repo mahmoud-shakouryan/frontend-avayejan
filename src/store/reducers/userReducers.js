@@ -18,15 +18,13 @@ export const userSigninReducer = (state = userSigninReducerInState, action) => {
       return updatedState;
     case actions.USER_SIGNIN_FAIL:
       return { ...state, loading: false, error: action.payload };
-     case actions.USER_SIGNOUT:
+    case actions.USER_SIGNOUT:
       localStorage.removeItem("userInfo");
       return {};
     default:
       return state;
   }
 };
-
-
 
 const userSignupInState = {};
 
