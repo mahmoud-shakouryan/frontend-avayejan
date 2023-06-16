@@ -14,21 +14,16 @@ module.exports = {
       }
     },
     colors: {
-      dark: "#140800",
-      orange: "#FF6600",
-      hoverBtn:'#cc5200',
-      white: "#ffe7d8",
-      shade:'#ffb889',
+      dark: "#0e051b",
+      vio: "#32115d",
+      hoverBtn:'#290e4c',
+      white: "#f0e8fb",
+      shade:'#c6a6ee',
       hashtag: "#0000ff",
-      opacity: "rgb(22, 0, 30, 0.9)",
-      opactiy2: "rgb(22, 0, 30, 0.7)",
-      opacity3: "rgb(22, 0, 30, 0.3)",
     },
     backgroundImage: {
       // homeGrandient:
       //   "radial-gradient(circle, rgba(255,184,137,1) 0%, rgba(255,102,0,1) 50%, rgba(20,8,0,1) 100%);",
-      // footerGradient:
-      //   "radial-gradient(circle, hsla(209, 32%, 66%, 1) 0%, hsla(111, 24%, 94%, 1) 100%)",
     },
     fontFamily: {
       firstFont: ["shabnam"],

@@ -12,6 +12,8 @@ import { addToCard } from "../store/actions/cardActions";
 import { toast } from "react-toastify";
 import { enToPerNum, getHahtagForm } from "../utils/utils";
 import LoadingSpinner from "../components/LinkBar";
+import { toastStyle as options } from "../utils/styles";
+
 
 const VideoDetail = ({ id, showModalHandler, closeModalHandler }) => {
   const { userInfo } = useSelector((state) => state.userSigninReducer);
@@ -46,17 +48,6 @@ const VideoDetail = ({ id, showModalHandler, closeModalHandler }) => {
     parts = 0;
   }
 
-  const options = {
-    autoClose: 2000,
-    style: {
-      font: "shabnam",
-      textAlign: "center",
-      color: "#16001E",
-      fontFamily: "firstFont",
-      fontSize: "14px",
-      fontWeight: "bold",
-    },
-  };
   const videoPropsStyle = "flex flex-col items-center justify-center text-dark";
   const addToCardHandler = () => {
     if (userInfo) {
@@ -87,7 +78,7 @@ const VideoDetail = ({ id, showModalHandler, closeModalHandler }) => {
     <div className="h-screen w-screen fixed top-0 bottom-0 right-0 left-0 font-secondFont bg-opacity flex flex-col justify-start items-center gap-2 pt-40">
       <button
         onClick={closeModalHandler}
-        className="fixed right-1/2 translate-x-1/2 top-10 text-[70px] text-orange font-bold px-5 font-firstFont"
+        className="fixed right-1/2 translate-x-1/2 top-10 text-[70px] text-vio font-bold px-5 font-firstFont"
       >
         &times;
       </button>
@@ -146,7 +137,7 @@ const VideoDetail = ({ id, showModalHandler, closeModalHandler }) => {
       <div className="rounded w-11/12 sm:w-2/3 lg:w-2/3 h-20 flex items-center justify-around">
         <button
           onClick={closeModalHandler}
-          className="w-32 sm:w-40 bg-orange rounded border border-orange text-dark font-bold p-2  flex flex-col justify-center"
+          className="w-32 sm:w-40 bg-vio rounded border border-vio text-dark font-bold p-2  flex flex-col justify-center"
         >
           <span className="w-full flex items-center justify-center">
             <ArrowBackIcon />
@@ -155,7 +146,7 @@ const VideoDetail = ({ id, showModalHandler, closeModalHandler }) => {
             برگشت
           </span>
         </button>
-        <button className="w-32 sm:w-40 bg-orange rounded border border-orange text-dark font-bold p-2  flex flex-col justify-center  ">
+        <button className="w-32 sm:w-40 bg-vio rounded border border-vio text-dark font-bold p-2  flex flex-col justify-center  ">
           <span className="w-full flex items-center justify-center">
             <AddShoppingCartIcon />
           </span>

@@ -1,61 +1,82 @@
-import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
-import TaskAltIcon from '@mui/icons-material/TaskAlt';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import BrowserUpdatedIcon from '@mui/icons-material/BrowserUpdated';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
-import LinkBar from './LinkBar';
-import { myVidsLinksAction } from '../store/actions/videoActions';
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import LinkBar from "./LinkBar";
+import { myVidsLinksAction } from "../store/actions/videoActions";
+import KeyboardDoubleArrowDownOutlinedIcon from "@mui/icons-material/KeyboardDoubleArrowDownOutlined";
+import KeyboardDoubleArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardDoubleArrowLeftOutlined";
+import LoadingSpinner from "./LoadingSpinner";
+import { toast } from "react-toastify";
+import { toastStyle as options } from "../utils/styles";
+import { enToPerNum } from "../utils/utils";
 
-
-
-
-const DownloadItem = ({ video }) => {
-
-  const { id, videoName, category, likes, numOfDownloads, duration, videoTitle } = video;
-  const { links } = useSelector( state=> state.myVidsLinksReducer );
-  const [showLinks, setShowLinks] = useState(false);
+const DownloadItem = ({ video, accordionOpenHandler, accordionOpen }) => {
+  const { id, videoName, videoTitle, imgSrc } = video;
+  const { links, loading, error } = useSelector(
+    (state) => state.myVidsLinksReducer
+  );
 
   const dispatch = useDispatch();
-  const downloadHandler = () =>{
-    dispatch(myVidsLinksAction(videoTitle));
-    setShowLinks(true);
-  }
- 
-    
+  useEffect(() => {
+    if (accordionOpen === id) {
+      dispatch(myVidsLinksAction(videoTitle)); //گرفتن لینکهای دانلود یک ویدیوی خریداری شده
+    }
+    // if (links.length > 0 && accordionOpen === id) {
+    //   toast.info(`${enToPerNum(links.length)}فابل`, options);
+    // }
+  }, [accordionOpen, dispatch, links.length, id]);
+
+  useEffect(() => {
+    if (error && accordionOpen == id) {
+      toast.error("خطا", options);
+    }
+  }, [error]);
 
   return (
-    <>
-      <div className='p-1 w-64 h-80 bg-white flex flex-col rounded-xl shadow-sm shadow-dark sm:hover:scale-105 cursor-pointer duration-150 font-firstFont'>
-          <div className="basis-2/6  flex items-center justify-center font-bold">{videoName}</div>
-          <div className="basis-1/6 text-center"> <button className="w-32 bg-theWhite border border-dark font-secondFont font-bold text-xs p-1 rounded-xl shadow-sm shadow-dark">{category}</button></div>
-          <div className="basis-1/6  flex  justify-around p-1">
-            <div className="basis-2/5 flex flex-col rounded-sm shadow-sm shadow-dark">
-              <span className="basis-1/3  text-center"><AccessAlarmIcon/></span>
-              <span className="basis-2/3 flex items-center justify-center font-bold text-xs pt-1"> {duration}</span>
-            </div>
-            <div className="basis-2/5 flex flex-col justify-between rounded-sm shadow-sm shadow-dark">
-            <span className=" text-center"><TaskAltIcon /></span>
-              <span className="flex items-center justify-evenly font-bold text-xs ">پرداخت شده</span>
-            </div>
+    <div className="w-full flex flex-col items-center justify-center">
+      <div
+        onClick={() => accordionOpenHandler(id)}
+        className="bg-shade font-secondFont h-14 w-[90%] sm:w-96 flex items-center justify-end rounded-lg overflow-hidden  cursor-pointer sm:hover:shadow-sm sm:hover:shadow-dark"
+      >
+        <div className="h-full w-[20%] flex items-center justify-center">
+          <img src={imgSrc} className="h-12 w-12 object-fill rounded-full" />
+        </div>
+        <div className=" w-[80%] h-full flex items-center justify-end">
+          <p className="text-dark text-xs pr-2">{videoName}</p>
+          <div className=" text-dark  h-full flex items-center justify-center w-24">
+            {loading && accordionOpen === id ? (
+              <LoadingSpinner />
+            ) : accordionOpen === id && !loading ? (
+              <>
+                <KeyboardDoubleArrowDownOutlinedIcon />
+                <p className="text-[8px]">لیست دانلود</p>
+              </>
+            ) : (
+              <>
+                <KeyboardDoubleArrowLeftOutlinedIcon />
+                <p className="text-[8px]">لیست دانلود</p>
+              </>
+            )}
           </div>
-          <div className="basis-1/6  p-1 text-xs">
-            <Link to={`/videos/${id}`}><button className='bg-orange h-full w-full rounded-md shadow-sm shadow-dark font-bold text-dark flex items-center justify-center gap-2'> <MoreHorizIcon/><span>توضیح بیشتر</span></button></Link>
-          </div>
-          <div className='basis-1/6  p-1 text-xs'>
-          <button onClick={downloadHandler} className='bg-orange h-full w-full rounded-md shadow-sm shadow-dark font-bold text-dark flex items-center justify-center gap-2'><BrowserUpdatedIcon/><span>دریافت لیست دانلود</span></button> 
-          </div>
+        </div>
+      </div>
+      <div
+        className={`${
+          accordionOpen === id && !loading ? "opacity-100" : "opacity-0"
+        } w-[90%] sm:w-96 h-auto flex flex-col gap-1 items-center justify-center transition-all duration-500 pt-1`}
+      >
+        {accordionOpen === id &&
+          links.length > 0 &&
+          links.map((link, index) => (
+            <LinkBar
+              key={index}
+              index={index}
+              link={link}
+              length={links.length}
+            />
+          ))}
+      </div>
     </div>
-          { showLinks ? <div className='fixed bottom-0 right-0 top-10 w-full h-full bg-opacity2'>
-          <div className='font-bold w-full text-center text-6xl text-orange cursor-pointer hover:scale-110' onClick={()=>setShowLinks(false)}>&times;</div>
-          { links.length !== 0 ? links.map((link, index) => <LinkBar key={index} index={index}  link={link} />) : null}
-          </div>
-          :null
-          }
-         
-    </>
-  )
-}
+  );
+};
 
 export default DownloadItem;

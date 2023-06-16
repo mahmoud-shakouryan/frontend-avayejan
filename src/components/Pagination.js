@@ -45,7 +45,7 @@ const Pagination = ({ totalPosts, currentSearchParam }) => {
             </Link>
           </li>
         ) : null}
-        <li className="w-6 h-6 text-xs font-semibold bg-orange rounded-sm text-dark sm:hover:cursor-pointer">
+        <li className="w-6 h-6 text-xs font-semibold bg-vio rounded-sm text-shade sm:hover:cursor-pointer">
           <Link
             to={`/videos?page=${currentPage}`}
             className="w-full h-full flex justify-center items-center"

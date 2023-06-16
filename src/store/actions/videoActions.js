@@ -36,7 +36,7 @@ export const myVidsAction = (status, userId, payId, order_id) => {
   return async dispatch =>{
         dispatch({ type: actions.MY_VIDS_REQUEST});
         try{
-          const { data } = await axios.post('http://localhost:5000/api/videos/uservids', {userId, payId, order_id, status});
+          const { data } = await axios.post('http://localhost:5000/api/videos/uservids', { status, userId, payId, order_id });
           dispatch({ type: actions.MY_VIDS_SUCCESS, payload: data })
         }
         catch(err){
@@ -51,7 +51,6 @@ export const myVidsLinksAction = (allFiles) =>{
        dispatch({ type: actions.LINK_REQUEST });
        try{
            const { data } = await axios.post('http://localhost:5000/api/videos/myvidslinks', { allFiles: allFiles });
-           console.log('links action', data)
            dispatch({ type: actions.LINK_SUCCESS , payload: data });
        }
        catch(err){

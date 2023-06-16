@@ -37,10 +37,10 @@ const Topbar = () => {
   };
 
   return (
-    <div className="z-40 fixed top-0 left-0 right-0 w-screen h-10 flex justify-between items-center bg-dark text-white lg:pr-2">
+    <div className="z-50 w-full h-10 fixed top-0 right-0 flex justify-between items-center bg-dark text-white px-2">
       <NavLink
         to="/"
-        className="w-28 h-full flex items-center text-xs cursor-pointer pl-2 font-firstFont md:hover:text-shade"
+        className="w-28 h-full flex items-center text-xs cursor-pointer font-firstFont md:hover:text-shade"
       >
         آوای جان
       </NavLink>
@@ -61,13 +61,13 @@ const Topbar = () => {
       </div>
       <MobileMenu showMenu={showMenu} activeSideMenu={activeSideMenu} />
       <nav className="h-full basis-5/12 lg:basis-6/12 flex justify-between items-center">
-        <div className="md:hidden w-full h-full text-right pr-2 flex justify-end items-center">
+        <div className="md:hidden w-full h-full text-right flex justify-end items-center">
           <MenuOpenRoundedIcon
             onClick={showMenu}
             className="cursor-pointer sm:hover:text-shade"
           />
         </div>
-        <ul className="hidden h-full w-full md:flex md:items-center md:justify-end md:text-[8px] lg:text-[9px] font-firstFont">
+        <ul className="hidden h-full w-full md:flex md:items-center md:justify-end md:text-[9px] lg:text-[10px] font-firstFont">
           <li className={navLiStyle}>
             <NavLink
               to="/admin/"

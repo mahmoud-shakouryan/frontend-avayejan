@@ -1,7 +1,7 @@
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCard } from "../store/actions/cardActions.js";
 import { toast } from "react-toastify";
@@ -12,35 +12,26 @@ import {
   getExpalantoryDuration,
   getHahtagForm,
 } from "../utils/utils.js";
+import { toastStyle as options } from "../utils/styles";
+
 
 const VideoCard = ({ video }) => {
   const [showModal, setShowModal] = useState(false);
-
+  
   const navigate = useNavigate();
+  const location = useLocation();
   const { id, videoName, category, price, duration, imgSrc } = video;
   const formatttedPrice = (price / 10)
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
   const [hours, minutes] = getExpalantoryDuration(duration);
-  console.log(isNaN(hours), minutes);
 
   const cardState = useSelector((state) => state.cardReducer);
   const { cardItems } = cardState;
 
   const userSigninState = useSelector((state) => state.userSigninReducer);
   const { userInfo } = userSigninState;
-
-  const options = {
-    style: {
-      font: "shabnam",
-      textAlign: "center",
-      color: "#16001E",
-      fontFamily: "firstFont",
-      fontSize: "14px",
-      fontWeight: "bold",
-    },
-  };
 
   const showModalHandler = () => {
     setShowModal(true);
@@ -77,29 +68,21 @@ const VideoCard = ({ video }) => {
   );
 
   return (
-    <div className=" relative bg-active text-dark shadow-sm shadow-red rounded-xl w-40 sm:w-52 sm:h-64 h-44  bg-white flex flex-col items-center justify-start  font-firstFont">
-      {showModal && (
-        <VideoDetail
-          id={id}
-          showModalHandler={showModalHandler}
-          closeModalHandler={closeModalHandler}
-        />
-      )}
-
+    <div className={`relative ${cardItems && cardItems.find((cardItem) => cardItem.id === id) ? 'bg-vio' : 'bg-shade'} text-dark  w-32 sm:w-44 sm:h-52 h-44 flex flex-col items-center justify-start font-firstFont`}>
       <div className="h-1/2 overflow-hidden w-full items-center justify-center">
-        <img src={imgSrc} className="w-full h-full object-cover rounded-t-lg" />
+        <img src={imgSrc} className="w-full h-full object-cover " />
       </div>
 
       <div className="text-center text-dark p-1">
-        <p className="text-[10px] sm:text-[13px]">{videoName}</p>
-        <p className="font-secondFont text-hashtag text-[8px] sm:text-[9px]">
+        <p className="text-[8px] sm:text-[11px] font-semibold">{videoName}</p>
+        <p className=" text-hashtag text-[6px] sm:text-[9px]">
           {getHahtagForm(category)}
         </p>
       </div>
-      <div className="absolute bottom-8 sm:bottom-10 h-6 w-full flex items-center justify-around text-[9px] sm:text-[11px]">
+      <div className="absolute bottom-8 sm:bottom-10 h-6 w-full flex flex-col items-center justify-around text-[9px] sm:text-[11px]">
         <span className="basis-1/2 flex items-center justify-center gap-1">
-          <span>تومان</span>
-          <span>{enToPerNum(formatttedPrice)}</span>
+          {location.pathname==='/videos'?<span>تومان</span>:<span>پرداخت شده</span>}
+          {location.pathname==='/videos'? <span>{enToPerNum(formatttedPrice)}</span>: null}
         </span>
         <span className="basis-1/2">
           <>{videoDuration}</>
@@ -124,14 +107,14 @@ const VideoCard = ({ video }) => {
                 )
               }
             >
-              <DeleteOutlineOutlinedIcon style={{ fontSize: "20px", }} />
+              <DeleteOutlineOutlinedIcon style={{ fontSize: "20px" }} />
             </button>
           ) : (
             <button
               className="p-3 h-full w-full text-dark flex  items-center justify-center gap-2"
               onClick={addToCardHandler}
             >
-              <AddShoppingCartIcon style={{ fontSize: "20px"}} />
+              <AddShoppingCartIcon style={{ fontSize: "20px" }} />
             </button>
           )}
         </div>

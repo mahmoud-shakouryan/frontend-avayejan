@@ -42,3 +42,10 @@ export const MY_VIDS_FAIL = 'MY_VIDS_FAIL';
 export const LINK_REQUEST = 'LINK_REQUEST';
 export const LINK_SUCCESS = 'LINK_SUCCESS';
 export const LINK_FAIL = 'LINK_FAIL';
+
+
+export const All_USERS_REQUEST = 'All_USERS_REQUEST';
+export const All_USERS_SUCCESS = 'All_USERS_SUCCESS';
+export const All_USERS_FAIL = 'All_USERS_FAIL';
+
+

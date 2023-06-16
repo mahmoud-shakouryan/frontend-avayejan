@@ -1,43 +1,38 @@
-import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
-import PaidOutlinedIcon from "@mui/icons-material/PaidOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCard } from "../store/actions/cardActions.js";
 import { toast } from "react-toastify";
-import CurrencyExchangeOutlinedIcon from "@mui/icons-material/CurrencyExchangeOutlined";
+import CreditCardIcon from "@mui/icons-material/CreditCard";
 import { pay } from "../store/actions/payActions.js";
 import { enToPerNum } from "../utils/utils.js";
+import LoadingSpinner from "../components/LoadingSpinner";
+import KeyboardDoubleArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardDoubleArrowLeftOutlined";
+import { toastStyle as options } from "../utils/styles.js";
 
-const CardItem = ({ video }) => {
+const payBtnStyle =
+  "bg-vio sm:hover:bg-hoverBtn w-full h-full flex items-center justify-center gap-1 py-2 text-shade";
+
+const CardItem = ({ video, selectedCard, selectedCardHandler }) => {
   const navigate = useNavigate();
-  const { id, videoName, category, price, duration, imgSrc } = video;
-  const TOMAN = price / 10;
+  const { id, videoName, price, imgSrc } = video;
+  const formatttedPrice = (price / 10)
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
   const cardState = useSelector((state) => state.cardReducer);
   const { cardItems } = cardState;
 
-  const userSigninState = useSelector((state) => state.userSigninReducer);
-  const { userInfo } = userSigninState;
-
   const payState = useSelector((state) => state.payReducer);
-  const { error, loading, payment } = payState;
+  const { payment, loading, error } = payState;
 
   const dispatch = useDispatch();
-  const removeFromCartHandler = (videoIdToRemove) => {
+  const removeFromCartHandler = (videoIdToRemove, id) => {
     dispatch(removeFromCard(videoIdToRemove));
   };
 
-  const addToCardHandler = () => {
-    if (!userInfo) {
-      toast.warn("ابتدا وارد حساب شوید");
-      return navigate("/signin");
-    }
-    navigate(`/card/${id}`);
-  };
-
-  const payHandler = () => {
+  const payHandler = (id) => {
+    selectedCardHandler(id);
     dispatch(pay(price, id));
   };
 
@@ -49,75 +44,58 @@ const CardItem = ({ video }) => {
 
   return (
     <>
-      <div className="bg-superLightBlue p-2 w-56 sm:w-64 h-72  bg-white flex flex-col rounded-xl shadow-sm shadow-dark sm:hover:scale-105 duration-150 font-firstFont">
-        <div className="overflow-hidden flex flex-col items-center justify-center text-sm sm:text-md font-bold mt-1 w-full h-full flex relative">
-          <img src={imgSrc} className="w-full h-full object-cover rounded-md" />
-          <span className="absolute bg-opacity2 text-lightBlue w-full h-full flex flex-col justify-between rounded-md">
-            <span className="text-center font-bold mt-2">
-              <p className="text-[12px] sm:text-[15px]">{videoName}</p>
-              <p className="font-secondFont text-[8px] sm:text-[9px]">
-                {category}
-              </p>
-            </span>
-            <span className="text-center font-bold mt-2">
-              <p className="text-[14px] flex justify-center gap-2">
-                <span>تومان</span>
-                <span>{enToPerNum(TOMAN)}</span>
-              </p>
-              <p className="font-secondFont text-[8px] sm:text-[11px]">
-                {enToPerNum(duration)}
-              </p>
-            </span>
+      <div className="relative bg-shade text-dark  w-32 sm:w-44 sm:h-52 h-44 flex flex-col items-center justify-start font-firstFont">
+        <div className="h-1/2 overflow-hidden w-full items-center justify-center">
+          <img src={imgSrc} className="w-full h-full object-cover " />
+        </div>
+        <div className="w-full h-8 text-dark text-[9px] sm:text-[11px] flex items-center">
+          <span className="h-1/2 w-full flex items-center justify-center font-semibold">
+            {videoName}
           </span>
         </div>
-
-        <div className="py-2 text-xs">
-          {cardItems && cardItems.find((cardItem) => cardItem.id === id) ? (
-            <button
-              className="h-full w-full rounded-md shadow-sm  shadow-dark sm:hover:shadow-md sm:hover:shadow-dark font-bold text-dark flex items-center justify-center gap-2 p-2"
-              onClick={() =>
-                removeFromCartHandler(
-                  cardItems.find((cardItem) => cardItem.id === id).id
-                )
-              }
-            >
-              <DeleteOutlineOutlinedIcon />
-              <span>حذف از سبد خرید</span>
-            </button>
-          ) : (
-            <button
-              className="bg-orange h-full w-full rounded-md shadow-sm shadow-dark font-bold text-dark flex items-center justify-center gap-2"
-              onClick={addToCardHandler}
-            >
-              <AddShoppingCartIcon />
-              <span>افزودن به سبد خرید</span>
-            </button>
-          )}
-        </div>
-        <div className="pb-2 text-xs">
-          {payment ? (
-            <button className="bg-dark text-theWhite font-thin h-full w-full rounded-md shadow-sm shadow-dark sm:hover:shadow-md sm:hover:shadow-dark flex items-center justify-center gap-3">
-              <a
-                href={payment}
-                onClick={gatewayHandler}
-                className="w-full h-full flex items-center justify-center p-3"
+        <div className="w-full">
+          <div className="w-full h-8 sm:h-9 text-[9px] sm:text-[11px]">
+            {selectedCard === id && loading ? (
+              <div className={payBtnStyle}>
+                <LoadingSpinner />
+              </div>
+            ) : error ? (
+              toast.error(error, options)
+            ) : selectedCard === id && payment ? (
+              <button className={payBtnStyle}>
+                <a
+                  href={payment}
+                  onClick={gatewayHandler}
+                  className="w-full h-full flex items-center justify-center gap-1 p-3"
+                >
+                  <KeyboardDoubleArrowLeftOutlinedIcon />
+                  برو به درگاه
+                </a>
+              </button>
+            ) : (
+              <button className={payBtnStyle} onClick={() => payHandler(id)}>
+                <CreditCardIcon style={{ fontSize: "20px" }} />
+                <span className="text-[9px] md:text-[11px]">
+                  پرداخت {enToPerNum(formatttedPrice)} تومان
+                </span>
+              </button>
+            )}
+          </div>
+          <div className="h-8 sm:h-9">
+            {cardItems && cardItems.find((cardItem) => cardItem.id === id) && (
+              <button
+                className="w-full h-full bg-white border border-shade sm:hover:bg-shade text-dark text-[8px] sm:text-[10px] md:text-[11px] flex items-center justify-center py-2"
+                onClick={() =>
+                  removeFromCartHandler(
+                    cardItems.find((cardItem) => cardItem.id === id).id, id
+                  )
+                }
               >
-                برو به درگاه
-              </a>
-            </button>
-          ) : (
-            <button
-              className="bg-dark text-theWhite font-thin h-full w-full rounded-md shadow-sm shadow-dark sm:hover:shadow-md sm:hover:shadow-dark  flex items-center justify-center gap-3 p-2"
-              onClick={payHandler}
-            >
-              {loading ? (
-                <CurrencyExchangeOutlinedIcon className="font-thin animate-spin" />
-              ) : (
-                <CurrencyExchangeOutlinedIcon className="font-thin" />
-              )}
-              {loading ? <span>آغاز فرایند پرداخت</span> : <span>پرداخت</span>}
-            </button>
-          )}
+                <DeleteOutlineOutlinedIcon style={{ fontSize: "20px" }} />
+                <span>حذف از سبد دانلود</span>
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </>

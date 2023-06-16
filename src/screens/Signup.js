@@ -4,6 +4,7 @@ import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signupAction } from "../store/actions/userActions";
 import LoadingSpinner from "../components/LoadingSpinner";
+import { signupInputStyle } from "../utils/styles";
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -48,7 +49,7 @@ const Signup = () => {
             <input
               autoFocus
               onChange={(e) => setName(e.target.value)}
-              className="bg-white outline-shade w-full p-1 pt-2 pl-2 font-semibold tracking-wider text-xs   "
+              className={signupInputStyle}
               type="text"
               id="name"
               name="name"
@@ -61,7 +62,7 @@ const Signup = () => {
             </label>
             <input
               name="email"
-              className="bg-white outline-shade w-full p-1 pt-2 pl-2 font-semibold tracking-wider text-xs "
+              className={signupInputStyle}
               type="email"
               id="email"
               placeholder="Enter Email"
@@ -75,7 +76,7 @@ const Signup = () => {
             </label>
             <input
               name="password"
-              className="bg-white outline-shade w-full p-1 pt-2 pl-2 font-semibold tracking-wider text-xs   "
+              className={signupInputStyle}
               type="password"
               id="password"
               placeholder="Enter Password"
@@ -90,7 +91,7 @@ const Signup = () => {
             </label>
             <input
               name="confirm"
-              className="bg-white outline-shade w-full p-1 pt-2 pl-2 font-semibold tracking-wider text-xs   "
+              className={signupInputStyle}
               type="password"
               id="confirm"
               placeholder="Enter Password"
@@ -102,7 +103,7 @@ const Signup = () => {
           <div className="p-2 flex items-center justify-center">
             <button
               type="submit"
-              className="bg-orange sm:hover:bg-hoverBtn w-1/2 p-2 font-firstFont font-semibold text-dark text-xs flex items-center justify-center"
+              className="bg-vio sm:hover:bg-hoverBtn w-1/2 h-9 font-firstFont text-shade text-xs flex items-center justify-center"
             >
               {loading ? <LoadingSpinner /> : "ایجاد حساب"}
             </button>

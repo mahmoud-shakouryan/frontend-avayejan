@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { signinAction } from "../store/actions/userActions";
+import { signupInputStyle } from "../utils/styles";
 
 const Signin = () => {
   const [searchParams] = useSearchParams({});
@@ -56,7 +57,7 @@ const Signin = () => {
           <input
             autoFocus
             name="email"
-            className="bg-white outline-shade w-full p-1 pt-2 pl-2 font-semibold tracking-wider text-xs "
+            className={signupInputStyle}
             type="email"
             id="email"
             placeholder="Enter Email"
@@ -64,13 +65,13 @@ const Signin = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div className="basis-1/5 flex flex-col items-end justify-center gap-1">
+         <div className="basis-1/5 flex flex-col items-end justify-center gap-1">
           <label htmlFor="password" className="text-xs font-bold">
             : رمز عبور
           </label>
           <input
             name="password"
-            className="bg-white outline-shade w-full p-1 pt-2 pl-2 text-xs font-semibold tracking-wider"
+            className={signupInputStyle}
             type="password"
             id="password"
             placeholder="Enter Password"
@@ -82,7 +83,7 @@ const Signin = () => {
         <div className="basis-1/5 flex items-center justify-center">
           <button
             type="submit"
-            className="bg-orange w-1/2 p-2 font-firstFont font-semibold text-dark text-xs flex items-center justify-center shadow-sm shadow-orange sm:hover:bg-hoverBtn"
+            className="bg-vio w-1/2 h-9 font-firstFont text-white text-xs flex items-center justify-center shadow-sm shadow-vio sm:hover:bg-hoverBtn"
           >
             {loading ? <LoadingSpinner /> : "ورود"}
           </button>

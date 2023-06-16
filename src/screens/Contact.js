@@ -9,7 +9,7 @@ import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 
 const Contact = () => {
   return (
-    <div className='h-screen w-screen fixed top-20 flex flex-col  justify-start items-center gap-4 font-firstFont text-dark bg-theWhite'>
+    <div className='h-screen w-screen fixed top-20 flex flex-col  justify-start items-center gap-4 font-firstFont text-dark bg-white'>
         <div className=' w-9/12 h-28 flex flex-col justify-center items-center gap-2'>
             <p className='font-bold'>درباره ما</p>
             <p className='text-sm text-center'>کلینیک آوای جان با مدیریت دکتر فاطمه رضابخش، متخصص اعصاب و روان، روان‌درمانگر و مشاور ازدواج و خانواده، آماده است تا علاوه بر درمان مراجعان و بیماران، سواد روانی جامعه را با دوره‌ها و مطالب آموزشی خود بالابرده تا جامعه‌ای سالم تر و پویاتر داشته باشیم</p>
@@ -30,7 +30,7 @@ const Contact = () => {
             </div>
             
         </div>
-        <div className='bg-theWhite w-9/12 h-20 text-dark flex items-center justify-around'>
+        <div className='bg-white w-9/12 h-20 text-dark flex items-center justify-around'>
             <a href='http://t.me/avaye_jaan' className='sm:hover:scale-110 sm:duration-150' target='_blank'><span  title='تلگرام'><TelegramIcon className="scale-125 text-dark rounded shadow-sm shadow-dark cursor-pointer"/></span></a>
             <a href='https://www.instagram.com/avaye_jaan/' className='sm:hover:scale-110 sm:duration-150' target='_blank'><span  title='اینستاگرام'><InstagramIcon className='scale-125 rounded shadow-sm shadow-dark cursor-pointer'/></span></a>
             <span className='sm:hover:scale-110 sm:duration-150' title='یوتیوب'><YouTubeIcon className='scale-125 rounded shadow-sm shadow-dark cursor-pointer'/></span>

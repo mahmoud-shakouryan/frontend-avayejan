@@ -60,7 +60,7 @@ const Slider = () => {
     >
       <div className="flex flex-col items-center justify-center">
         <img
-          className="h-46 w-full sm:w-auto sm:h-64 md:h-80 rounded-md shadow-md shadow-dark"
+          className="h-46 w-full sm:w-auto sm:h-64 md:h-80 rounded-md"
           src={images[currentIndex]}
           alt="topics"
         />

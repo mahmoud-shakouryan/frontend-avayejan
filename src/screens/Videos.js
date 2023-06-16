@@ -35,8 +35,8 @@ const Videos = () => {
   }, [dispatch, searchParams.get("page")]);
 
   return (
-    <div className="h-screen w-screen bg-footerGradient fixed top-10">
-      <div className="w-full h-8 flex justify-center items-center pt-3">
+    <div className="h-screen w-screen bg-white fixed top-10">
+      {/* <div className="w-full h-8 flex justify-center items-center pt-3">
         <span
           onClick={() => setQuery("")}
           className="bg-superLightBlue rounded-l w-6 h-6 flex items-center justify-center sm:hover:cursor-pointer font-firstFont text-xs text-dark"
@@ -66,18 +66,10 @@ const Videos = () => {
                 ))
             : null}
         </ul>
-      </div>
-      <div className=" flex flex-wrap justify-around  items-start gap-4 pb-24  pr-2 pl-2 pt-4  w-screen h-screen overflow-y-scroll">
-        {loading ? (
-          <div className="w-full font-firstFont font-semibold text-dark text-center">
-            <LoadingSpinner />
-          </div>
-        ) : error ? (
-          <ErrorBox error={error} />
-        ) : (
-          curPageVids.map((video) => <VideoCard key={video.id} video={video} />)
-        )}
-        <div className="w-full">
+      </div> */}
+      <div className="w-screen h-auto sm:h-[90%] bg-white flex gap-4 flex-wrap items-start justify-center pt-1 md:pt-10  overflow-y-auto">
+        {curPageVids.map((video, index) =><VideoCard key={video.id} video={video} index={index} />)} 
+        <div className="w-full h-auto sm:h-[10%]  mt-2">
           <Pagination
             totalPosts={totalPosts}
             currentSearchParam={currentSearchParam}

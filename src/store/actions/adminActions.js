@@ -6,10 +6,10 @@ export const allUsersAction = (timeRange, buyRange) => {
   return async (dispatch) => {
     dispatch({ type: actions.All_USERS_REQUEST });
     try {
-      const { data } = await axios.get(`/api/admin/users/${timeRange}`);
+      const { data } = await axios.get(`/api/admin/users?timeRange=${timeRange}&buyRange=${buyRange}`);
       dispatch({ type: actions.All_USERS_SUCCESS, payload: data });
     } catch (error) {
-      dispatch({ type: actions.All_USERS_FAIL, payload: error });
+      dispatch({ type: actions.All_USERS_FAIL, payload: error.message });
     }
   };
 };

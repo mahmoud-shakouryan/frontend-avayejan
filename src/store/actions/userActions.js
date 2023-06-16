@@ -1,28 +1,7 @@
 import * as actions from "../actions/actionTypes";
 import axios from "axios";
 import { toast } from "react-toastify";
-
-const options = {
-  autoClose: 2000,
-  style: {
-    font: "shabnam",
-    textAlign: "center",
-    color: "#16001E",
-    fontFamily: "firstFont",
-    fontSize: "14px",
-    fontWeight: "bold",
-  },
-};
-const options2 = {
-  style: {
-    font: "shabnam",
-    textAlign: "center",
-    color: "#16001E",
-    fontFamily: "firstFont",
-    fontSize: "14px",
-    fontWeight: "bold",
-  },
-};
+import { toastStyle as options } from "../../utils/styles";
 
 export const signinAction = (email, password) => {
   return async (dispatch) => {
@@ -33,17 +12,16 @@ export const signinAction = (email, password) => {
         password: password,
       });
       dispatch({ type: actions.USER_SIGNIN_SUCCESS, payload: data });
-      toast.success("عزیز، خوش آمدی " + data.name, options);
+      // toast.success("عزیز، خوش آمدی " + data.name, options);
     } catch (err) {
       dispatch({
         type: actions.USER_SIGNIN_FAIL,
         payload: err.response.data.message,
       });
-      toast.error(err.response.data.message, options2);
+      toast.error(err.response.data.message, options);
     }
   };
 };
-
 
 export const signupAction = (name, email, password, confirmPassword) => {
   return async (dispatch) => {
