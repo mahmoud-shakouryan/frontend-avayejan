@@ -17,7 +17,7 @@ export const payReducer = (state = payReducerInState, action) => {
   }
 };
 
-const paymentStatusInitialState = { loading: true, error: null };
+const paymentStatusInitialState = { loading: false, error: null };
 
 export const paymentStatusReducer = (
   state = paymentStatusInitialState,
