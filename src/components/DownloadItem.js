@@ -7,7 +7,6 @@ import KeyboardDoubleArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardDou
 import LoadingSpinner from "./LoadingSpinner";
 import { toast } from "react-toastify";
 import { toastStyle as options } from "../utils/styles";
-import { enToPerNum } from "../utils/utils";
 
 const DownloadItem = ({ video, accordionOpenHandler, accordionOpen }) => {
   const { id, videoName, videoTitle, imgSrc } = video;
@@ -20,16 +19,13 @@ const DownloadItem = ({ video, accordionOpenHandler, accordionOpen }) => {
     if (accordionOpen === id) {
       dispatch(myVidsLinksAction(videoTitle)); //گرفتن لینکهای دانلود یک ویدیوی خریداری شده
     }
-    // if (links.length > 0 && accordionOpen === id) {
-    //   toast.info(`${enToPerNum(links.length)}فابل`, options);
-    // }
-  }, [accordionOpen, dispatch, links.length, id]);
+  }, [accordionOpen, dispatch, links.length, id, videoTitle]);
 
   useEffect(() => {
     if (error && accordionOpen == id) {
       toast.error("خطا", options);
     }
-  }, [error]);
+  }, [error, accordionOpen]);
 
   return (
     <div className="w-full flex flex-col items-center justify-center">
@@ -38,7 +34,11 @@ const DownloadItem = ({ video, accordionOpenHandler, accordionOpen }) => {
         className="bg-shade font-secondFont h-14 w-[90%] sm:w-96 flex items-center justify-end rounded-lg overflow-hidden  cursor-pointer sm:hover:shadow-sm sm:hover:shadow-dark"
       >
         <div className="h-full w-[20%] flex items-center justify-center">
-          <img src={imgSrc} className="h-12 w-12 object-fill rounded-full" />
+          <img
+            src={imgSrc}
+            className="h-12 w-12 object-fill rounded-full"
+            alt="desc"
+          />
         </div>
         <div className=" w-[80%] h-full flex items-center justify-end">
           <p className="text-dark text-xs pr-2">{videoName}</p>

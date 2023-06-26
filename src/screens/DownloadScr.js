@@ -18,9 +18,13 @@ const DownloadScr = () => {
   if (userInfo) {
     userId = userInfo._id;
   }
-  const { loading, error, myVidsArr, buying } = useSelector(
+  const { loading, error, myVidsArr } = useSelector(
     //گرفتن آرایه ویدیوهای خریداری شده از استور بعد از فشردن دکمه
     (state) => state.myVidsReducer
+  );
+
+  const { loading: statusLoading } = useSelector(
+    (state) => state.paymentStatusReducer
   );
 
   const { videos } = useSelector((state) => state.videoListReducer);
@@ -28,18 +32,7 @@ const DownloadScr = () => {
   const status = searchParams.get("status");
   const order_id = searchParams.get("order_id");
   const payId = searchParams.get("id");
-  console.log(!!status);
 
-  const navigate = useNavigate();
-  const myVidsHandler = () => {
-    // هندلر فشردن دکمه، برای دریافت آرایه ویدیوهای خریداری شده
-    if (userId) {
-      dispatch(myVidsAction(status, userInfo._id, payId, order_id)); //گرفتن آرایه ویدیوهای خریداری شده‌ی یوزر از دیتابیس
-    } else {
-      toast.error("ابتدا وارد حساب شوید", options);
-      return navigate("/signin?redirect=myvideos");
-    }
-  };
   const myVideos = []; // گرفتن کل پراپرتیهای ویدیوهای خریداری شده، طبق آرایه آیدیهای ویدیوهای خریداری شده، از بین کل ویدیوها
   if (myVidsArr.length > 0) {
     for (let element of myVidsArr) {
@@ -48,6 +41,16 @@ const DownloadScr = () => {
     }
   }
 
+  const navigate = useNavigate();
+  const myVidsHandler = () => {
+    // هندلر فشردن دکمه، برای دریافت آرایه ویدیوهای خریداری شده
+    if (userId) {
+      dispatch(myVidsAction(status, userInfo._id)); //گرفتن آرایه ویدیوهای خریداری شده‌ی یوزر از دیتابیس
+    } else {
+      toast.error("ابتدا وارد حساب شوید", options);
+      return navigate("/signin?redirect=myvideos");
+    }
+  };
   const [accordionOpen, setAccordionOpen] = useState(null);
   const accordionOpenHandler = (key) => {
     //کمک به اینکه اگه روی یه آکوردیون (کامپوننت فرزند) کلیک کردیم، فقط رو همون یکی تغییرات اعمال شه
@@ -62,15 +65,14 @@ const DownloadScr = () => {
         options
       );
     }
-    dispatch(videoList(1)); //همه ویدیوها رو میده
+    dispatch(videoList(1)); // همه ویدیوها رو میده و میذاره تو لوکال استوریج
     if (status) {
       dispatch(getPaymentStatusAction(status, order_id, payId)); // میره چک کنه استاتوسهای درگاه رو بعد از پرداخت، که مثلا اگه بعد از درگاه اومدیم این صفحه و استاتوس 10 بود، پرداخت رو تایید کنه و و یوزر رو لاگ‌این.
       if (+status === 10) {
         dispatch(removeFromCard(order_id));
-        toast.info("پرداخت موفق", options);
       }
     }
-  }, [dispatch, status, myVidsArr]);
+  }, [dispatch, order_id, payId, status, myVidsArr.length]);
 
   return (
     <div className="h-screen w-screen bg-white fixed top-28 flex flex-col items-center justify-start gap-2 overflow-y-auto select-none">
@@ -78,9 +80,16 @@ const DownloadScr = () => {
         <button
           onClick={myVidsHandler}
           className="w-52 sm:w-56 font-secondFont font-thin text-[9px] sm:text-[11px] bg-vio text-white flex items-center justify-center gap-2"
+          disabled={statusLoading}
         >
-          {loading ? <LoadingSpinner /> : <VideoLibraryOutlinedIcon />}
-          {!loading ? <span> برای مشاهده ویدیوهای خود کلیک کنید</span> : null}
+          {loading || statusLoading ? (
+            <LoadingSpinner />
+          ) : (
+            <VideoLibraryOutlinedIcon />
+          )}
+          {!loading && !statusLoading ? (
+            <span> برای مشاهده ویدیوهای خود کلیک کنید</span>
+          ) : null}
         </button>
       </div>
       {error

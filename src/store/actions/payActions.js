@@ -2,6 +2,8 @@ import * as actions from "../actions/actionTypes";
 import axios from "axios";
 import { signinAction } from "../actions/userActions";
 import { videoList } from "./videoActions";
+import { toastStyle as options } from "../../utils/styles";
+import { toast } from "react-toastify";
 
 export const pay = (price, videoId) => {
   return async (dispatch, getState) => {
@@ -30,12 +32,11 @@ export const getPaymentStatusAction = (status, order_id, payId) => {
         "http://localhost:5000/api/pay/status",
         { status, order_id, payId }
       );
-      dispatch(signinAction(data.mail, data.token));
-      dispatch(videoList(1));
+      dispatch(signinAction(data.mail, data.name));
       dispatch({
         type: actions.GET_PAYMENT_STATUS_SUCCESS,
-        payload: data.message,
-      }); //data>>> user mail && user token
+        payload: data,
+      });
     } catch (err) {
       console.log("getPaymentStatusAction axios error >>>", err);
       dispatch({ type: actions.GET_PAYMENT_STATUS_FAIL, payload: err.message });
