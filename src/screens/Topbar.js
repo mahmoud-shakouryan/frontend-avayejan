@@ -68,7 +68,7 @@ const Topbar = () => {
           />
         </div>
         <ul className="hidden h-full w-full md:flex md:items-center md:justify-end md:text-[9px] lg:text-[10px] font-firstFont">
-          <li className={navLiStyle}>
+          {/* <li className={navLiStyle}>
             <NavLink
               to="/admin/"
               className={({ isActive }) =>
@@ -77,7 +77,7 @@ const Topbar = () => {
             >
               ادمین
             </NavLink>
-          </li>
+          </li> */}
           <li className={navLiStyle}>
             <NavLink
               to="/contact"

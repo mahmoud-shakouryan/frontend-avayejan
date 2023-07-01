@@ -13,12 +13,13 @@ import { toast } from "react-toastify";
 import { enToPerNum, getHahtagForm } from "../utils/utils";
 import LoadingSpinner from "../components/LinkBar";
 import { toastStyle as options } from "../utils/styles";
+import { formattedPersianPrice } from "../utils/utils";
 
-
-const VideoDetail = ({ id, showModalHandler, closeModalHandler }) => {
+const VideoDetail = () => {
   const { userInfo } = useSelector((state) => state.userSigninReducer);
   const videoDetailsState = useSelector((state) => state.videoDetailsReducer);
-  const { video, loading, error } = videoDetailsState;
+  const { video } = videoDetailsState;
+  const { id } = useParams();
   const {
     videoName,
     category,
@@ -30,10 +31,7 @@ const VideoDetail = ({ id, showModalHandler, closeModalHandler }) => {
     imgSrc,
   } = video;
 
-  const formatttedPrice = (price / 10)
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  const Toman = enToPerNum(formatttedPrice);
+  const Toman = formattedPersianPrice(price);
   let categoryHashtagForm;
   if (category) {
     categoryHashtagForm = getHahtagForm(category);
@@ -51,13 +49,17 @@ const VideoDetail = ({ id, showModalHandler, closeModalHandler }) => {
   const videoPropsStyle = "flex flex-col items-center justify-center text-dark";
   const addToCardHandler = () => {
     if (userInfo) {
-      addToCard(id);
+      addToCard();
       return navigate(`/card/${id}`);
     } else if (!userInfo) {
       toast.warn("ابتدا باید وارد شوید", options);
       return navigate(`/signin?redirect=videos/${id}`);
     }
   };
+
+  function goBack() {
+    return navigate(-1);
+  }
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -66,8 +68,8 @@ const VideoDetail = ({ id, showModalHandler, closeModalHandler }) => {
 
   if (!video.category) {
     return (
-      <div className="fixed top-0 left-0 bottom-0 right-0">
-        <div className="fixed top-0 left-0 bottom-0 right-0 bg-opacity" />
+      <div className="h-screen w-screen">
+        <div className="fixed top-0 left-0 bottom-0 right-0 " />
         <div className="flex flex-col items-center justify-center h-2/3 w-2/3 relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-superLightBlue shadow-md shadow-dark rounded">
           <LoadingSpinner />
         </div>
@@ -75,13 +77,10 @@ const VideoDetail = ({ id, showModalHandler, closeModalHandler }) => {
     );
   }
   return (
-    <div className="h-screen w-screen fixed top-0 bottom-0 right-0 left-0 font-secondFont bg-opacity flex flex-col justify-start items-center gap-2 pt-40">
-      <button
-        onClick={closeModalHandler}
-        className="fixed right-1/2 translate-x-1/2 top-10 text-[70px] text-vio font-bold px-5 font-firstFont"
-      >
-        &times;
-      </button>
+    <div className=" font-secondFont bg-white flex flex-col justify-start items-center gap-2 pt-11">
+      {/* <div className="w-80 h-52 bg-vio text-[70px] text-vio font-bold px-5 font-firstFont overflow-hidden">
+        <img src={imgSrc} alt={category} className="object-contain" />
+      </div> */}
       <div className="relative flex flex-col items-center justify-start max-h-60 overflow-y-auto w-11/12 sm:w-2/3  bg-superLightBlue rounded pt-1">
         <div className="font-bold">{videoName}</div>
         <div className="text-[10px] text-hashtag">{categoryHashtagForm}</div>
@@ -136,8 +135,8 @@ const VideoDetail = ({ id, showModalHandler, closeModalHandler }) => {
       </div>
       <div className="rounded w-11/12 sm:w-2/3 lg:w-2/3 h-20 flex items-center justify-around">
         <button
-          onClick={closeModalHandler}
-          className="w-32 sm:w-40 bg-vio rounded border border-vio text-dark font-bold p-2  flex flex-col justify-center"
+          onClick={goBack}
+          className="w-32 sm:w-40 bg-vio border border-vio text-shade p-2 flex flex-col justify-center"
         >
           <span className="w-full flex items-center justify-center">
             <ArrowBackIcon />
@@ -146,7 +145,10 @@ const VideoDetail = ({ id, showModalHandler, closeModalHandler }) => {
             برگشت
           </span>
         </button>
-        <button className="w-32 sm:w-40 bg-vio rounded border border-vio text-dark font-bold p-2  flex flex-col justify-center  ">
+        <button
+          onClick={addToCardHandler}
+          className="w-32 sm:w-40 bg-vio border border-vio text-shade p-2  flex flex-col justify-center  "
+        >
           <span className="w-full flex items-center justify-center">
             <AddShoppingCartIcon />
           </span>

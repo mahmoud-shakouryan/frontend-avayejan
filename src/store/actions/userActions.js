@@ -12,7 +12,7 @@ export const signinAction = (email, password) => {
         password: password,
       });
       dispatch({ type: actions.USER_SIGNIN_SUCCESS, payload: data });
-      // toast.success("عزیز، خوش آمدی " + data.name, options);
+      toast.success(`وارد شدید`, options);
     } catch (err) {
       dispatch({
         type: actions.USER_SIGNIN_FAIL,

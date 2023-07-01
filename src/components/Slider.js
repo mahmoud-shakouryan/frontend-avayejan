@@ -29,21 +29,14 @@ const Slider = () => {
     //kari konim ke vaghti aghab jolo mizanim, indexe axi ke bayad neshoon bede az toole tedad axamoon nagzare'o bekhad masalan axe shomare 10 ro neshoon bede dar soorati ke faghat 5 ta darim.
     count = (count + 1) % images.length; //5
     setCurrentIndex(count);
-    //slideRef.current.classList.add("fade-anim");
   };
 
   const handlePrevClick = () => {
     count = (currentIndex + images.length - 1) % images.length;
     setCurrentIndex(count);
-    //slideRef.current.classList.add("fade-anim");
   };
 
-  // const removeAnimation = () => {
-  //   slideRef.current.classList.remove("fade-anim");
-  // };
-
   useEffect(() => {
-    // slideRef.current.addEventListener("animationend", removeAnimation);
     slideRef.current.addEventListener("mouseenter", pauseSlider);
     slideRef.current.addEventListener("mouseleave", startSlider);
     startSlider();
@@ -72,14 +65,14 @@ const Slider = () => {
         >
           <NavigateBeforeOutlinedIcon
             className=" flex justify-center"
-            style={{ color: "#8DA9C4" }}
+            style={{ color: "#32115d" }}
           />
         </button>
         {images.map((image, index) => (
           <span
             key={index}
-            className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full border border-lightBlue shadow-sm ${
-              index == currentIndex ? "bg-lightBlue" : null
+            className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full border-2 border-shade shadow-sm ${
+              index === +currentIndex ? "bg-vio" : null
             } `}
           />
         ))}
@@ -87,7 +80,7 @@ const Slider = () => {
           onClick={handleNextClick}
           className="flex flex-col justify-center"
         >
-          <NavigateNextOutlinedIcon style={{ color: "#8DA9C4" }} />
+          <NavigateNextOutlinedIcon style={{ color: "#32115d" }} />
         </button>
       </div>
     </div>

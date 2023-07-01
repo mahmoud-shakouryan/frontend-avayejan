@@ -37,7 +37,7 @@ const Home = () => {
             متخصص اعصاب و روان، روان‌درمانگر و مشاور ازدواج و خانواده
           </span>
           <span className="w-16 h-16 rounded-full overflow-hidden">
-            <img src="/images/thedr.png" />
+            <img src="/images/thedr.png" alt="dr" />
           </span>
         </div>
         <Slider slides={images} />
@@ -97,30 +97,49 @@ const Home = () => {
               href="http://telegram.me/avaye_jaan"
               className="sm:hover:scale-110 sm:duration-150"
               target="_blank"
+              rel="noreferrer"
             >
               <span title="تلگرام">
-                <img src="/images/telegram_48.png" className="scale-50" />
+                <img
+                  src="/images/telegram_48.png"
+                  className="scale-50"
+                  alt="social media icon"
+                />
               </span>
             </a>
             <a
               href="https://www.instagram.com/avaye_jaan/"
               className="sm:hover:scale-110 sm:duration-150"
               target="_blank"
+              rel="noreferrer"
             >
               <span title="اینستاگرام">
-                <img src="/images/insta_48.png" className="scale-50" />
+                <img
+                  src="/images/insta_48.png"
+                  className="scale-50"
+                  alt="social media icon"
+                />
               </span>
             </a>
             <span className="sm:hover:scale-110 sm:duration-150" title="یوتیوب">
-              <img src="/images/youtube_48.png" className="scale-50" />
+              <img
+                src="/images/youtube_48.png"
+                className="scale-50"
+                alt="social media icon"
+              />
             </span>
             <a
               href="https://www.aparat.com/avaclinic"
               className="sm:hover:scale-110 sm:duration-150"
               target="_blank"
+              rel="noreferrer"
             >
               <span title="آپارات">
-                <img src="/images/aparat_48.png" className="scale-50" />
+                <img
+                  src="/images/aparat_48.png"
+                  className="scale-50"
+                  alt="social media icon"
+                />
               </span>
             </a>
           </div>
@@ -132,33 +151,52 @@ const Home = () => {
             href="http://telegram.me/avaye_jaan"
             className="md:hover:scale-150 sm:hover:scale-110 sm:duration-150"
             target="_blank"
+            rel="noreferrer"
           >
             <span title="تلگرام">
-              <img src="/images/telegram_48.png" className="scale-50" />
+              <img
+                src="/images/telegram_48.png"
+                className="scale-50"
+                alt="social media icon"
+              />
             </span>
           </a>
           <a
             href="https://www.instagram.com/avaye_jaan/"
             className="md:hover:scale-150 sm:hover:scale-110 sm:duration-150"
             target="_blank"
+            rel="noreferrer"
           >
             <span title="اینستاگرام">
-              <img src="/images/insta_48.png" className="scale-50" />
+              <img
+                src="/images/insta_48.png"
+                className="scale-50"
+                alt="social media icon"
+              />
             </span>
           </a>
           <span
             className="md:hover:scale-150 sm:hover:scale-110 sm:duration-150"
             title="یوتیوب"
           >
-            <img src="/images/youtube_48.png" className="scale-50" />
+            <img
+              src="/images/youtube_48.png"
+              className="scale-50"
+              alt="social media icon"
+            />
           </span>
           <a
             href="https://www.aparat.com/avaclinic"
             className="md:hover:scale-150 sm:hover:scale-110 sm:duration-150"
             target="_blank"
+            rel="noreferrer"
           >
             <span title="آپارات">
-              <img src="/images/aparat_48.png" className="scale-50" />
+              <img
+                src="/images/aparat_48.png"
+                className="scale-50"
+                alt="social media icon"
+              />
             </span>
           </a>
         </div>

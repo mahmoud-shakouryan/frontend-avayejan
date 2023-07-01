@@ -5,16 +5,18 @@ export const homeBtnStyle =
 export const homeBtnStyleHorizontal =
   "bg-vio sm:hover:bg-hoverBtn  py-2 w-full text-[8px] md:text-[11px] flex items-center justify-center gap-1 text-shade font-firstFont";
 export const toastStyle = {
+  position: "top-left",
+  theme: "dark",
   autoClose: 2000,
   pauseOnHover: false,
   style: {
-    bounce:'slide',
+    bounce: "slide",
     textAlign: "center",
     color: "#0e051b",
     fontFamily: "shabnam",
     fontSize: "11px",
     fontWeight: "bold",
-    backgroundColor:"#f0e8fb",
-
+    // backgroundColor: "#f0e8fb",
+    backgroundColor: "#c6a6ee",
   },
 };
